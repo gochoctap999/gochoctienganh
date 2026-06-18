@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Tiếng Anh - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-screen flex flex-col text-gray-800 overflow-hidden">
+
+    <header class="flex items-center justify-between px-6 py-3 bg-[#bde0fe] shadow-sm z-10 relative">
+        <div class="flex items-center gap-8">
+            <div class="text-2xl font-extrabold text-[#1e3a8a] tracking-tight">goctienganh</div>
+            <div class="hidden md:flex relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input type="text" placeholder="Tìm từ vựng, bộ thẻ..." class="pl-10 pr-4 py-2 w-64 md:w-80 rounded-full bg-white/80 border border-[#bde0fe] outline-none focus:border-blue-400 text-sm shadow-sm transition-colors">
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <div class="flex items-center bg-[#eef2f6] px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
+                <i class="fa-solid fa-fire mr-1.5"></i> 1
+            </div>
+            <button class="w-9 h-9 rounded-full bg-[#eef2f6] flex items-center justify-center text-[#475569] shadow-sm hover:bg-white transition-colors">
+                <i class="fa-regular fa-bell text-[17px]"></i>
+            </button>
+            <button class="bg-[#3b82f6] hover:bg-blue-600 transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
+                <i class="fa-solid fa-star text-[#fde047] mr-1.5 text-xs"></i> PRO
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/40 backdrop-blur-md border-r border-[#e2e8f0] z-10 transition-all duration-300 shrink-0">
+            <div class="p-4 flex flex-col gap-2 overflow-y-auto hide-scrollbar">
+                <a href="#" class="flex items-center gap-3 bg-[#cce5ff] p-3 rounded-2xl font-bold text-[#1e3a8a] shadow-sm transition-transform hover:scale-[1.02]">
+                    <div class="bg-[#ffb3c6] w-9 h-9 flex items-center justify-center rounded-xl text-red-500 shadow-inner shrink-0">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <span class="link-text">Trang chủ</span>
+                </a>
+                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-border-all"></i></div>
+                    <span class="link-text">Bộ từ vựng</span>
+                </a>
+                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book"></i></div>
+                    <span class="link-text">Từ vựng</span>
+                </a>
+                <a href="game.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-play"></i></div>
+                    <span class="link-text">Game phản xạ</span>
+                </a>
+                <a href="skills" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <span class="link-text">4 Skill</span>
+                </a>
+                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-xl font-extrabold font-serif shrink-0">A⁺</div>
+                    <span class="link-text">Grammar</span>
+                </a>
+                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <span class="link-text">Luyện đề</span>
+                </a>
+            </div>
+
+            <div class="mt-auto flex flex-col">
+                <div class="px-4 pb-4">
+                    <button id="btn-toggle-sidebar" class="w-full bg-[#dbeafe] hover:bg-[#bfdbfe] text-[#1e3a8a] font-bold py-2.5 rounded-2xl transition-colors shadow-sm flex justify-center items-center">
+                        <i id="sidebar-icon" class="fa-solid fa-angles-left text-lg"></i>
+                    </button>                
+                <div class="flex items-center gap-3 md:gap-4">
+            
+            <button id="btn-darkmode" class="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center text-gray-600 shadow-sm hover:bg-white transition-colors">
+            </button>
+            </div>
+                <div class="bg-[#bde0fe] px-4 py-3 flex justify-between items-center text-[15px] font-bold text-[#1e3a8a] footer-info">
+                    <div class="flex items-center gap-2 bg-[#eef2f6] px-3 py-1.5 rounded-full shadow-sm">
+                        <div class="w-[18px] h-[18px] rounded-full border-[1.5px] border-[#3b82f6] flex items-center justify-center">
+                            <i class="fa-solid fa-c text-[10px] text-[#3b82f6]"></i>
+                        </div>
+                        <span></span>
+                    </div>
+                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80">
+                        <i id="mode-icon" class="fa-regular fa-moon"></i> <span id="mode-text">Tối</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
+            <div class="max-w-7xl mx-auto space-y-6">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    <div class="col-span-1 lg:col-span-3 bg-[#ffe4e6] rounded-[32px] p-8 flex justify-between items-center border border-[#fbc3cb] shadow-sm relative overflow-hidden">
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-[#800020] leading-tight relative z-10">
+                            Chào Trân, hôm nay<br>luyện đề nhé!
+                        </h2>
+                    </div>
+
+                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col justify-center relative overflow-hidden">
+                        <div class="text-sm font-bold text-[#475569] mb-2 relative z-10">Band điểm</div>
+                        <div class="flex items-end gap-3 relative z-10">
+                            <span class="text-5xl font-extrabold text-[#1e3a8a]">6.5</span>
+                            <button class="bg-[#ffb3c6] text-[#800020] px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-[#ff9eb5] transition-colors shadow-sm mb-1">
+                                Chọn band <i class="fa-solid fa-chevron-down ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    
+                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col justify-center">
+                        <div class="text-sm font-bold text-[#475569] mb-2">Chuỗi ngày học:</div>
+                        <div class="text-4xl font-extrabold text-[#800020] mb-6">
+                            1 <span class="text-xl font-bold text-[#1e3a8a] ml-1">ngày</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">C1</div>
+                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">T2</div>
+                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">T3</div>
+                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">T4</div>
+                            <div class="w-7 h-7 rounded-full bg-white border-[3px] border-[#ffb3c6] flex items-center justify-center relative shadow-sm">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                                <div class="absolute -bottom-5 text-[10px] font-bold text-red-500">T5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-1 lg:col-span-3 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col overflow-hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-extrabold text-[#475569] text-base flex items-center gap-2">
+                                <i class="fa-solid fa-book-open text-[#ffb3c6]"></i> Học liệu đang học
+                            </h3>
+                            <a href="grammar.html" class="text-sm font-bold text-[#3b82f6] hover:underline flex items-center gap-1">
+                                Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div id="home-grammar-list" class="flex overflow-x-auto gap-4 pb-2 snap-x scroll-smooth hide-scrollbar h-full">
+                            </div>
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                    
+                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col">
+                        <div class="text-[11px] font-bold text-[#475569] uppercase tracking-wider mb-4">HOẠT ĐỘNG HỌC TẬP - THÁNG 6 - 2026</div>
+                        <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-gray-500 mb-3">
+                            <div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div><div>CN</div>
+                        </div>
+                        <div class="grid grid-cols-7 gap-y-3 gap-x-1 text-center text-[13px] font-bold text-[#1e3a8a] items-center flex-1">
+                            <div class="opacity-0"></div><div class="opacity-0"></div>
+                            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+                            <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+                            <div>13</div><div>14</div><div>15</div><div>16</div><div>17</div>
+                            <div class="relative w-7 h-7 mx-auto flex items-center justify-center rounded-full border border-red-400 text-red-500 font-extrabold shadow-sm">18</div>
+                            <div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div>
+                            <div>26</div><div>27</div><div>28</div><div>29</div><div>30</div>
+                        </div>
+                    </div>
+
+                    <div class="col-span-1 lg:col-span-2 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col">
+                        <div class="text-base font-extrabold text-[#1e3a8a] mb-1">Thống kê học tập</div>
+                        <div class="text-[11px] font-bold text-[#475569] mb-4">Từ từ học / ngày</div>
+                        
+                        <div class="flex-1 flex items-end gap-2 border-b border-gray-200 pb-1 relative min-h-[140px]">
+                            <div class="absolute left-0 top-0 bottom-0 w-8 flex flex-col justify-between text-[9px] text-gray-400 font-bold">
+                                <span>120 000</span>
+                                <span>100 000</span>
+                                <span>90 000</span>
+                                <span>60 000</span>
+                                <span>20 000</span>
+                                <span>0</span>
+                            </div>
+                            <div class="ml-[45px] flex-1 flex items-end justify-between h-full gap-2">
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 40%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 35%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 60%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 45%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 55%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 70%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 85%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 60%"></div>
+                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 15%"></div>
+                            </div>
+                        </div>
+                        <div class="ml-[45px] flex justify-between mt-2 text-[10px] font-bold text-gray-500">
+                            <span>T1</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>T8</span><span>T9</span>
+                        </div>
+                    </div>
+
+                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col items-center relative min-h-[200px]">
+                        <div class="absolute top-5 left-5 text-[13px] font-extrabold text-[#1e3a8a] tracking-wide">+ 4 Skill</div>
+                        
+                        <div class="absolute top-[60px] left-4 text-[10px] font-bold text-[#475569]">Reading</div>
+                        <div class="absolute top-[60px] right-4 text-[10px] font-bold text-[#475569]">Writing</div>
+                        <div class="absolute bottom-[30px] left-4 text-[10px] font-bold text-[#475569]">Listening</div>
+                        <div class="absolute bottom-[30px] right-4 text-[10px] font-bold text-[#475569]">Speaking</div>
+                        
+                        <div class="relative w-36 h-36 mt-auto mb-2 flex items-center justify-center">
+                            <svg viewBox="0 0 100 100" class="w-full h-full transform -rotate-90">
+                                <circle cx="50" cy="50" r="42" fill="none" stroke="#ffe4e6" stroke-width="7" />
+                                <circle cx="50" cy="50" r="42" fill="none" stroke="#ff8fa3" stroke-width="7" stroke-dasharray="264" stroke-dashoffset="80" stroke-linecap="round" />
+                                
+                                <circle cx="50" cy="50" r="31" fill="none" stroke="#eff6ff" stroke-width="7" />
+                                <circle cx="50" cy="50" r="31" fill="none" stroke="#93c5fd" stroke-width="7" stroke-dasharray="195" stroke-dashoffset="60" stroke-linecap="round" />
+                                
+                                <circle cx="50" cy="50" r="20" fill="none" stroke="#e0e7ff" stroke-width="7" />
+                                <circle cx="50" cy="50" r="20" fill="none" stroke="#3b82f6" stroke-width="7" stroke-dasharray="125" stroke-dashoffset="35" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-sm border-2 border-[#bde0fe] rounded-[32px] p-6 shadow-sm">
+                    <div class="flex justify-between items-center mb-6 pb-4 border-b border-blue-50">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-[#ffb3c6] flex items-center justify-center text-white text-lg shadow-inner">
+                                <i class="fa-regular fa-calendar-check"></i>
+                            </div>
+                            <h2 class="font-extrabold text-[#1e3a8a] text-lg">Lịch sử học tập</h2>
+                        </div>
+                        <div class="flex gap-4">
+                            <button class="text-sm font-bold text-[#475569] hover:text-[#3b82f6] flex items-center gap-1 transition-colors">
+                                <i class="fa-solid fa-clock-rotate-left"></i> Xem thống kê
+                            </button>
+                            <button onclick="window.location.href='grammar-history.html'" class="text-sm font-bold text-[#475569] hover:text-[#3b82f6] flex items-center gap-1 transition-colors">
+                                <i class="fa-solid fa-list"></i> Xem tất cả
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="history-list" class="flex flex-col gap-3">
+                        </div>
+                </div>
+
+            </div>
+        </main>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

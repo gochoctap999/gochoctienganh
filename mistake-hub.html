@@ -1,0 +1,158 @@
+html_content = """<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc nhỏ học Tiếng Anh - Trung tâm sửa sai</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">🌸 Góc Nhỏ</div>
+        
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Tìm kiếm nhanh...">
+        </div>
+
+        <div class="menu-item glow-hover">🏠 Trang Chủ</div>
+        <div class="menu-item glow-hover">📋 Bộ từ vựng</div>
+        <div class="menu-item glow-hover">📚 Từ vựng</div>
+        <div class="menu-item glow-hover">🎧 4Skill</div>
+        <div class="menu-item glow-hover">✍️ Ngữ pháp</div>
+        <div class="menu-item glow-hover">📝 Luyện đề</div>
+        <div class="menu-item active glow-hover">🛠️ Sửa sai tổng hợp</div>
+        <div class="menu-item glow-hover">👤 Hồ sơ của tôi</div>
+
+        <div class="user-widget">
+            <div class="user-info">
+                <div class="user-avatar">👧🏻</div>
+                <div>
+                    <div class="user-name">Ngọc Trân</div>
+                    <div class="user-streak">🔥 12 Ngày</div>
+                </div>
+            </div>
+            <div class="notify-bell jelly glow-hover">🔔</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1 class="page-title">Trung Tâm Sửa Sai Tổng Hợp</h1>
+
+        <div class="tabs">
+            <button class="tab-btn jelly active" data-tab="vocab" onclick="switchTab('vocab')">📝 Sai sót Từ vựng</button>
+            <button class="tab-btn jelly" data-tab="grammar" onclick="switchTab('grammar')">✍️ Sai sót Ngữ pháp</button>
+            <button class="tab-btn jelly" data-tab="exam" onclick="switchTab('exam')">⏳ Sai sót Luyện đề</button>
+        </div>
+
+        <div id="tab-vocab" class="tab-content active">
+            <h3 style="margin-bottom: 15px; color: var(--text-light);">Kho từ vựng Cấp độ 0 (Cần ôn tập gấp)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Từ vựng</th>
+                            <th>Nghĩa tiếng Việt</th>
+                            <th>Phiên âm</th>
+                            <th>Loại từ</th>
+                            <th>Ví dụ</th>
+                            <th>Từ đồng nghĩa</th>
+                            <th>Ghi chú</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>resilient</strong></td>
+                            <td>kiên cường</td>
+                            <td>/rɪˈzɪliənt/</td>
+                            <td>Adj</td>
+                            <td>She is resilient.</td>
+                            <td>tough</td>
+                            <td>💪</td>
+                            <td>
+                                <button class="practice-btn jelly glow-hover">🃏 Flashcard</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>ephemeral</strong></td>
+                            <td>phù du</td>
+                            <td>/ɪˈfemərəl/</td>
+                            <td>Adj</td>
+                            <td>Fame is ephemeral.</td>
+                            <td>fleeting</td>
+                            <td>🍂</td>
+                            <td>
+                                <button class="practice-btn jelly glow-hover">📝 Quiz</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="tab-grammar" class="tab-content">
+            <h3 style="margin-bottom: 15px; color: var(--text-light);">Các câu hỏi ngữ pháp đã làm sai</h3>
+            <div class="grammar-error-list">
+                
+                <div class="grammar-card">
+                    <div class="grammar-question">
+                        Question: By the time we arrived, the movie <span class="wrong-answer">has started</span>.
+                    </div>
+                    <div class="grammar-explanation">
+                        <strong>✨ Giải thích đúng:</strong> Đáp án chính xác là <strong>had started</strong>.<br>
+                        <em>Lý do:</em> Hành động phim bắt đầu xảy ra trước hành động chúng tôi đến (quá khứ đơn), do đó phải dùng thì Quá khứ hoàn thành (Past Perfect).
+                    </div>
+                </div>
+
+                <div class="grammar-card">
+                    <div class="grammar-question">
+                        Question: I look forward to <span class="wrong-answer">hear</span> from you soon.
+                    </div>
+                    <div class="grammar-explanation">
+                        <strong>✨ Giải thích đúng:</strong> Đáp án chính xác là <strong>hearing</strong>.<br>
+                        <em>Lý do:</em> Cấu trúc "look forward to" luôn đi kèm với V-ing (Danh động từ).
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="tab-exam" class="tab-content">
+            <h3 style="margin-bottom: 15px; color: var(--text-light);">Lưu giữ các câu sai theo Đề và Part</h3>
+            
+            <div class="filter-section">
+                <span style="font-weight: 700;">Lọc theo mã đề:</span>
+                <button class="filter-btn jelly active" onclick="selectFilter(this)">Tất cả</button>
+                <button class="filter-btn jelly" onclick="selectFilter(this)">TOEIC Test 1</button>
+                <button class="filter-btn jelly" onclick="selectFilter(this)">IELTS Mock 1</button>
+                <button class="filter-btn jelly" onclick="selectFilter(this)">THPT QG 2024</button>
+            </div>
+
+            <div>
+                <div class="exam-error-card">
+                    <div class="exam-error-info">
+                        <div class="exam-tag">TOEIC Test 1 - Part 5</div>
+                        <div style="font-size: 18px; font-weight: 700;">Question 105: Incomplete Sentences</div>
+                        <div style="color: var(--text-light); font-size: 14px;">Bạn chọn: B / Đáp án: D</div>
+                    </div>
+                    <button class="filter-btn jelly glow-hover">Làm lại câu này</button>
+                </div>
+
+                <div class="exam-error-card">
+                    <div class="exam-error-info">
+                        <div class="exam-tag">IELTS Mock 1 - Reading Part 2</div>
+                        <div style="font-size: 18px; font-weight: 700;">Question 14: True/False/Not Given</div>
+                        <div style="color: var(--text-light); font-size: 14px;">Bạn chọn: False / Đáp án: Not Given</div>
+                    </div>
+                    <button class="filter-btn jelly glow-hover">Làm lại câu này</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

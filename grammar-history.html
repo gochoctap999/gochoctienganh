@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Tiếng Anh - Lịch sử làm bài</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .active-menu {
+            background-color: #cce5ff;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col text-gray-800 overflow-hidden bg-gradient-to-br from-[#fdfbf7] via-[#fff0f0] to-[#f0f7ff]">
+
+    <header class="flex items-center justify-between px-6 py-3 bg-[#bde0fe] shadow-sm z-10 relative">
+        <div class="flex items-center gap-8">
+            <div class="text-2xl font-extrabold text-[#1e3a8a] tracking-tight">goctienganh</div>
+            <div class="hidden md:flex relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input type="text" placeholder="Tìm từ vựng, bộ thẻ..." class="pl-10 pr-4 py-2 w-64 md:w-80 rounded-full bg-white/80 border border-[#bde0fe] outline-none focus:border-blue-400 text-sm shadow-sm transition-colors">
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <div class="flex items-center bg-[#eef2f6] px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
+                <i class="fa-solid fa-fire mr-1.5"></i> 1
+            </div>
+            <button class="w-9 h-9 rounded-full bg-[#eef2f6] flex items-center justify-center text-[#475569] shadow-sm hover:bg-white transition-colors">
+                <i class="fa-regular fa-bell text-[17px]"></i>
+            </button>
+            <button class="bg-[#3b82f6] hover:bg-blue-600 transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
+                <i class="fa-solid fa-star text-[#fde047] mr-1.5 text-xs"></i> PRO
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/40 backdrop-blur-md border-r border-[#e2e8f0] z-10 transition-all duration-300">
+            <div class="p-4 flex flex-col gap-2 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-house"></i></div>
+                    <span class="link-text">Trang chủ</span>
+                </a>
+                
+                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-border-all"></i></div>
+                    <span class="link-text">Bộ từ vựng</span>
+                </a>
+                
+                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book"></i></div>
+                    <span class="link-text">Từ vựng</span>
+                </a>
+                <a href="game.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-play"></i></div>
+                    <span class="link-text">Game phản xạ</span>
+                </a>
+                <a href="skills.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <span class="link-text">4 Skill</span>
+                </a>
+
+                <a href="grammar.html" class="flex items-center gap-3 active-menu p-3 rounded-2xl font-bold shadow-sm transition-transform hover:scale-[1.02]">
+                    <div class="bg-[#ffb3c6] w-9 h-9 flex items-center justify-center rounded-xl text-red-500 shadow-inner shrink-0 text-xl font-extrabold font-serif">A⁺</div>
+                    <span class="link-text">Grammar</span>
+                </a>
+
+                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <span class="link-text">Luyện đề</span>
+                </a>
+            </div>
+
+            <div class="mt-auto flex flex-col">
+                <div class="px-4 pb-3">
+                    <button id="btn-toggle-sidebar" class="w-full bg-[#cce5ff] hover:bg-[#bde0fe] text-blue-800 font-bold py-2 rounded-xl transition-colors shadow-sm">
+                        <i id="sidebar-icon" class="fa-solid fa-angles-left"></i>
+                    </button>
+                </div>
+                <div class="bg-[#ffb3c6] p-4 flex items-center justify-between cursor-pointer hover:bg-[#ff9eb5] transition-colors profile-box">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#1a237e] text-[#cceff5] flex items-center justify-center font-bold text-xl border-2 border-blue-400 shadow-sm shrink-0">C</div>
+                        <div class="leading-tight profile-info">
+                            <div class="font-bold text-[#1e3a8a] text-[15px]">Ngọc Trân</div>
+                            <div class="text-[11px] text-[#475569] font-semibold mt-0.5">Nhấn để xem hồ sơ</div>
+                        </div>
+                    </div>
+                    <i class="fa-regular fa-user text-[#475569] profile-user-icon"></i>
+                </div>
+                <div class="bg-[#bde0fe] p-3 flex justify-between items-center text-sm font-bold text-[#1e3a8a] footer-info">
+                    <div class="flex items-center gap-2 bg-white/60 px-3 py-1 rounded-full shadow-sm">
+                        <div class="w-4 h-4 rounded-full border border-blue-500 flex items-center justify-center">
+                            <i class="fa-solid fa-c text-[9px] text-blue-500"></i>
+                        </div>
+                        <span>130</span>
+                    </div>
+                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80">
+                        <i id="mode-icon" class="fa-regular fa-moon"></i> <span id="mode-text">Tối</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
+            <div class="max-w-4xl mx-auto">
+                
+                <div class="mb-6">
+                    <button onclick="window.history.back()" class="text-sm font-bold text-[#475569] hover:text-[#1e3a8a] mb-4">← Quay lại</button>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-[#ffb3c6] flex items-center justify-center text-white text-xl shadow-inner border-2 border-white">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h2 class="font-extrabold text-[#1e3a8a] text-3xl">Lịch sử làm bài toàn hệ thống</h2>
+                    </div>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-md border-2 border-[#bde0fe] rounded-[32px] p-5 md:p-8 shadow-sm">
+                    <p class="text-sm font-bold text-gray-500 mb-6 pb-4 border-b border-blue-50">Nhấn vào một bài kiểm tra bất kỳ để xem lại câu hỏi và giải thích chi tiết.</p>
+                    
+                    <div id="history-list" class="flex flex-col gap-3"></div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Gọi hàm hiển thị lịch sử ngay khi tải trang
+        document.addEventListener('DOMContentLoaded', renderHistory);
+    </script>
+</body>
+</html>

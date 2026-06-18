@@ -1,0 +1,99 @@
+html_content = """<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc nhỏ học Tiếng Anh - Hồ sơ của tôi</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">🌸 Góc Nhỏ</div>
+        
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Tìm kiếm nhanh...">
+        </div>
+
+        <div class="menu-item glow-hover">🏠 Trang Chủ</div>
+        <div class="menu-item glow-hover">📋 Bộ từ vựng</div>
+        <div class="menu-item glow-hover">📚 Từ vựng</div>
+        <div class="menu-item glow-hover">🎧 4Skill</div>
+        <div class="menu-item glow-hover">✍️ Ngữ pháp</div>
+        <div class="menu-item glow-hover">📝 Luyện đề</div>
+        <div class="menu-item glow-hover">🛠️ Sửa sai tổng hợp</div>
+        <div class="menu-item active glow-hover">👤 Hồ sơ của tôi</div>
+
+        <div class="user-widget">
+            <div class="user-info">
+                <div class="user-avatar">👧🏻</div>
+                <div>
+                    <div class="user-name">Ngọc Trân</div>
+                    <div class="user-streak">🔥 12 Ngày</div>
+                </div>
+            </div>
+            <div class="notify-bell jelly glow-hover">🔔</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <!-- 1. KHU VỰC ĐỊNH DANH & DANH HIỆU CÁ NHÂN -->
+        <div class="identity-section">
+            <div class="avatar-container glow-hover">
+                <div class="avatar-img">👧🏻</div>
+            </div>
+            <div class="username">Ngọc Trân</div>
+            
+            <div class="shelf-container">
+                <div class="badge b1 jelly glow-hover" title="Chăm chỉ 7 ngày">🌱</div>
+                <div class="badge b2 jelly glow-hover" title="Bậc thầy Từ vựng">👑</div>
+                <div class="badge b3 jelly glow-hover" title="Kỷ lục Luyện đề">🔥</div>
+                <div class="badge b4 jelly glow-hover" title="Chiến thần Ngữ pháp">📖</div>
+                <div class="badge b5 jelly glow-hover" title="Cú đêm học tập">🦉</div>
+            </div>
+            <div style="margin-top: 15px; font-weight: 700; color: var(--text-light); font-size: 14px;">Kệ huy hiệu thành tích</div>
+        </div>
+
+        <!-- 2. BẢNG THỐNG KÊ TIẾN ĐỘ CHUYÊN SÂU -->
+        <div>
+            <h2 class="section-title">📊 Bảng thống kê học tập</h2>
+            <div class="analytics-grid">
+                
+                <!-- Biểu đồ cột: 8 Cấp độ từ vựng -->
+                <div class="chart-card full-width glow-hover">
+                    <div class="chart-title">Thống kê 8 cấp độ từ vựng (SRS)</div>
+                    <div style="width: 100%; height: 300px; display: flex; justify-content: center;">
+                        <canvas id="vocabChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Biểu đồ đường: Kết quả đề thi -->
+                <div class="chart-card glow-hover">
+                    <div class="chart-title">Tiến độ điểm thi luyện đề</div>
+                    <div style="width: 100%; height: 250px; display: flex; justify-content: center;">
+                        <canvas id="examChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Sơ đồ Radar: Ma trận 4 kỹ năng -->
+                <div class="chart-card glow-hover">
+                    <div class="chart-title">Ma trận 4 kỹ năng</div>
+                    <div style="width: 100%; height: 250px; display: flex; justify-content: center;">
+                        <canvas id="skillRadarChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT KHỞI TẠO BIỂU ĐỒ (CHART.JS) -->
+    <script src="script.js"></script>
+</body>
+</html>

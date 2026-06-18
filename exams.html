@@ -1,0 +1,152 @@
+html_content = """<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc nhỏ học Tiếng Anh - Luyện đề</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">🌸 Góc Nhỏ</div>
+        
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Tìm kiếm nhanh...">
+        </div>
+
+        <div class="menu-item glow-hover">🏠 Trang Chủ</div>
+        <div class="menu-item glow-hover">📋 Bộ từ vựng</div>
+        <div class="menu-item glow-hover">📚 Từ vựng</div>
+        <div class="menu-item glow-hover">🎧 4Skill</div>
+        <div class="menu-item glow-hover">✍️ Ngữ pháp</div>
+        <div class="menu-item active glow-hover">📝 Luyện đề</div>
+        <div class="menu-item glow-hover">🛠️ Sửa sai tổng hợp</div>
+        <div class="menu-item glow-hover">👤 Hồ sơ của tôi</div>
+
+        <div class="user-widget">
+            <div class="user-info">
+                <div class="user-avatar">👧🏻</div>
+                <div>
+                    <div class="user-name">Ngọc Trân</div>
+                    <div class="user-streak">🔥 12 Ngày</div>
+                </div>
+            </div>
+            <div class="notify-bell jelly glow-hover">🔔</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <!-- 1. QUẢN LÝ CẤU TRÚC ĐỀ THI ĐA CẤP -->
+        <div>
+            <h2 class="section-title">📚 Thư viện Đề thi</h2>
+            <div class="exam-grid">
+                <div class="exam-wrapper">
+                    <div class="exam-card active jelly glow-hover">
+                        <div class="exam-title">TOEIC Test 1</div>
+                    </div>
+                    <div class="exam-stats">200 Câu • 1,204 Lượt làm</div>
+                </div>
+                <div class="exam-wrapper">
+                    <div class="exam-card jelly glow-hover">
+                        <div class="exam-title">IELTS Mock 1</div>
+                    </div>
+                    <div class="exam-stats">40 Câu • 850 Lượt làm</div>
+                </div>
+                <div class="exam-wrapper">
+                    <div class="exam-card jelly glow-hover">
+                        <div class="exam-title">THPT QG 2024</div>
+                    </div>
+                    <div class="exam-stats">50 Câu • 3,420 Lượt làm</div>
+                </div>
+                <div class="exam-wrapper">
+                    <div class="exam-card jelly glow-hover">
+                        <div class="exam-title">B1 VSTEP</div>
+                    </div>
+                    <div class="exam-stats">120 Câu • 405 Lượt làm</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. CHẾ ĐỘ LUYỆN TẬP NÂNG CAO (LÀM PART & XÁO TRỘN) -->
+        <div class="advanced-practice">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="font-weight: 700; color: var(--text-light);">Làm Part riêng biệt:</span>
+                <div class="parts-container">
+                    <button class="part-tag jelly selected">Part 1</button>
+                    <button class="part-tag jelly">Part 2</button>
+                    <button class="part-tag jelly">Part 3</button>
+                    <button class="part-tag jelly">Part 4</button>
+                    <button class="part-tag jelly">Part 5</button>
+                </div>
+            </div>
+            
+            <button class="shuffle-btn jelly" id="shuffleBtn" onclick="toggleShuffle()">
+                <span class="shuffle-icon">🔄</span> Xáo trộn câu hỏi
+            </button>
+        </div>
+
+        <!-- 3. GIAO DIỆN LÀM BÀI (SPLIT SCREEN) -->
+        <div>
+            <h2 class="section-title">⏳ Giao diện làm bài</h2>
+            <div class="split-screen">
+                
+                <!-- NỬA TRÁI: Đề bài (Trắng sữa pastel) -->
+                <div class="left-panel">
+                    <!-- Audio giả lập cho Part nghe -->
+                    <div style="margin-bottom: 25px; text-align: center;">
+                        <audio controls style="width: 100%; max-width: 400px; outline: none;">
+                            <source src="#" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-text">Question 1: What is the main topic of the conversation?</div>
+                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> A. A new project proposal</label>
+                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> B. A retirement party</label>
+                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> C. Office renovations</label>
+                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> D. Budget cuts</label>
+                    </div>
+
+                    <div class="question-block">
+                        <div class="question-text">Question 2: Where does the man want to go?</div>
+                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> A. To the cafeteria</label>
+                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> B. To the post office</label>
+                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> C. To a meeting room</label>
+                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> D. To the train station</label>
+                    </div>
+                </div>
+
+                <!-- NỬA PHẢI: Quiz điều hướng & Đồng hồ (Hồng thạch pastel) -->
+                <div class="right-panel">
+                    <div class="timer-box" id="timer">45:00</div>
+                    
+                    <div style="font-weight: 800; color: #FFF; text-align: center;">Bảng điều hướng</div>
+                    <div class="nav-grid">
+                        <div class="nav-circle active" id="nav-1">1</div>
+                        <div class="nav-circle" id="nav-2">2</div>
+                        <div class="nav-circle">3</div>
+                        <div class="nav-circle">4</div>
+                        <div class="nav-circle">5</div>
+                        <div class="nav-circle">6</div>
+                        <div class="nav-circle">7</div>
+                        <div class="nav-circle">8</div>
+                        <div class="nav-circle">9</div>
+                        <div class="nav-circle">10</div>
+                    </div>
+
+                    <button class="submit-btn jelly glow-hover">Nộp bài</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

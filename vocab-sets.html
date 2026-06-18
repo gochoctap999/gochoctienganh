@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Tiếng Anh - Bộ từ vựng</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS Tùy chỉnh -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .active-menu {
+            background-color: #cce5ff;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col text-gray-800 overflow-hidden">
+
+    <!-- Header Chung -->
+    <header class="flex items-center justify-between px-6 py-3 bg-[#bde0fe] shadow-sm z-10 relative">
+        <div class="flex items-center gap-8">
+            <div class="text-2xl font-extrabold text-[#1e3a8a] tracking-tight">goctienganh</div>
+            <div class="hidden md:flex relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input type="text" placeholder="Tìm từ vựng, bộ thẻ..." class="pl-10 pr-4 py-2 w-64 md:w-80 rounded-full bg-white/80 border border-[#bde0fe] outline-none focus:border-blue-400 text-sm shadow-sm transition-colors">
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <div class="flex items-center bg-[#eef2f6] px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
+                <i class="fa-solid fa-fire mr-1.5"></i> 1
+            </div>
+            <button class="w-9 h-9 rounded-full bg-[#eef2f6] flex items-center justify-center text-[#475569] shadow-sm hover:bg-white transition-colors">
+                <i class="fa-regular fa-bell text-[17px]"></i>
+            </button>
+            <button class="bg-[#3b82f6] hover:bg-blue-600 transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
+                <i class="fa-solid fa-star text-[#fde047] mr-1.5 text-xs"></i> PRO
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/40 backdrop-blur-md border-r border-[#e2e8f0] z-10 transition-all duration-300">
+            <div class="p-4 flex flex-col gap-2 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-house"></i></div>
+                    <span class="link-text">Trang chủ</span>
+                </a>
+                
+                <!-- BỘ TỪ VỰNG (Đang Active) -->
+                <a href="vocab-sets.html" class="flex items-center gap-3 active-menu p-3 rounded-2xl font-bold shadow-sm transition-transform hover:scale-[1.02]">
+                    <div class="bg-[#ffb3c6] w-9 h-9 flex items-center justify-center rounded-xl text-red-500 shadow-inner shrink-0">
+                        <i class="fa-solid fa-border-all"></i>
+                    </div>
+                    <span class="link-text">Bộ từ vựng</span>
+                </a>
+                
+                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book"></i></div>
+                    <span class="link-text">Từ vựng</span>
+                </a>
+                <a href="game.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-play"></i></div>
+                    <span class="link-text">Game phản xạ</span>
+                </a>
+                <a href="skills.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <span class="link-text">4 Skill</span>
+                </a>
+                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-xl font-extrabold font-serif shrink-0">A⁺</div>
+                    <span class="link-text">Grammar</span>
+                </a>
+                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
+                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <span class="link-text">Luyện đề</span>
+                </a>
+            </div>
+
+            <!-- Footer Sidebar -->
+            <div class="mt-auto flex flex-col">
+                <div class="px-4 pb-4">
+                    <button id="btn-toggle-sidebar" class="w-full bg-[#dbeafe] hover:bg-[#bfdbfe] text-[#1e3a8a] font-bold py-2.5 rounded-2xl transition-colors shadow-sm flex justify-center items-center">
+                        <i id="sidebar-icon" class="fa-solid fa-angles-left text-lg"></i>
+                    </button>                
+                <div class="flex items-center gap-3 md:gap-4">
+            
+            <button id="btn-darkmode" class="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center text-gray-600 shadow-sm hover:bg-white transition-colors">
+            </button>
+            </div>
+                <div class="bg-[#bde0fe] px-4 py-3 flex justify-between items-center text-[15px] font-bold text-[#1e3a8a] footer-info">
+                    <div class="flex items-center gap-2 bg-[#eef2f6] px-3 py-1.5 rounded-full shadow-sm">
+                        <div class="w-[18px] h-[18px] rounded-full border-[1.5px] border-[#3b82f6] flex items-center justify-center">
+                            <i class="fa-solid fa-c text-[10px] text-[#3b82f6]"></i>
+                        </div>
+                        <span></span>
+                    </div>
+                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80">
+                        <i id="mode-icon" class="fa-regular fa-moon"></i> <span id="mode-text">Tối</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- VIEW TRANG CHỦ TỪ VỰNG -->
+                <div id="vocab-view-home">
+                    <div class="flex justify-between items-center mb-6 pb-4 border-b border-blue-100">
+                        <h2 class="text-2xl font-extrabold text-[#1e3a8a]"><i class="fa-solid fa-layer-group text-[#3b82f6] mr-2"></i> Hệ thống Từ vựng</h2>
+                        <button onclick="openCreateVocabFolderModal()" class="bg-[#ffe4e6] text-[#e11d48] hover:bg-[#fda4af] px-4 py-2 rounded-[14px] font-bold text-sm shadow-sm transition">
+                            <i class="fa-solid fa-folder-plus mr-1"></i> Tạo Thư mục
+                        </button>
+                    </div>
+                    <div id="vocab-folder-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+                </div>
+
+                <!-- VIEW BÊN TRONG THƯ MỤC -->
+                <div id="vocab-view-folder" style="display: none;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-blue-100 gap-4">
+                        <div>
+                            <button id="vocab-folder-back-btn" class="text-sm font-bold text-gray-500 hover:text-[#1e3a8a] mb-2">← Quay lại</button>
+                            <h2 id="current-vocab-folder-name" class="text-2xl font-extrabold text-[#1e3a8a]">Tên thư mục</h2>
+                        </div>
+                        <!-- Thanh công cụ bên trong thư mục (Giống Hình 2 nhưng cho Bộ từ) -->
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="openCreateVocabFolderModal()" class="bg-white border border-[#bde0fe] text-[#1e3a8a] px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Thêm thư mục con</button>
+                            <button onclick="openAdvancedCreateVocabSet()" class="bg-[#bde0fe] text-[#1e3a8a] px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Tạo bộ từ</button>                            <button class="bg-[#3b82f6] text-white px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Ôn tập Thư mục này</button>
+                        </div>
+                    </div>
+                    <div id="vocab-item-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL TẠO/SỬA THƯ MỤC TỪ VỰNG -->
+    <div id="modal-vocab-folder" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl mx-4 h-fit">
+            <h3 id="modal-vocab-folder-title" class="text-xl font-extrabold text-[#1e3a8a] mb-4">Tạo Thư mục Từ vựng</h3>
+            <input type="hidden" id="vocab-folder-id">
+            <input type="text" id="vocab-folder-name" placeholder="Tên thư mục..." class="w-full mb-3 p-3 rounded-xl bg-gray-50 border border-gray-200 outline-none focus:border-blue-400">
+            <input type="text" id="vocab-folder-desc" placeholder="Mô tả ngắn..." class="w-full mb-3 p-3 rounded-xl bg-gray-50 border border-gray-200 outline-none">
+            <select id="vocab-folder-parent" class="w-full mb-5 p-3 rounded-xl bg-gray-50 border border-gray-200 outline-none"></select>
+            <div class="flex justify-end gap-2">
+                <button onclick="closeModal('modal-vocab-folder')" class="px-4 py-2 font-bold text-gray-500 hover:bg-gray-100 rounded-xl">Hủy</button>
+                <button onclick="saveVocabFolder()" class="px-4 py-2 font-bold bg-[#1e3a8a] text-white rounded-xl">Lưu lại</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="advanced-modal-vocab-set" class="fixed inset-0 z-50 hidden">
+        <div class="w-full h-full flex flex-col bg-[#fdfbf7]">
+            
+            <div class="w-full bg-white border-b border-[#bde0fe] shadow-sm px-6 py-4 flex justify-between items-center shrink-0 z-20">
+                <h2 class="text-2xl font-extrabold text-[#1e3a8a]">Tạo Bộ Từ Mới</h2>
+                
+                <div class="flex items-center gap-4 md:gap-6 text-sm font-bold text-gray-600">
+                    <button onclick="openImportVocabModal()" class="hover:text-[#3b82f6] transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i> Nhập
+                    </button>
+                    <button class="hover:text-[#3b82f6] transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles text-yellow-400"></i> Gợi ý: Bật
+                    </button>
+                    
+                    
+                    <div class="w-px h-6 bg-gray-200 mx-1 hidden md:block"></div>
+                    
+                    <button onclick="closeAdvancedCreateVocabSet()" class="px-6 py-2.5 rounded-[14px] border-2 border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition bg-white shadow-sm">Hủy</button>
+                    <button onclick="saveAdvancedVocabSet()" class="px-6 py-2.5 rounded-[14px] bg-black text-white hover:bg-gray-800 transition shadow-md">Tạo</button>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-6 md:p-10 flex justify-center items-start" style="background: linear-gradient(135deg, rgba(253,251,247,1) 0%, rgba(255,240,240,1) 50%, rgba(240,247,255,1) 100%);">
+                <div class="w-full max-w-5xl rounded-[32px] bg-white/60 backdrop-blur-md shadow-xl border-2 border-[#bde0fe] p-8">
+                    
+                    <div class="flex flex-col gap-4 mb-8">
+                        <div>
+                            <label class="block text-sm font-bold text-[#1e3a8a] mb-2">Tiêu đề</label>
+                            <input type="text" id="adv-vocab-title" placeholder="Thêm tiêu đề..." class="w-full p-4 rounded-2xl bg-white border-2 border-[#bde0fe] outline-none focus:border-[#3b82f6] shadow-sm text-lg font-bold transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-[#1e3a8a] mb-2">Mô tả (Tùy chọn)</label>
+                            <textarea id="adv-vocab-desc" placeholder="Thêm mô tả cho bộ thẻ của bạn..." class="w-full p-4 rounded-2xl bg-white border border-gray-200 outline-none focus:border-[#ffb3c6] shadow-sm resize-none h-24 transition"></textarea>
+                        </div>
+                        <input type="hidden" id="adv-vocab-folder-id">
+                    </div>
+
+                    <div id="vocab-cards-container" class="flex flex-col gap-6">
+                        </div>
+
+                    <div class="mt-10 flex justify-center pb-4">
+                        <button onclick="addVocabCard()" class="bg-white text-[#1e3a8a] px-10 py-4 rounded-full font-extrabold border-2 border-[#bde0fe] shadow-sm hover:bg-[#eef2f6] transition flex items-center gap-2 text-lg">
+                            <i class="fa-solid fa-plus"></i> Thêm thẻ
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="modal-import-vocab" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-[20px] w-full max-w-4xl flex flex-col shadow-2xl max-h-[90vh]">
+            
+            <div class="px-8 py-6 flex justify-between items-start shrink-0">
+                <div>
+                    <h3 class="text-[22px] font-extrabold text-[#111827] mb-1">Nhập</h3>
+                    <p class="text-[15px] text-gray-500 font-medium">Chép và dán dữ liệu từ Word, Excel, Google Docs, v.v.</p>
+                </div>
+                <button onclick="closeModal('modal-import-vocab')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="px-8 overflow-y-auto flex-1 custom-scrollbar">
+                <textarea id="import-vocab-text" rows="10" placeholder="Từ 1&#9;Định nghĩa 1&#9;Phát âm (nếu có)&#9;Loại từ (nếu có)&#9;Ví dụ (nếu có)&#9;Từ đồng nghĩa (nếu có)&#10;Từ 2&#9;Định nghĩa 2&#9;Phát âm (nếu có)&#9;Loại từ (nếu có)&#9;Ví dụ (nếu có)&#9;Từ đồng nghĩa (nếu có)" class="w-full p-4 rounded-[12px] bg-white border border-gray-800 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono text-[13px] resize-none mb-8 whitespace-pre leading-relaxed"></textarea>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-3 text-[15px]">Giữa thuật ngữ và định nghĩa</h4>
+                        <div class="flex flex-col gap-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="word-sep" value="\t" class="w-4 h-4 text-black focus:ring-black accent-black" checked>
+                                <span class="text-[15px] text-gray-800">Tab</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="word-sep" value="," class="w-4 h-4 text-black focus:ring-black accent-black">
+                                <span class="text-[15px] text-gray-800">Phẩy</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="word-sep" value="custom" class="w-4 h-4 text-black focus:ring-black accent-black">
+                                <span class="text-[15px] text-gray-800">Tuỳ chọn</span>
+                                <input type="text" id="custom-word-sep" class="ml-2 w-16 border-b border-gray-400 outline-none px-1 text-sm focus:border-black hidden transition-all" placeholder="-">
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-3 text-[15px]">Giữa các thẻ</h4>
+                        <div class="flex flex-col gap-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="card-sep" value="\n" class="w-4 h-4 text-black focus:ring-black accent-black" checked>
+                                <span class="text-[15px] text-gray-800">Dòng mới</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="card-sep" value=";" class="w-4 h-4 text-black focus:ring-black accent-black">
+                                <span class="text-[15px] text-gray-800">Chấm phẩy</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-8 py-5 border-t border-gray-200 shrink-0 flex justify-end gap-3 bg-white rounded-b-[20px]">
+                <button onclick="closeModal('modal-import-vocab')" class="px-6 py-2.5 font-bold text-gray-700 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 rounded-[8px] transition">Huỷ nhập</button>
+                <button onclick="processImportVocab()" class="px-6 py-2.5 font-bold bg-[#64748b] text-white rounded-[8px] hover:bg-[#475569] transition">Nhập</button>
+            </div>
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

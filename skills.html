@@ -1,0 +1,194 @@
+html_content = """<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc nhỏ học Tiếng Anh - 4Skill</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo">🌸 Góc Nhỏ</div>
+        
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Tìm kiếm nhanh...">
+        </div>
+
+        <div class="menu-item glow-hover">🏠 Trang Chủ</div>
+        <div class="menu-item glow-hover">📋 Bộ từ vựng</div>
+        <div class="menu-item glow-hover">📚 Từ vựng</div>
+        <div class="menu-item active glow-hover">🎧 4Skill</div>
+        <div class="menu-item glow-hover">✍️ Ngữ pháp</div>
+        <div class="menu-item glow-hover">📝 Luyện đề</div>
+        <div class="menu-item glow-hover">🛠️ Sửa sai tổng hợp</div>
+        <div class="menu-item glow-hover">👤 Hồ sơ của tôi</div>
+
+        <div class="user-widget">
+            <div class="user-info">
+                <div class="user-avatar">👧🏻</div>
+                <div>
+                    <div class="user-name">Ngọc Trân</div>
+                    <div class="user-streak">🔥 12 Ngày</div>
+                </div>
+            </div>
+            <div class="notify-bell jelly glow-hover">🔔</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        
+        <div class="page-header">
+            <h1 class="page-title">Không Gian Luyện 4 Kỹ Năng</h1>
+            <div class="generator-controls">
+                <span>Cấp độ:</span>
+                <select class="level-select">
+                    <option value="A1">A1 - Beginner</option>
+                    <option value="A2">A2 - Elementary</option>
+                    <option value="B1">B1 - Intermediate</option>
+                    <option value="B2" selected>B2 - Upper Int</option>
+                    <option value="C1">C1 - Advanced</option>
+                    <option value="C2">C2 - Proficient</option>
+                </select>
+                <button class="action-btn glow-hover jelly">✨ Tạo đề mới</button>
+            </div>
+        </div>
+
+        <!-- TABS NAV -->
+        <div class="tabs">
+            <button class="tab-btn active jelly" onclick="switchTab('listening')">🎧 Listening</button>
+            <button class="tab-btn jelly" onclick="switchTab('reading')">📖 Reading</button>
+            <button class="tab-btn jelly" onclick="switchTab('speaking')">🗣️ Speaking</button>
+            <button class="tab-btn jelly" onclick="switchTab('writing')">✍️ Writing</button>
+        </div>
+
+        <!-- TAB CONTENT: LISTENING -->
+        <div id="tab-listening" class="tab-content active">
+            <div class="dictation-box">
+                <h3 style="margin-bottom: 15px; color: var(--ocean-pastel);">Nghe chép chính tả (Dictation)</h3>
+                <div style="margin-bottom: 20px;">
+                    <audio controls style="height: 35px; outline: none; border-radius: 20px;">
+                        <source src="#" type="audio/mpeg">
+                    </audio>
+                </div>
+                <p>
+                    The global <span class="dict-empty"></span> is currently facing <span class="check-correct">unprecedented</span> challenges. 
+                    Many experts believe that <span class="check-minor">coperation</span> is the only way forward. 
+                    However, some nations remain <span class="check-wrong">stubon</span> <span style="font-size:14px; color:var(--text-light)">(stubborn)</span> in their policies.
+                </p>
+                <div style="margin-top: 20px; font-size: 13px; display: flex; gap: 15px;">
+                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--mint-green); border-radius:50%;"></span> Chính xác</div>
+                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--mustard-yellow); border-radius:50%;"></span> Lỗi nhỏ</div>
+                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--raspberry-red); border-radius:50%;"></span> Sai từ vựng</div>
+                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--ash-gray); border-radius:50%;"></span> Chưa điền</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: READING -->
+        <div id="tab-reading" class="tab-content">
+            <div class="split-screen">
+                <!-- Left: Reading Passage -->
+                <div class="read-left">
+                    <h3 style="color: #8B7355; margin-bottom: 10px;">The Evolution of Art</h3>
+                    <p>Art has been an integral part of human history. From ancient cave paintings to modern digital masterpieces, the way we express ourselves has <span style="background:var(--peach-pink); padding: 0 4px; border-radius:4px; font-weight:bold;">evolved</span> dramatically over millennia.</p>
+                    
+                    <div class="quiz-section">
+                        <h4>Question 1: What is the main idea of the passage?</h4>
+                        <button class="option-btn jelly" onclick="selectOption(this)">A. Ancient caves were colorful.</button>
+                        <button class="option-btn jelly" onclick="selectOption(this)">B. Art expression has changed over time.</button>
+                        <button class="option-btn jelly" onclick="selectOption(this)">C. Digital art is the best form.</button>
+                        <button class="option-btn jelly" onclick="selectOption(this)">D. Human history is dramatic.</button>
+                        
+                        <div class="ai-explanation" id="ai-exp">
+                            <strong>✨ AI Giải thích:</strong> Đáp án đúng là <strong>B</strong>. Đoạn văn nhấn mạnh vào cách con người thể hiện bản thân qua nghệ thuật đã "tiến hóa" (evolved) qua hàng ngàn năm.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Vocab 8-columns -->
+                <div class="read-right">
+                    <h3 style="color: var(--text-main); margin-bottom: 15px;">Bảng từ vựng rút trích</h3>
+                    <div style="overflow-x: auto;">
+                        <table class="vocab-mini-table">
+                            <tr>
+                                <th>Từ vựng</th><th>Nghĩa</th><th>IPA</th><th>Loại</th>
+                                <th>Ví dụ</th><th>Đồng nghĩa</th><th>Ảnh</th><th>SRS</th>
+                            </tr>
+                            <tr>
+                                <td>integral</td><td>thiết yếu</td><td>/ˈɪntɪɡrəl/</td><td>Adj</td>
+                                <td>...</td><td>essential</td><td>🧩</td><td>Lv 0</td>
+                            </tr>
+                            <tr>
+                                <td>evolve</td><td>tiến hóa</td><td>/ɪˈvɒlv/</td><td>Verb</td>
+                                <td>...</td><td>develop</td><td>🌱</td><td>Lv 2</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p style="font-size: 13px; color: var(--text-main);">* Bảng 8 cột với tông màu Hồng cam pastel hài hòa giúp theo dõi từ vựng ngay khi đọc.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: SPEAKING -->
+        <div id="tab-speaking" class="tab-content">
+            <div class="speak-box">
+                <button class="mic-btn jelly">🎙️</button>
+                <h3>Nhấn để đọc câu dưới đây:</h3>
+                <p style="font-size: 24px; margin: 20px 0; font-weight: 700; color: #777;">"I absolutely love the pastel aesthetic."</p>
+                
+                <div style="margin-top: 30px; border-top: 1px dashed var(--pink-border); padding-top: 20px;">
+                    <h4 style="color: var(--ocean-pastel); margin-bottom: 10px;">Phản hồi thị giác (Visual Feedback):</h4>
+                    <p class="speak-feedback">
+                        I <span class="speak-perfect">absolutely</span> 
+                        <span class="speak-wrong">love</span> 
+                        the <span class="speak-stress">pastel</span> 
+                        <span class="speak-perfect">aesthetic</span>.
+                    </p>
+                    <div style="margin-top: 20px; font-size: 13px; display: flex; justify-content: center; gap: 20px;">
+                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--mint-green); border-radius:2px;"></span> Phát âm chuẩn xác</div>
+                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--honey-yellow); border-radius:2px;"></span> Đúng từ, sai trọng âm</div>
+                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--peach-red); border-radius:2px;"></span> Phát âm sai hoàn toàn</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB CONTENT: WRITING -->
+        <div id="tab-writing" class="tab-content">
+            <div class="write-box">
+                <h3 style="color: var(--ocean-pastel); margin-bottom: 10px;">Prompt: Write about your favorite hobby.</h3>
+                <textarea class="write-textarea" placeholder="Bắt đầu viết tại đây..."></textarea>
+                
+                <div class="ai-tutor-box">
+                    <h4 style="color: #D2691E; margin-bottom: 10px;">✨ Trợ lý chấm chữa AI</h4>
+                    <p style="line-height: 2;">
+                        My favorite hobby is 
+                        <span class="error-grammar">
+                            listen
+                            <span class="ai-bubble"><strong>Lỗi ngữ pháp:</strong> Sau 'is' cần dùng V-ing (listening) để đóng vai trò danh động từ.</span>
+                        </span> 
+                        to music. It makes me feel very 
+                        <span class="error-vocab">
+                            happy
+                            <span class="ai-bubble"><strong>Từ vựng bình dân:</strong> Thử dùng các cụm nâng cao như: 'elated', 'on cloud nine', hoặc 'overjoyed'.</span>
+                        </span> 
+                        after a long day at school.
+                    </p>
+                    
+                    <div style="margin-top: 20px; font-size: 13px; display: flex; gap: 15px;">
+                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--light-red); border-radius:2px;"></span> Lỗi ngữ pháp/chính tả (Đỏ nhạt)</div>
+                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--turmeric-yellow); border-radius:2px;"></span> Nâng cấp từ vựng (Vàng nghệ)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

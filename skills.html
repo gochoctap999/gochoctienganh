@@ -1,194 +1,318 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Góc nhỏ học Tiếng Anh - 4Skill</title>
+    <title>Góc Tiếng Anh - 4 Kỹ Năng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .tab-btn.active {
+            background-color: white;
+            color: #1e3a8a;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+    </style>
 </head>
-<body>
+<body class="h-screen flex flex-col text-gray-800 overflow-hidden bg-gradient-to-br from-[#fdfbf7] via-[#fff0f0] to-[#f0f7ff]">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="logo">🌸 Góc Nhỏ</div>
+    <header class="flex items-center justify-between px-6 py-3 bg-white/60 backdrop-blur-md shadow-sm z-10 relative border-b border-pink-50/50">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-[#ffb3c6] rounded-full flex items-center justify-center text-white shadow-sm">
+                    <i class="fa-solid fa-heart text-[15px]"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-[#ff6b81] tracking-tight">goctienganh</div>
+            </div>
+            
+            
+        </div>
         
-        <div class="search-bar">
-            <span>🔍</span>
-            <input type="text" placeholder="Tìm kiếm nhanh...">
-        </div>
-
-        <div class="menu-item glow-hover">🏠 Trang Chủ</div>
-        <div class="menu-item glow-hover">📋 Bộ từ vựng</div>
-        <div class="menu-item glow-hover">📚 Từ vựng</div>
-        <div class="menu-item active glow-hover">🎧 4Skill</div>
-        <div class="menu-item glow-hover">✍️ Ngữ pháp</div>
-        <div class="menu-item glow-hover">📝 Luyện đề</div>
-        <div class="menu-item glow-hover">🛠️ Sửa sai tổng hợp</div>
-        <div class="menu-item glow-hover">👤 Hồ sơ của tôi</div>
-
-        <div class="user-widget">
-            <div class="user-info">
-                <div class="user-avatar">👧🏻</div>
-                <div>
-                    <div class="user-name">Ngọc Trân</div>
-                    <div class="user-streak">🔥 12 Ngày</div>
-                </div>
+        <div class="flex items-center gap-3">
+            <div class="flex items-center bg-white px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
+                <i class="fa-solid fa-fire mr-1.5"></i> 1
             </div>
-            <div class="notify-bell jelly glow-hover">🔔</div>
+            <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#475569] shadow-sm hover:bg-[#fff0f3] hover:text-white transition-colors">
+                <i class="fa-regular fa-bell text-[17px]"></i>
+            </button>
+            <button class="bg-[#ff9eb5] hover:bg-[#ff6b81] transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
+                <i class="fa-solid fa-star text-[#fde047] mr-1.5 text-xs"></i> PRO
+            </button>
         </div>
-    </div>
+    </header>
 
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
+    <div class="flex flex-1 overflow-hidden relative">
         
-        <div class="page-header">
-            <h1 class="page-title">Không Gian Luyện 4 Kỹ Năng</h1>
-            <div class="generator-controls">
-                <span>Cấp độ:</span>
-                <select class="level-select">
-                    <option value="A1">A1 - Beginner</option>
-                    <option value="A2">A2 - Elementary</option>
-                    <option value="B1">B1 - Intermediate</option>
-                    <option value="B2" selected>B2 - Upper Int</option>
-                    <option value="C1">C1 - Advanced</option>
-                    <option value="C2">C2 - Proficient</option>
-                </select>
-                <button class="action-btn glow-hover jelly">✨ Tạo đề mới</button>
+        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/60 backdrop-blur-md border-r border-[#ffe4e6] z-10 transition-all duration-300 shrink-0">
+            <div class="p-4 flex flex-col gap-2 overflow-y-auto hide-scrollbar">
+                <a href="index.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-house"></i></div>
+                    <span class="link-text">Trang chủ</span>
+                </a>
+                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-folder"></i></div>
+                    <span class="link-text">Tài liệu</span>
+                </a>
+                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-language"></i></div>
+                    <span class="link-text">Ngôn ngữ</span>
+                </a>
+                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <span class="link-text">Luyện đề</span>
+                </a>
+                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                    <span class="link-text">Ngữ pháp</span>
+                </a>
+                <a href="game.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-gamepad"></i></div>
+                    <span class="link-text">Game phản xạ</span>
+                </a>
+                <a href="skills.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <span class="link-text">4 Skills</span>
+                </a>
             </div>
-        </div>
 
-        <!-- TABS NAV -->
-        <div class="tabs">
-            <button class="tab-btn active jelly" onclick="switchTab('listening')">🎧 Listening</button>
-            <button class="tab-btn jelly" onclick="switchTab('reading')">📖 Reading</button>
-            <button class="tab-btn jelly" onclick="switchTab('speaking')">🗣️ Speaking</button>
-            <button class="tab-btn jelly" onclick="switchTab('writing')">✍️ Writing</button>
-        </div>
-
-        <!-- TAB CONTENT: LISTENING -->
-        <div id="tab-listening" class="tab-content active">
-            <div class="dictation-box">
-                <h3 style="margin-bottom: 15px; color: var(--ocean-pastel);">Nghe chép chính tả (Dictation)</h3>
-                <div style="margin-bottom: 20px;">
-                    <audio controls style="height: 35px; outline: none; border-radius: 20px;">
-                        <source src="#" type="audio/mpeg">
-                    </audio>
+            <div class="mt-auto flex flex-col">
+                <div class="px-4 pb-3">
+                    <button id="btn-toggle-sidebar" class="w-full bg-[#ffe4e6] hover:bg-[#ffb3c6] text-[#ff6b81] hover:text-white font-bold py-2 rounded-xl transition-colors shadow-sm">
+                        <i id="sidebar-icon" class="fa-solid fa-angles-left"></i>
+                    </button>
                 </div>
-                <p>
-                    The global <span class="dict-empty"></span> is currently facing <span class="check-correct">unprecedented</span> challenges. 
-                    Many experts believe that <span class="check-minor">coperation</span> is the only way forward. 
-                    However, some nations remain <span class="check-wrong">stubon</span> <span style="font-size:14px; color:var(--text-light)">(stubborn)</span> in their policies.
-                </p>
-                <div style="margin-top: 20px; font-size: 13px; display: flex; gap: 15px;">
-                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--mint-green); border-radius:50%;"></span> Chính xác</div>
-                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--mustard-yellow); border-radius:50%;"></span> Lỗi nhỏ</div>
-                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--raspberry-red); border-radius:50%;"></span> Sai từ vựng</div>
-                    <div><span style="display:inline-block; width:12px; height:12px; background:var(--ash-gray); border-radius:50%;"></span> Chưa điền</div>
-                </div>
-            </div>
-        </div>
+                <div id="auth-container" class="bg-[#fff0f3] p-4 flex items-center justify-between cursor-pointer hover:bg-[#ff9eb5] group transition-colors profile-box rounded-xl mx-4 mb-2">
+                    <div id="login-view" class="w-full flex items-center justify-center gap-2 text-[#ff6b81] group-hover:text-white font-bold transition-colors" onclick="signInWithGoogle()">
+                        <i class="fa-brands fa-google text-lg"></i>
+                        <span>Đăng nhập Google</span>
+                    </div>
 
-        <!-- TAB CONTENT: READING -->
-        <div id="tab-reading" class="tab-content">
-            <div class="split-screen">
-                <!-- Left: Reading Passage -->
-                <div class="read-left">
-                    <h3 style="color: #8B7355; margin-bottom: 10px;">The Evolution of Art</h3>
-                    <p>Art has been an integral part of human history. From ancient cave paintings to modern digital masterpieces, the way we express ourselves has <span style="background:var(--peach-pink); padding: 0 4px; border-radius:4px; font-weight:bold;">evolved</span> dramatically over millennia.</p>
-                    
-                    <div class="quiz-section">
-                        <h4>Question 1: What is the main idea of the passage?</h4>
-                        <button class="option-btn jelly" onclick="selectOption(this)">A. Ancient caves were colorful.</button>
-                        <button class="option-btn jelly" onclick="selectOption(this)">B. Art expression has changed over time.</button>
-                        <button class="option-btn jelly" onclick="selectOption(this)">C. Digital art is the best form.</button>
-                        <button class="option-btn jelly" onclick="selectOption(this)">D. Human history is dramatic.</button>
-                        
-                        <div class="ai-explanation" id="ai-exp">
-                            <strong>✨ AI Giải thích:</strong> Đáp án đúng là <strong>B</strong>. Đoạn văn nhấn mạnh vào cách con người thể hiện bản thân qua nghệ thuật đã "tiến hóa" (evolved) qua hàng ngàn năm.
+                    <div id="user-view" class="w-full flex items-center justify-between hidden">
+                        <div class="flex items-center gap-3">
+                            <img id="user-avatar" src="" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm shrink-0">
+                            <div class="leading-tight profile-info">
+                                <div id="user-name" class="font-bold text-[#2d3748] text-[15px]">Tên người dùng</div>
+                                <div class="text-[11px] text-[#475569] font-semibold mt-0.5 hover:text-red-500" onclick="signOutUser()">Đăng xuất</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Right: Vocab 8-columns -->
-                <div class="read-right">
-                    <h3 style="color: var(--text-main); margin-bottom: 15px;">Bảng từ vựng rút trích</h3>
-                    <div style="overflow-x: auto;">
-                        <table class="vocab-mini-table">
-                            <tr>
-                                <th>Từ vựng</th><th>Nghĩa</th><th>IPA</th><th>Loại</th>
-                                <th>Ví dụ</th><th>Đồng nghĩa</th><th>Ảnh</th><th>SRS</th>
-                            </tr>
-                            <tr>
-                                <td>integral</td><td>thiết yếu</td><td>/ˈɪntɪɡrəl/</td><td>Adj</td>
-                                <td>...</td><td>essential</td><td>🧩</td><td>Lv 0</td>
-                            </tr>
-                            <tr>
-                                <td>evolve</td><td>tiến hóa</td><td>/ɪˈvɒlv/</td><td>Verb</td>
-                                <td>...</td><td>develop</td><td>🌱</td><td>Lv 2</td>
-                            </tr>
-                        </table>
+                <div class="bg-[#ffe4e6] p-3 flex justify-between items-center text-sm font-bold text-[#ff6b81] footer-info rounded-b-xl mx-4 mb-4">
+                    <div class="flex items-center gap-2 bg-white/80 px-3 py-1 rounded-full shadow-sm">
+                        <div class="w-4 h-4 rounded-full border border-[#ff6b81] flex items-center justify-center">
+                            <i class="fa-solid fa-c text-[9px] text-[#ff6b81]"></i>
+                        </div>
+                        <span class="text-[#ff6b81]">130</span>
                     </div>
-                    <p style="font-size: 13px; color: var(--text-main);">* Bảng 8 cột với tông màu Hồng cam pastel hài hòa giúp theo dõi từ vựng ngay khi đọc.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB CONTENT: SPEAKING -->
-        <div id="tab-speaking" class="tab-content">
-            <div class="speak-box">
-                <button class="mic-btn jelly">🎙️</button>
-                <h3>Nhấn để đọc câu dưới đây:</h3>
-                <p style="font-size: 24px; margin: 20px 0; font-weight: 700; color: #777;">"I absolutely love the pastel aesthetic."</p>
-                
-                <div style="margin-top: 30px; border-top: 1px dashed var(--pink-border); padding-top: 20px;">
-                    <h4 style="color: var(--ocean-pastel); margin-bottom: 10px;">Phản hồi thị giác (Visual Feedback):</h4>
-                    <p class="speak-feedback">
-                        I <span class="speak-perfect">absolutely</span> 
-                        <span class="speak-wrong">love</span> 
-                        the <span class="speak-stress">pastel</span> 
-                        <span class="speak-perfect">aesthetic</span>.
-                    </p>
-                    <div style="margin-top: 20px; font-size: 13px; display: flex; justify-content: center; gap: 20px;">
-                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--mint-green); border-radius:2px;"></span> Phát âm chuẩn xác</div>
-                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--honey-yellow); border-radius:2px;"></span> Đúng từ, sai trọng âm</div>
-                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--peach-red); border-radius:2px;"></span> Phát âm sai hoàn toàn</div>
+                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80 text-[#ff6b81]">
+                        <i id="mode-icon" class="fa-regular fa-moon"></i> <span id="mode-text">Tối</span>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- TAB CONTENT: WRITING -->
-        <div id="tab-writing" class="tab-content">
-            <div class="write-box">
-                <h3 style="color: var(--ocean-pastel); margin-bottom: 10px;">Prompt: Write about your favorite hobby.</h3>
-                <textarea class="write-textarea" placeholder="Bắt đầu viết tại đây..."></textarea>
-                
-                <div class="ai-tutor-box">
-                    <h4 style="color: #D2691E; margin-bottom: 10px;">✨ Trợ lý chấm chữa AI</h4>
-                    <p style="line-height: 2;">
-                        My favorite hobby is 
-                        <span class="error-grammar">
-                            listen
-                            <span class="ai-bubble"><strong>Lỗi ngữ pháp:</strong> Sau 'is' cần dùng V-ing (listening) để đóng vai trò danh động từ.</span>
-                        </span> 
-                        to music. It makes me feel very 
-                        <span class="error-vocab">
-                            happy
-                            <span class="ai-bubble"><strong>Từ vựng bình dân:</strong> Thử dùng các cụm nâng cao như: 'elated', 'on cloud nine', hoặc 'overjoyed'.</span>
-                        </span> 
-                        after a long day at school.
-                    </p>
+            <script>
+                (function() {
+                    let currentPath = window.location.pathname.split('/').pop();
+                    if (currentPath === '') currentPath = 'index.html';
                     
-                    <div style="margin-top: 20px; font-size: 13px; display: flex; gap: 15px;">
-                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--light-red); border-radius:2px;"></span> Lỗi ngữ pháp/chính tả (Đỏ nhạt)</div>
-                        <div><span style="display:inline-block; width:12px; height:12px; background:var(--turmeric-yellow); border-radius:2px;"></span> Nâng cấp từ vựng (Vàng nghệ)</div>
+                    const links = document.querySelectorAll('#sidebar .overflow-y-auto a');
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        // Nếu trang hiện tại khớp với href (hoặc grammar-history thì active mục grammar)
+                        if (href === currentPath || (currentPath === 'grammar-history.html' && href === 'grammar.html')) {
+                            link.className = "flex items-center gap-3 bg-gradient-to-r from-[#ffb3c6] to-[#ffe5ec] p-3 rounded-full font-bold text-white shadow-sm transition-transform hover:scale-[1.02]";
+                        } else {
+                            link.className = "flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors";
+                        }
+                    });
+                })();
+            </script>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-6 md:p-8 bg-transparent">
+            <div class="max-w-6xl mx-auto space-y-6">
+                
+                <div class="mb-8">
+                    <h1 class="text-[32px] font-extrabold text-[#4a3f35] flex items-center gap-2 tracking-tight">4 skills<span class="text-2xl">🌷</span></h1>
+                    <p class="text-gray-400 font-medium mt-1 text-[15px]">Luyện 4 kỹ năng cùng AI — đáng yêu mà hiệu quả!</p>
+                </div>
+
+                <div class="bg-[#ffe4e6] p-1.5 rounded-full flex gap-1 mb-8 shadow-sm">
+                    <button class="tab-btn active flex-1 py-3 rounded-full text-[15px] font-bold text-gray-500 hover:text-gray-700 flex items-center justify-center gap-2 transition-all" onclick="switchTab('listening', this)">
+                        <i class="fa-solid fa-headphones"></i> Nghe
+                    </button>
+                    <button class="tab-btn flex-1 py-3 rounded-full text-[15px] font-bold text-gray-500 hover:text-gray-700 flex items-center justify-center gap-2 transition-all" onclick="switchTab('reading', this)">
+                        <i class="fa-solid fa-book-open"></i> Đọc
+                    </button>
+                    <button class="tab-btn flex-1 py-3 rounded-full text-[15px] font-bold text-gray-500 hover:text-gray-700 flex items-center justify-center gap-2 transition-all" onclick="switchTab('speaking', this)">
+                        <i class="fa-solid fa-microphone"></i> Nói
+                    </button>
+                    <button class="tab-btn flex-1 py-3 rounded-full text-[15px] font-bold text-gray-500 hover:text-gray-700 flex items-center justify-center gap-2 transition-all" onclick="switchTab('writing', this)">
+                        <i class="fa-solid fa-pen-nib"></i> Viết
+                    </button>
+                </div>
+
+                <div id="tab-listening" class="space-y-6">
+                    <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                            
+                            <!-- Ô nhập link (chiếm 6 phần) -->
+                            <div class="md:col-span-6 relative">
+                                <i class="fa-brands fa-youtube absolute left-4 top-1/2 -translate-y-1/2 text-red-500 text-xl"></i>
+                                <input type="text" id="yt-link" placeholder="Dán link video YouTube..." 
+                                    class="w-full pl-12 pr-4 py-3 rounded-2xl bg-white border-2 border-[#ffb3c6] outline-none focus:border-[#ff9eb5] text-gray-700 font-bold transition-all shadow-sm">
+                            </div>
+
+                            <!-- Ô chọn trình độ (chiếm 3 phần) -->
+                            <div class="md:col-span-3">
+                                <select id="listen-level" onchange="initListeningGame()" 
+                                    class="w-full bg-white border-2 border-[#ffb3c6] text-[#ff9eb5] rounded-2xl px-4 py-3 outline-none font-extrabold cursor-pointer shadow-sm">
+                                    <option value="">-- Chọn trình độ --</option>
+                                    <option value="A1">A1 (Dễ)</option>
+                                    <option value="A2">A2</option>
+                                    <option value="B1">B1 (Trung bình)</option>
+                                    <option value="B2">B2</option>
+                                    <option value="C1">C1 (Khó)</option>
+                                    <option value="C2">C2 (Bản ngữ)</option>
+                                </select>
+                            </div>
+
+                            <!-- Nút bấm (chiếm 3 phần) -->
+                            <div class="md:col-span-3">
+                                <button onclick="simulateAI()" 
+                                    class="w-full bg-[#ff9eb5] hover:bg-[#ff6b81] text-white py-3 rounded-2xl font-bold shadow-md transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> AI Chép lời
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 hidden" id="listening-workspace">
+                        <div class="bg-white rounded-[32px] p-4 border-2 border-[#ffe4e6] shadow-sm h-fit">
+                            <div class="aspect-video rounded-2xl overflow-hidden bg-black" id="yt-player-container">
+                                <div class="w-full h-full flex items-center justify-center text-white/20">
+                                    <i class="fa-brands fa-youtube text-6xl"></i>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex justify-center gap-4">
+                                <button onclick="switchListenMode('gap')" id="btn-mode-gap" class="mode-active px-6 py-2 rounded-full font-bold text-sm transition-all border-2 border-[#ff9eb5]">Nghe đục lỗ</button>
+                                <button onclick="switchListenMode('sentence')" id="btn-mode-sentence" class="px-6 py-2 rounded-full font-bold text-sm transition-all border-2 border-[#ffb3c6] text-gray-400">Nghe từng câu</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col min-h-[400px]">
+                            <div id="listening-content" class="flex-1 overflow-y-auto max-h-[500px] pr-2 custom-scrollbar">
+                                </div>
+                            
+                            <div class="mt-6 pt-4 border-t border-[#ffe4e6] flex gap-3">
+                                <button onclick="checkListeningAnswers()" class="flex-1 bg-[#ff9eb5] hover:bg-[#ff6b81] text-white py-3 rounded-full font-extrabold shadow-md transition-all">
+                                    <i class="fa-regular fa-circle-check mr-2"></i> Hoàn thành & Kiểm tra
+                                </button>
+                                <button onclick="initListeningGame()" class="w-14 h-14 bg-white border-2 border-[#ffe4e6] text-gray-400 hover:text-[#ff6b81] rounded-full flex items-center justify-center transition-all">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
+                <div id="tab-reading" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                    <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col min-h-[400px]">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-extrabold text-gray-800 text-[17px] flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-400"></i> Văn bản đọc</h3>
+                            <select class="bg-white border border-gray-200 text-gray-500 text-[13px] rounded-xl px-3 py-1 outline-none font-bold">
+                                <option>B1</option>
+                            </select>
+                        </div>
+                        <textarea class="w-full flex-1 border border-gray-200 rounded-[24px] p-5 outline-none focus:border-[#ff9eb5] resize-none text-gray-500 text-[14px] leading-relaxed mb-4 shadow-inner" readonly>Reading every day is a wonderful habit. It expands your vocabulary, sharpens your mind, and offers a peaceful escape from a busy world. Even fifteen minutes a day can make a remarkable difference over time.</textarea>
+                        <button class="w-full bg-[#ff9eb5] hover:bg-[#ff8fa3] text-white py-3 rounded-full font-bold shadow-sm flex items-center justify-center gap-2 transition"><i class="fa-solid fa-wand-magic-sparkles"></i> AI trích xuất từ vựng</button>
+                    </div>
+                    <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col min-h-[400px]">
+                        <h3 class="font-extrabold text-gray-800 text-[17px] flex items-center gap-2 mb-4"><i class="fa-solid fa-list-ul text-yellow-500"></i> Danh sách từ vựng</h3>
+                        <div class="flex gap-3 mb-6">
+                            <input type="text" placeholder="Word" class="flex-1 border border-gray-200 rounded-full px-5 py-2.5 outline-none focus:border-[#ff9eb5] text-sm text-gray-600 font-medium">
+                            <input type="text" placeholder="Nghĩa" class="flex-1 border border-gray-200 rounded-full px-5 py-2.5 outline-none focus:border-[#ff9eb5] text-sm text-gray-600 font-medium">
+                            <button class="w-[42px] h-[42px] bg-[#ff9eb5] hover:bg-[#ff8fa3] text-white rounded-full flex items-center justify-center font-bold shadow-sm shrink-0 transition"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="flex-1 flex items-center justify-center text-sm font-medium text-gray-400">
+                            Chưa có từ nào. Bấm "AI trích xuất" hoặc thêm thủ công 🌸
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-speaking" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                    <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col min-h-[350px]">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-extrabold text-gray-800 text-[17px] flex items-center gap-2"><i class="fa-solid fa-microphone text-gray-600"></i> Nói theo chủ đề</h3>
+                            <select class="bg-white border border-gray-200 text-gray-500 text-[13px] rounded-xl px-3 py-1 outline-none font-bold">
+                                <option>B1</option>
+                            </select>
+                        </div>
+                        <div class="bg-[#ffe4e6] rounded-[24px] p-7 mb-6 flex-1 flex flex-col justify-center">
+                            <p class="text-[11px] font-extrabold text-[#d28b9d] uppercase tracking-wider mb-2">CHỦ ĐỀ AI GỢI Ý</p>
+                            <p class="text-gray-800 text-[19px] mb-6 font-medium">Describe a memorable trip you took.</p>
+                            <button class="text-gray-600 hover:text-gray-800 text-[13px] font-bold flex items-center gap-2 self-start"><i class="fa-solid fa-rotate-right"></i> Chủ đề khác</button>
+                        </div>
+                        <button class="w-full bg-[#ff9eb5] hover:bg-[#ff8fa3] text-white py-3 rounded-full font-bold shadow-sm flex items-center justify-center gap-2 transition mx-auto max-w-[200px]"><i class="fa-solid fa-microphone"></i> Bắt đầu ghi âm</button>
+                    </div>
+                    <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col min-h-[350px]">
+                        <h3 class="font-extrabold text-gray-800 text-[17px] flex items-center gap-2 mb-4"><i class="fa-solid fa-scroll text-[#b45309]"></i> Đọc to văn bản</h3>
+                        <textarea class="w-full flex-1 border border-gray-200 rounded-[24px] p-5 outline-none focus:border-[#ff9eb5] resize-none text-gray-600 placeholder-gray-400 text-sm mb-4 shadow-inner" placeholder="Dán đoạn văn cần luyện đọc..."></textarea>
+                        <button class="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-500 py-3 rounded-full font-bold shadow-sm flex items-center justify-center gap-2 transition mb-4 text-[13px]"><i class="fa-solid fa-wand-magic-sparkles"></i> AI đánh giá CEFR</button>
+                        <button class="w-full bg-[#ff9eb5] hover:bg-[#ff8fa3] text-white py-3 rounded-full font-bold shadow-sm flex items-center justify-center gap-2 transition mx-auto max-w-[200px]"><i class="fa-solid fa-microphone"></i> Ghi âm & đọc to</button>
+                    </div>
+                </div>
+
+                <div id="tab-writing" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                    <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col min-h-[450px]">
+                        <h3 class="font-extrabold text-gray-800 text-[17px] flex items-center gap-2 mb-4"><i class="fa-solid fa-pen-nib text-[#eab308]"></i> Đề bài</h3>
+                        <div class="bg-[#ffe4e6] rounded-[24px] p-6 mb-4">
+                            <p class="text-[11px] font-extrabold text-[#d28b9d] uppercase tracking-wider mb-2">AI GỢI Ý</p>
+                            <p class="text-gray-800 text-[15px] mb-4 font-medium">Describe your dream vacation in 100 words.</p>
+                            <button class="text-gray-600 hover:text-gray-800 text-[13px] font-bold flex items-center gap-2"><i class="fa-solid fa-rotate-right"></i> Đổi đề</button>
+                        </div>
+                        <textarea class="w-full flex-1 min-h-[160px] border border-gray-200 rounded-[24px] p-5 outline-none focus:border-[#ff9eb5] resize-none text-gray-600 placeholder-gray-400 text-sm mb-4 shadow-inner" placeholder="Bắt đầu viết bài của bạn ở đây..."></textarea>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-400 font-bold ml-2">0 từ</span>
+                            <button class="bg-[#ffe4e6] hover:bg-[#fff0f3] text-[#ff8fa3] hover:text-white py-2.5 px-6 rounded-full font-bold text-sm shadow-sm flex items-center justify-center gap-2 transition"><i class="fa-solid fa-paper-plane"></i> Nộp & chấm điểm</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col min-h-[450px]">
+                        <h3 class="font-extrabold text-gray-800 text-[17px] flex items-center gap-2 mb-4"><i class="fa-solid fa-wand-magic-sparkles text-[#ff9eb5]"></i> Đánh giá của AI</h3>
+                        <div class="flex-1 flex items-center justify-center text-sm font-medium text-gray-400 text-center">
+                            Nộp bài để xem điểm và phản hồi chi tiết 🌷
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        function switchTab(tabId, clickedBtn) {
+            // Ẩn tất cả nội dung
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // Hiển thị nội dung được chọn
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            
+            // Bỏ active tất cả button
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Set active cho button được click
+            clickedBtn.classList.add('active');
+        }
+    </script>
+    <!-- Nhúng Firebase SDK -->
+    <!-- Nhúng Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 </body>
 </html>

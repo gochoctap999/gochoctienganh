@@ -1,152 +1,198 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Góc nhỏ học Tiếng Anh - Luyện đề</title>
+    <title>Góc Tiếng Anh - Luyện đề</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="logo">🌸 Góc Nhỏ</div>
+<body class="h-screen flex flex-col text-gray-800 overflow-hidden bg-gradient-to-br from-[#fdfbf7] via-[#fff0f0] to-[#f0f7ff]">
+    <header class="flex items-center justify-between px-6 py-3 bg-white/60 backdrop-blur-md shadow-sm z-10 relative border-b border-pink-50/50">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-[#ffb3c6] rounded-full flex items-center justify-center text-white shadow-sm">
+                    <i class="fa-solid fa-heart text-[15px]"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-[#ff6b81] tracking-tight">goctienganh</div>
+            </div>
+        </div>
         
-        <div class="search-bar">
-            <span>🔍</span>
-            <input type="text" placeholder="Tìm kiếm nhanh...">
-        </div>
-
-        <div class="menu-item glow-hover">🏠 Trang Chủ</div>
-        <div class="menu-item glow-hover">📋 Bộ từ vựng</div>
-        <div class="menu-item glow-hover">📚 Từ vựng</div>
-        <div class="menu-item glow-hover">🎧 4Skill</div>
-        <div class="menu-item glow-hover">✍️ Ngữ pháp</div>
-        <div class="menu-item active glow-hover">📝 Luyện đề</div>
-        <div class="menu-item glow-hover">🛠️ Sửa sai tổng hợp</div>
-        <div class="menu-item glow-hover">👤 Hồ sơ của tôi</div>
-
-        <div class="user-widget">
-            <div class="user-info">
-                <div class="user-avatar">👧🏻</div>
-                <div>
-                    <div class="user-name">Ngọc Trân</div>
-                    <div class="user-streak">🔥 12 Ngày</div>
-                </div>
+        <div class="flex items-center gap-3">
+            <div class="flex items-center bg-white px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
+                <i class="fa-solid fa-fire mr-1.5"></i> 1
             </div>
-            <div class="notify-bell jelly glow-hover">🔔</div>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
-        
-        <!-- 1. QUẢN LÝ CẤU TRÚC ĐỀ THI ĐA CẤP -->
-        <div>
-            <h2 class="section-title">📚 Thư viện Đề thi</h2>
-            <div class="exam-grid">
-                <div class="exam-wrapper">
-                    <div class="exam-card active jelly glow-hover">
-                        <div class="exam-title">TOEIC Test 1</div>
-                    </div>
-                    <div class="exam-stats">200 Câu • 1,204 Lượt làm</div>
-                </div>
-                <div class="exam-wrapper">
-                    <div class="exam-card jelly glow-hover">
-                        <div class="exam-title">IELTS Mock 1</div>
-                    </div>
-                    <div class="exam-stats">40 Câu • 850 Lượt làm</div>
-                </div>
-                <div class="exam-wrapper">
-                    <div class="exam-card jelly glow-hover">
-                        <div class="exam-title">THPT QG 2024</div>
-                    </div>
-                    <div class="exam-stats">50 Câu • 3,420 Lượt làm</div>
-                </div>
-                <div class="exam-wrapper">
-                    <div class="exam-card jelly glow-hover">
-                        <div class="exam-title">B1 VSTEP</div>
-                    </div>
-                    <div class="exam-stats">120 Câu • 405 Lượt làm</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. CHẾ ĐỘ LUYỆN TẬP NÂNG CAO (LÀM PART & XÁO TRỘN) -->
-        <div class="advanced-practice">
-            <div style="display: flex; align-items: center; gap: 15px;">
-                <span style="font-weight: 700; color: var(--text-light);">Làm Part riêng biệt:</span>
-                <div class="parts-container">
-                    <button class="part-tag jelly selected">Part 1</button>
-                    <button class="part-tag jelly">Part 2</button>
-                    <button class="part-tag jelly">Part 3</button>
-                    <button class="part-tag jelly">Part 4</button>
-                    <button class="part-tag jelly">Part 5</button>
-                </div>
-            </div>
-            
-            <button class="shuffle-btn jelly" id="shuffleBtn" onclick="toggleShuffle()">
-                <span class="shuffle-icon">🔄</span> Xáo trộn câu hỏi
+            <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#475569] shadow-sm hover:bg-[#fff0f3] hover:text-white transition-colors">
+                <i class="fa-regular fa-bell text-[17px]"></i>
+            </button>
+            <button class="bg-[#ff9eb5] hover:bg-[#ff6b81] transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
+                <i class="fa-solid fa-star text-[#fde047] mr-1.5 text-xs"></i> PRO
             </button>
         </div>
+    </header>
 
-        <!-- 3. GIAO DIỆN LÀM BÀI (SPLIT SCREEN) -->
-        <div>
-            <h2 class="section-title">⏳ Giao diện làm bài</h2>
-            <div class="split-screen">
-                
-                <!-- NỬA TRÁI: Đề bài (Trắng sữa pastel) -->
-                <div class="left-panel">
-                    <!-- Audio giả lập cho Part nghe -->
-                    <div style="margin-bottom: 25px; text-align: center;">
-                        <audio controls style="width: 100%; max-width: 400px; outline: none;">
-                            <source src="#" type="audio/mpeg">
-                        </audio>
+    <div class="flex flex-1 overflow-hidden relative">
+        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/60 backdrop-blur-md border-r border-[#ffe4e6] z-10 transition-all duration-300 shrink-0">
+            <div class="p-4 flex flex-col gap-2 overflow-y-auto hide-scrollbar">
+                <a href="index.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-house"></i></div>
+                    <span class="link-text">Trang chủ</span>
+                </a>
+                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-folder"></i></div>
+                    <span class="link-text">Tài liệu</span>
+                </a>
+                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-language"></i></div>
+                    <span class="link-text">Ngôn ngữ</span>
+                </a>
+                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <span class="link-text">Luyện đề</span>
+                </a>
+                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                    <span class="link-text">Ngữ pháp</span>
+                </a>
+                <a href="game.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-gamepad"></i></div>
+                    <span class="link-text">Game phản xạ</span>
+                </a>
+                <a href="skills.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <span class="link-text">4 Skills</span>
+                </a>
+            </div>
+
+            <div class="mt-auto flex flex-col">
+                <div class="px-4 pb-3">
+                    <button id="btn-toggle-sidebar" class="w-full bg-[#ffe4e6] hover:bg-[#ffb3c6] text-[#ff6b81] hover:text-white font-bold py-2 rounded-xl transition-colors shadow-sm">
+                        <i id="sidebar-icon" class="fa-solid fa-angles-left"></i>
+                    </button>
+                </div>
+                <div id="auth-container" class="bg-[#fff0f3] p-4 flex items-center justify-between cursor-pointer hover:bg-[#ff9eb5] group transition-colors profile-box rounded-xl mx-4 mb-2">
+                    <div id="login-view" class="w-full flex items-center justify-center gap-2 text-[#ff6b81] group-hover:text-white font-bold transition-colors" onclick="signInWithGoogle()">
+                        <i class="fa-brands fa-google text-lg"></i>
+                        <span>Đăng nhập Google</span>
                     </div>
 
-                    <div class="question-block">
-                        <div class="question-text">Question 1: What is the main topic of the conversation?</div>
-                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> A. A new project proposal</label>
-                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> B. A retirement party</label>
-                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> C. Office renovations</label>
-                        <label class="radio-option"><input type="radio" name="q1" onclick="markAnswered(1)"> D. Budget cuts</label>
-                    </div>
-
-                    <div class="question-block">
-                        <div class="question-text">Question 2: Where does the man want to go?</div>
-                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> A. To the cafeteria</label>
-                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> B. To the post office</label>
-                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> C. To a meeting room</label>
-                        <label class="radio-option"><input type="radio" name="q2" onclick="markAnswered(2)"> D. To the train station</label>
+                    <div id="user-view" class="w-full flex items-center justify-between hidden">
+                        <div class="flex items-center gap-3">
+                            <img id="user-avatar" src="" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm shrink-0">
+                            <div class="leading-tight profile-info">
+                                <div id="user-name" class="font-bold text-[#2d3748] text-[15px]">Tên người dùng</div>
+                                <div class="text-[11px] text-[#475569] font-semibold mt-0.5 hover:text-red-500" onclick="signOutUser()">Đăng xuất</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- NỬA PHẢI: Quiz điều hướng & Đồng hồ (Hồng thạch pastel) -->
-                <div class="right-panel">
-                    <div class="timer-box" id="timer">45:00</div>
-                    
-                    <div style="font-weight: 800; color: #FFF; text-align: center;">Bảng điều hướng</div>
-                    <div class="nav-grid">
-                        <div class="nav-circle active" id="nav-1">1</div>
-                        <div class="nav-circle" id="nav-2">2</div>
-                        <div class="nav-circle">3</div>
-                        <div class="nav-circle">4</div>
-                        <div class="nav-circle">5</div>
-                        <div class="nav-circle">6</div>
-                        <div class="nav-circle">7</div>
-                        <div class="nav-circle">8</div>
-                        <div class="nav-circle">9</div>
-                        <div class="nav-circle">10</div>
+                <div class="bg-[#ffe4e6] p-3 flex justify-between items-center text-sm font-bold text-[#ff6b81] footer-info rounded-b-xl mx-4 mb-4">
+                    <div class="flex items-center gap-2 bg-white/80 px-3 py-1 rounded-full shadow-sm">
+                        <div class="w-4 h-4 rounded-full border border-[#ff6b81] flex items-center justify-center">
+                            <i class="fa-solid fa-c text-[9px] text-[#ff6b81]"></i>
+                        </div>
+                        <span class="text-[#ff6b81]">130</span>
                     </div>
+                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80 text-[#ff6b81]">
+                        <i id="mode-icon" class="fa-regular fa-moon"></i> <span id="mode-text">Tối</span>
+                    </div>
+                </div>
+            </div>
 
-                    <button class="submit-btn jelly glow-hover">Nộp bài</button>
+            <script>
+                (function() {
+                    let currentPath = window.location.pathname.split('/').pop();
+                    if (currentPath === '') currentPath = 'index.html';
+                    
+                    const links = document.querySelectorAll('#sidebar .overflow-y-auto a');
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        // Nếu trang hiện tại khớp với href (hoặc grammar-history thì active mục grammar)
+                        if (href === currentPath || (currentPath === 'grammar-history.html' && href === 'grammar.html')) {
+                            link.className = "flex items-center gap-3 bg-gradient-to-r from-[#ffb3c6] to-[#ffe5ec] p-3 rounded-full font-bold text-white shadow-sm transition-transform hover:scale-[1.02]";
+                        } else {
+                            link.className = "flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors";
+                        }
+                    });
+                })();
+            </script>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-6 md:p-8">
+            <div class="max-w-6xl mx-auto">
+                <div id="exam-view-home">
+                    <div class="flex justify-between items-center mb-8">
+                        <h1 class="text-3xl font-extrabold text-[#2d3748]"><i class="fa-solid fa-clipboard-list text-[#ffb3c6] mr-2"></i> Kho Luyện Đề</h1>
+                        <div class="flex gap-2">
+                            <button onclick="window.location.href='exam-history.html'" class="bg-[#f0f7ff] text-[#3b82f6] border border-[#ffe4e6] hover:bg-[#dbeafe] px-4 py-2 rounded-xl font-bold transition shadow-sm hidden sm:block">
+                                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Lịch sử
+                            </button>
+                            <button onclick="openCreateExamFolderModal()" class="bg-[#ff9eb5] text-white border border-[#ff9eb5] hover:bg-[#ff9eb5] px-4 py-2 rounded-xl font-bold transition shadow-sm">
+                                <i class="fa-solid fa-folder-plus mr-1"></i> Tạo Thư mục
+                            </button>
+                            <button onclick="promptExamTestOptions('all')" class="bg-[#3b82f6] text-white hover:bg-blue-600 px-4 py-2 rounded-xl font-bold transition shadow-sm">
+                                <i class="fa-solid fa-play mr-1"></i> Ôn tập Tất cả
+                            </button>
+                        </div>
+                    </div>
+                    <div id="exam-folder-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+                </div>
+
+                <div id="exam-view-folder" style="display: none;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-[#ffe4e6] pb-4 gap-4">
+                        <div>
+                            <button id="folder-back-btn" class="text-sm font-bold text-[#475569] hover:text-[#2d3748] mb-2">← Quay lại</button>
+                            <h2 id="current-folder-name" class="text-2xl font-extrabold text-[#2d3748]">Tên thư mục</h2>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="window.location.href='grammar-history.html'" class="bg-white/60 text-[#3b82f6] border border-[#ffe4e6] hover:bg-white px-3 py-2 rounded-xl font-bold text-sm" title="Lịch sử"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                            <button onclick="openCreateExamFolderModal()" class="bg-[#ff9eb5]/60 text-[#2d3748] border border-[#ffe4e6] hover:bg-[#ff9eb5] px-3 py-2 rounded-xl font-bold text-sm">Thêm thư mục con</button>
+                            <button onclick="openCreateExamQuizModal()" class="bg-[#bde0fe] text-[#2d3748] hover:bg-[#a2d2ff] px-3 py-2 rounded-xl font-bold text-sm">Tạo bài tập</button>
+                            <button onclick="promptTestExamOptions('folder')" class="bg-[#3b82f6] text-white px-3 py-2 rounded-xl font-bold text-sm">Ôn tập Thư mục này</button>
+                        </div>
+                    </div>
+                    <div id="exam-quiz-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+                </div>
+
+                <div id="exam-view-quiz" style="display: none;">
+                    <div class="flex justify-between items-center mb-6 border-b border-[#ffe4e6] pb-4">
+                        <div>
+                            <button onclick="goBackToFolder()" class="text-sm font-bold text-[#475569] hover:text-[#2d3748] mb-2">← Quay lại thư mục</button>
+                            <h2 id="current-quiz-name" class="text-2xl font-extrabold text-[#2d3748]">Tên đề </h2>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="window.location.href='grammar-history.html'" class="bg-white/60 text-[#3b82f6] border border-[#ffe4e6] hover:bg-white px-4 py-2 rounded-xl font-bold"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                            <button onclick="promptTestOptions('quiz')" class="bg-[#3b82f6] text-white px-4 py-2 rounded-xl font-bold">Làm bài ngay</button>
+                        </div>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 border-2 border-[#ffe4e6] shadow-sm">
+                        <h3 class="font-bold text-[#ffb3c6] mb-4 border-b pb-2">Xem trước nội dung:</h3>
+                        <div id="question-exam-preview-list" class="space-y-4"></div>
+                    </div>
                 </div>
 
             </div>
-        </div>
-
+        </main>
     </div>
 
+    <div id="exam-modal-folder" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl mx-4 h-fit">
+            <h3 class="text-xl font-extrabold text-[#2d3748] mb-4">Tạo Thư mục mới</h3>
+            <input type="text" id="folder-name" placeholder="Tên thư mục..." class="w-full mb-3 p-3 rounded-xl bg-gray-50 border border-gray-200 outline-none focus:border-blue-400">
+            <input type="text" id="folder-desc" placeholder="Mô tả ngắn..." class="w-full mb-3 p-3 rounded-xl bg-gray-50 border border-gray-200 outline-none">
+            <select id="folder-parent" class="w-full mb-5 p-3 rounded-xl bg-gray-50 border border-gray-200 outline-none"></select>
+            <div class="flex justify-end gap-2">
+                <button onclick="closeExamModal('modal-folder')" class="px-4 py-2 font-bold text-gray-500 hover:bg-gray-100 rounded-xl">Hủy</button>
+                <button onclick="saveExamFolder()" class="px-4 py-2 font-bold bg-[#1e3a8a] text-white rounded-xl">Lưu lại</button>
+            </div>
+        </div>
+    </div>
+    <!-- Nhúng Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

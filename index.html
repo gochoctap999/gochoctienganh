@@ -9,25 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="h-screen flex flex-col text-gray-800 overflow-hidden">
-
-    <header class="flex items-center justify-between px-6 py-3 bg-[#bde0fe] shadow-sm z-10 relative">
+<body class="h-screen flex flex-col text-gray-800 bg-gradient-to-br from-[#fdfbf7] via-[#fff0f0] to-[#f0f7ff]">
+    <header class="flex items-center justify-between px-6 py-3 bg-white/60 backdrop-blur-md shadow-sm z-10 relative border-b border-pink-50/50">
         <div class="flex items-center gap-8">
-            <div class="text-2xl font-extrabold text-[#1e3a8a] tracking-tight">goctienganh</div>
-            <div class="hidden md:flex relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                <input type="text" placeholder="Tìm từ vựng, bộ thẻ..." class="pl-10 pr-4 py-2 w-64 md:w-80 rounded-full bg-white/80 border border-[#bde0fe] outline-none focus:border-blue-400 text-sm shadow-sm transition-colors">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-[#ffb3c6] rounded-full flex items-center justify-center text-white shadow-sm">
+                    <i class="fa-solid fa-heart text-[15px]"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-[#ff6b81] tracking-tight">goctienganh</div>
             </div>
+            
         </div>
         
         <div class="flex items-center gap-3">
-            <div class="flex items-center bg-[#eef2f6] px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
+            <div class="flex items-center bg-white px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
                 <i class="fa-solid fa-fire mr-1.5"></i> 1
             </div>
-            <button class="w-9 h-9 rounded-full bg-[#eef2f6] flex items-center justify-center text-[#475569] shadow-sm hover:bg-white transition-colors">
+            <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#475569] shadow-sm hover:bg-[#fff0f3] hover:text-white transition-colors">
                 <i class="fa-regular fa-bell text-[17px]"></i>
             </button>
-            <button class="bg-[#3b82f6] hover:bg-blue-600 transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
+            <button class="bg-[#ff9eb5] hover:bg-[#ff6b81] transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
                 <i class="fa-solid fa-star text-[#fde047] mr-1.5 text-xs"></i> PRO
             </button>
         </div>
@@ -35,169 +36,227 @@
 
     <div class="flex flex-1 overflow-hidden relative">
         
-        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/40 backdrop-blur-md border-r border-[#e2e8f0] z-10 transition-all duration-300 shrink-0">
+        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/60 backdrop-blur-md border-r border-[#ffe4e6] z-10 transition-all duration-300 shrink-0">
             <div class="p-4 flex flex-col gap-2 overflow-y-auto hide-scrollbar">
-                <a href="#" class="flex items-center gap-3 bg-[#cce5ff] p-3 rounded-2xl font-bold text-[#1e3a8a] shadow-sm transition-transform hover:scale-[1.02]">
-                    <div class="bg-[#ffb3c6] w-9 h-9 flex items-center justify-center rounded-xl text-red-500 shadow-inner shrink-0">
-                        <i class="fa-solid fa-house"></i>
-                    </div>
+                <a href="index.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-house"></i></div>
                     <span class="link-text">Trang chủ</span>
                 </a>
-                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-border-all"></i></div>
-                    <span class="link-text">Bộ từ vựng</span>
+                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-folder"></i></div>
+                    <span class="link-text">Tài liệu</span>
                 </a>
-                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book"></i></div>
-                    <span class="link-text">Từ vựng</span>
+                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-language"></i></div>
+                    <span class="link-text">Ngôn ngữ</span>
                 </a>
-                <a href="game.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-play"></i></div>
+                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <span class="link-text">Luyện đề</span>
+                </a>
+                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                    <span class="link-text">Ngữ pháp</span>
+                </a>
+                <a href="game.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-gamepad"></i></div>
                     <span class="link-text">Game phản xạ</span>
                 </a>
-                <a href="skills" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
-                    <span class="link-text">4 Skill</span>
-                </a>
-                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-xl font-extrabold font-serif shrink-0">A⁺</div>
-                    <span class="link-text">Grammar</span>
-                </a>
-                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <span class="link-text">Luyện đề</span>
+                <a href="skills.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <span class="link-text">4 Skills</span>
                 </a>
             </div>
 
             <div class="mt-auto flex flex-col">
-                <div class="px-4 pb-4">
-                    <button id="btn-toggle-sidebar" class="w-full bg-[#dbeafe] hover:bg-[#bfdbfe] text-[#1e3a8a] font-bold py-2.5 rounded-2xl transition-colors shadow-sm flex justify-center items-center">
-                        <i id="sidebar-icon" class="fa-solid fa-angles-left text-lg"></i>
-                    </button>                
-                <div class="flex items-center gap-3 md:gap-4">
-            
-            <button id="btn-darkmode" class="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center text-gray-600 shadow-sm hover:bg-white transition-colors">
-            </button>
-            </div>
-                <div class="bg-[#bde0fe] px-4 py-3 flex justify-between items-center text-[15px] font-bold text-[#1e3a8a] footer-info">
-                    <div class="flex items-center gap-2 bg-[#eef2f6] px-3 py-1.5 rounded-full shadow-sm">
-                        <div class="w-[18px] h-[18px] rounded-full border-[1.5px] border-[#3b82f6] flex items-center justify-center">
-                            <i class="fa-solid fa-c text-[10px] text-[#3b82f6]"></i>
-                        </div>
-                        <span></span>
+                <div class="px-4 pb-3">
+                    <button id="btn-toggle-sidebar" class="w-full bg-[#ffe4e6] hover:bg-[#ffb3c6] text-[#ff6b81] hover:text-white font-bold py-2 rounded-xl transition-colors shadow-sm">
+                        <i id="sidebar-icon" class="fa-solid fa-angles-left"></i>
+                    </button>
+                </div>
+                <div id="auth-container" class="bg-[#fff0f3] p-4 flex items-center justify-between cursor-pointer hover:bg-[#ff9eb5] group transition-colors profile-box rounded-xl mx-4 mb-2">
+                    <div id="login-view" class="w-full flex items-center justify-center gap-2 text-[#ff6b81] group-hover:text-white font-bold transition-colors" onclick="signInWithGoogle()">
+                        <i class="fa-brands fa-google text-lg"></i>
+                        <span>Đăng nhập Google</span>
                     </div>
-                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80">
+
+                    <div id="user-view" class="w-full flex items-center justify-between hidden">
+                        <div class="flex items-center gap-3">
+                            <img id="user-avatar" src="" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm shrink-0">
+                            <div class="leading-tight profile-info">
+                                <div id="user-name" class="font-bold text-[#2d3748] text-[15px]">Tên người dùng</div>
+                                <div class="text-[11px] text-[#475569] font-semibold mt-0.5 hover:text-red-500" onclick="signOutUser()">Đăng xuất</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-[#ffe4e6] p-3 flex justify-between items-center text-sm font-bold text-[#ff6b81] footer-info rounded-b-xl mx-4 mb-4">
+                    <div class="flex items-center gap-2 bg-white/80 px-3 py-1 rounded-full shadow-sm">
+                        <div class="w-4 h-4 rounded-full border border-[#ff6b81] flex items-center justify-center">
+                            <i class="fa-solid fa-c text-[9px] text-[#ff6b81]"></i>
+                        </div>
+                        <span class="text-[#ff6b81]">130</span>
+                    </div>
+                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80 text-[#ff6b81]">
                         <i id="mode-icon" class="fa-regular fa-moon"></i> <span id="mode-text">Tối</span>
                     </div>
                 </div>
             </div>
+
+            <script>
+                (function() {
+                    let currentPath = window.location.pathname.split('/').pop();
+                    if (currentPath === '') currentPath = 'index.html';
+                    
+                    const links = document.querySelectorAll('#sidebar .overflow-y-auto a');
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        // Nếu trang hiện tại khớp với href (hoặc grammar-history thì active mục grammar)
+                        if (href === currentPath || (currentPath === 'grammar-history.html' && href === 'grammar.html')) {
+                            link.className = "flex items-center gap-3 bg-gradient-to-r from-[#ffb3c6] to-[#ffe5ec] p-3 rounded-full font-bold text-white shadow-sm transition-transform hover:scale-[1.02]";
+                        } else {
+                            link.className = "flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors";
+                        }
+                    });
+                })();
+            </script>
         </aside>
 
         <main class="flex-1 overflow-y-auto p-6 md:p-8">
             <div class="max-w-7xl mx-auto space-y-6">
                 
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                    <div class="col-span-1 lg:col-span-3 bg-[#ffe4e6] rounded-[32px] p-8 flex justify-between items-center border border-[#fbc3cb] shadow-sm relative overflow-hidden">
-                        <h2 class="text-3xl md:text-4xl font-extrabold text-[#800020] leading-tight relative z-10">
-                            Chào Trân, hôm nay<br>luyện đề nhé!
-                        </h2>
+                <div class="p-8 md:p-12 flex justify-between items-center relative overflow-hidden">
+                    <div class="z-10 max-w-lg relative">
+                        <div class="inline-block bg-white/70 px-4 py-1.5 rounded-full text-[#ff6b81] text-sm font-bold mb-6 flex items-center gap-2 w-fit shadow-sm">
+                            <i class="fa-solid fa-fan text-[#ff9eb5] animate-spin-slow"></i> Chào mừng trở lại, Trân!
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-[#2d3748] leading-tight mb-4">
+                            Góc học tập của <span class="text-[#ff9eb5]">Trân</span>
+                        </h1>
+                        <p class="text-gray-500 text-base mb-6 font-medium">Không gian học tập đáng yêu, gọn gàng và đầy cảm hứng — nơi mọi nỗ lực của bạn được nâng niu.</p>
+                        
+                        <div class="bg-white/80 px-5 py-3 rounded-2xl text-[14px] text-[#2d3748] font-bold mb-8 w-fit shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white" id="motivational-quote">
+                            <!-- Quote -->
+                        </div>
+
+                        <div class="flex flex-wrap gap-4">
+                            <a href="game.html" class="bg-gradient-to-r from-[#ff9eb5] to-[#ff8fa3] text-white px-8 py-3 rounded-full font-bold shadow-[0_8px_20px_rgba(255,158,181,0.4)] hover:shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5">
+                                Bắt đầu học ngay ✨
+                            </a>
+                            <a href="vocab-sets.html" class="bg-white hover:bg-gray-50 text-[#2d3748] px-8 py-3 rounded-full font-bold shadow-sm transition-all border border-gray-100">
+                                Mở góc tài liệu
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col justify-center relative overflow-hidden">
-                        <div class="text-sm font-bold text-[#475569] mb-2 relative z-10">Band điểm</div>
-                        <div class="flex items-end gap-3 relative z-10">
-                            <span class="text-5xl font-extrabold text-[#1e3a8a]">6.5</span>
-                            <button class="bg-[#ffb3c6] text-[#800020] px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-[#ff9eb5] transition-colors shadow-sm mb-1">
-                                Chọn band <i class="fa-solid fa-chevron-down ml-1"></i>
-                            </button>
-                        </div>
+                    <div class="absolute right-0 bottom-0 h-full w-[45%] pointer-events-none z-20 p-6"> 
+                        <img src="hình 1.png" 
+                            alt="Ảnh trang chủ" 
+                            class="w-full h-full rounded-[32px] shadow-[0_0_40px_rgba(255,182,193,0.6)] animate-float">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div class="pt-2">
+                    <div class="text-center mb-6">
+                        <h2 class="text-[28px] font-extrabold text-[#2d3748] flex justify-center items-center gap-2">Khám phá các góc học tập <i class="fa-solid fa-heart text-[#ff9eb5]"></i></h2>
+                        <p class="text-[#6b7280] font-medium mt-1">Chọn một góc để bắt đầu hành trình hôm nay nhé!</p>
+                    </div>
                     
-                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col justify-center">
-                        <div class="text-sm font-bold text-[#475569] mb-2">Chuỗi ngày học:</div>
-                        <div class="text-4xl font-extrabold text-[#800020] mb-6">
-                            1 <span class="text-xl font-bold text-[#1e3a8a] ml-1">ngày</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">C1</div>
-                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">T2</div>
-                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">T3</div>
-                            <div class="w-7 h-7 rounded-full bg-[#ffb3c6] opacity-50 flex items-center justify-center text-[9px] font-bold text-white">T4</div>
-                            <div class="w-7 h-7 rounded-full bg-white border-[3px] border-[#ffb3c6] flex items-center justify-center relative shadow-sm">
-                                <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                                <div class="absolute -bottom-5 text-[10px] font-bold text-red-500">T5</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-5">
+                        <a href="vocab-sets.html" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group">
+                            <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-folder"></i></div>
+                            <div>
+                                <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Góc tài liệu</h3>
+                                <p class="text-[12px] text-gray-500 font-medium">Lưu trữ, sắp xếp tài liệu</p>
                             </div>
+                        </a>
+                        
+                        <a href="vocab.html" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group">
+                            <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-language"></i></div>
+                            <div>
+                                <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Góc ngôn ngữ</h3>
+                                <p class="text-[12px] text-gray-500 font-medium">Luyện 4 kỹ năng với AI</p>
+                            </div>
+                        </a>
+
+                        <a href="exams.html" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group">
+                            <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-clipboard-check"></i></div>
+                            <div>
+                                <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Luyện đề</h3>
+                                <p class="text-[12px] text-gray-500 font-medium">Tạo đề thi tự động</p>
+                            </div>
+                        </a>
+
+                        <a href="grammar.html" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group">
+                            <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-book-open"></i></div>
+                            <div>
+                                <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Ngữ pháp</h3>
+                                <p class="text-[12px] text-gray-500 font-medium">Bài tập AI sinh ra</p>
+                            </div>
+                        </a>
+
+                        <a href="game.html" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group">
+                            <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-gamepad"></i></div>
+                            <div>
+                                <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Game phản xạ</h3>
+                                <p class="text-[12px] text-gray-500 font-medium">Lật thẻ Flashcard</p>
+                            </div>
+                        </a>
+
+                        <a href="skills.html" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group">
+                            <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-headphones"></i></div>
+                            <div>
+                                <h3 class="font-extrabold text-[#2d3748] text-base mb-1">4 Skills</h3>
+                                <p class="text-[12px] text-gray-500 font-medium">Luyện tập tổng hợp</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <div class="bg-white rounded-[24px] p-6 border border-pink-100 shadow-sm relative z-20">
+                        <h3 class="text-xs font-bold text-gray-500 mb-4"><i class="fa-solid fa-bullseye mr-2 text-pink-400"></i>Mục tiêu Band</h3>
+                        <div class="flex gap-2">
+                            <select id="band-type-1" onchange="updateBandOptions()" class="w-full bg-pink-50 text-pink-600 font-bold p-2 rounded-lg cursor-pointer hover:bg-pink-100 transition-colors border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                                <option value="ielts">IELTS</option>
+                                <option value="toeic">TOEIC</option>
+                            </select>
+                            <select id="band-type-2" class="w-full bg-pink-50 text-pink-600 font-bold p-2 rounded-lg cursor-pointer hover:bg-pink-100 transition-colors border border-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-300"></select>
                         </div>
                     </div>
 
-                    <div class="col-span-1 lg:col-span-3 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col overflow-hidden">
+                    <div class="md:col-span-1 bg-white rounded-[24px] p-6 border border-pink-100 shadow-sm flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xs font-bold text-gray-500 mb-1">Chuỗi</h3>
+                            <div id="streak-count" class="text-2xl font-black text-gray-800">0 ngày</div>
+                        </div>
+                        <i class="fa-solid fa-fire text-3xl text-orange-400"></i>
+                    </div>
+
+                    <div class="md:col-span-2 row-span-2 bg-white rounded-[24px] p-6 border border-pink-100 shadow-sm flex flex-col">
+                        <div id="calendar-title" class="text-xs font-bold text-gray-400 uppercase mb-4"></div>
+                        <div id="calendar-body" class="grid grid-cols-7 gap-2 text-center text-xs font-bold flex-1 items-center"></div>
+                    </div>
+
+                    <div class="md:col-span-2 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col overflow-hidden">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="font-extrabold text-[#475569] text-base flex items-center gap-2">
                                 <i class="fa-solid fa-book-open text-[#ffb3c6]"></i> Học liệu đang học
                             </h3>
-                            <a href="grammar.html" class="text-sm font-bold text-[#3b82f6] hover:underline flex items-center gap-1">
-                                Xem tất cả <i class="fa-solid fa-arrow-right"></i>
-                            </a>
+                            <a href="grammar.html" class="text-sm font-bold text-[#3b82f6] hover:underline flex items-center gap-1">Xem tất cả</a>
                         </div>
-                        <div id="home-grammar-list" class="flex overflow-x-auto gap-4 pb-2 snap-x scroll-smooth hide-scrollbar h-full">
-                            </div>
+                        <div id="home-grammar-list" class="flex overflow-x-auto gap-4 h-full"></div>
                     </div>
-
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                    
-                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col">
-                        <div class="text-[11px] font-bold text-[#475569] uppercase tracking-wider mb-4">HOẠT ĐỘNG HỌC TẬP - THÁNG 6 - 2026</div>
-                        <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-gray-500 mb-3">
-                            <div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div><div>CN</div>
-                        </div>
-                        <div class="grid grid-cols-7 gap-y-3 gap-x-1 text-center text-[13px] font-bold text-[#1e3a8a] items-center flex-1">
-                            <div class="opacity-0"></div><div class="opacity-0"></div>
-                            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
-                            <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
-                            <div>13</div><div>14</div><div>15</div><div>16</div><div>17</div>
-                            <div class="relative w-7 h-7 mx-auto flex items-center justify-center rounded-full border border-red-400 text-red-500 font-extrabold shadow-sm">18</div>
-                            <div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div>
-                            <div>26</div><div>27</div><div>28</div><div>29</div><div>30</div>
-                        </div>
-                    </div>
-
-                    <div class="col-span-1 lg:col-span-2 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col">
-                        <div class="text-base font-extrabold text-[#1e3a8a] mb-1">Thống kê học tập</div>
-                        <div class="text-[11px] font-bold text-[#475569] mb-4">Từ từ học / ngày</div>
-                        
-                        <div class="flex-1 flex items-end gap-2 border-b border-gray-200 pb-1 relative min-h-[140px]">
-                            <div class="absolute left-0 top-0 bottom-0 w-8 flex flex-col justify-between text-[9px] text-gray-400 font-bold">
-                                <span>120 000</span>
-                                <span>100 000</span>
-                                <span>90 000</span>
-                                <span>60 000</span>
-                                <span>20 000</span>
-                                <span>0</span>
+                    <div class="lg:col-span-3 bg-white rounded-[24px] p-6 border border-pink-100 shadow-sm">
+                        <h3 class="text-xs font-bold text-gray-500 mb-4">Thống kê học tập</h3>
+                        <div class="flex items-end h-48 gap-4 border-l border-b border-gray-200 pl-2" id="chart-container">
                             </div>
-                            <div class="ml-[45px] flex-1 flex items-end justify-between h-full gap-2">
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 40%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 35%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 60%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 45%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 55%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 70%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 85%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 60%"></div>
-                                <div class="w-full bg-[#ffb3c6] rounded-t-md hover:bg-[#ff8fa3] transition-colors" style="height: 15%"></div>
-                            </div>
-                        </div>
-                        <div class="ml-[45px] flex justify-between mt-2 text-[10px] font-bold text-gray-500">
-                            <span>T1</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>T8</span><span>T9</span>
-                        </div>
                     </div>
-
-                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#bde0fe] shadow-sm flex flex-col items-center relative min-h-[200px]">
-                        <div class="absolute top-5 left-5 text-[13px] font-extrabold text-[#1e3a8a] tracking-wide">+ 4 Skill</div>
+                    <div class="col-span-1 bg-white/80 backdrop-blur-sm rounded-[32px] p-6 border-2 border-[#ffe4e6] shadow-sm flex flex-col items-center relative min-h-[200px]">
+                        <div class="absolute top-5 left-5 text-[13px] font-extrabold text-[#2d3748] tracking-wide">+ 4 Skill</div>
                         
                         <div class="absolute top-[60px] left-4 text-[10px] font-bold text-[#475569]">Reading</div>
                         <div class="absolute top-[60px] right-4 text-[10px] font-bold text-[#475569]">Writing</div>
@@ -217,36 +276,45 @@
                             </svg>
                         </div>
                     </div>
-
                 </div>
 
-                <div class="bg-white/80 backdrop-blur-sm border-2 border-[#bde0fe] rounded-[32px] p-6 shadow-sm">
+                <div class="bg-white/80 backdrop-blur-sm border-2 border-[#ffe4e6] rounded-[32px] p-6 shadow-sm">
                     <div class="flex justify-between items-center mb-6 pb-4 border-b border-blue-50">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-[#ffb3c6] flex items-center justify-center text-white text-lg shadow-inner">
+                            <div class="w-10 h-10 rounded-full bg-[#fff0f3] flex items-center justify-center text-[#ff6b81] text-lg shadow-inner">
                                 <i class="fa-regular fa-calendar-check"></i>
                             </div>
-                            <h2 class="font-extrabold text-[#1e3a8a] text-lg">Lịch sử học tập</h2>
+                            <h2 class="font-extrabold text-[#2d3748] text-lg">Lịch sử học tập</h2>
                         </div>
                         <div class="flex gap-4">
-                            <button class="text-sm font-bold text-[#475569] hover:text-[#3b82f6] flex items-center gap-1 transition-colors">
+                            <button class="text-sm font-bold text-[#475569] hover:text-[#ff9eb5] flex items-center gap-1 transition-colors">
                                 <i class="fa-solid fa-clock-rotate-left"></i> Xem thống kê
                             </button>
-                            <button onclick="window.location.href='grammar-history.html'" class="text-sm font-bold text-[#475569] hover:text-[#3b82f6] flex items-center gap-1 transition-colors">
+                            <button onclick="window.location.href='grammar-history.html'" class="text-sm font-bold text-[#475569] hover:text-[#ff9eb5] flex items-center gap-1 transition-colors">
                                 <i class="fa-solid fa-list"></i> Xem tất cả
                             </button>
                         </div>
                     </div>
                     
                     <div id="history-list" class="flex flex-col gap-3">
-                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#fbd6db] rounded-[32px] p-10 text-center relative overflow-hidden shadow-md mt-6">
+                    <i class="fa-solid fa-heart text-[#2d3748] text-4xl mb-4 animate-pulse"></i>
+                    <h2 class="text-3xl font-extrabold text-[#2d3748] mb-2">Hôm nay học gì cũng được, miễn là học!</h2>
+                    <p class="text-[#2d3748]/90 text-[15px] font-medium">Chỉ cần 15 phút mỗi ngày, bạn sẽ ngạc nhiên với chính mình sau 30 ngày 🌷</p>
                 </div>
 
             </div>
+            
         </main>
         
     </div>
-
+    <!-- Nhúng Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

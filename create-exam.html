@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo Đề Thi - Góc Tiếng Anh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#fdfafb] min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white/70 backdrop-blur-md px-8 py-4 flex justify-between items-center border-b border-pink-100 z-50">
+        <button onclick="window.history.back()" class="font-bold text-gray-500 hover:text-[#ff6b81]"><i class="fa-solid fa-arrow-left mr-2"></i> Thoát</button>
+        <div class="flex gap-4">
+            <button onclick="openImportModal()" class="bg-[#ffe4e6] text-[#ff6b81] px-6 py-2 rounded-xl font-bold shadow-sm hover:bg-[#ffb3c6] hover:text-white transition">Nhập dữ liệu</button>
+            <button onclick="saveFinalExam()" class="bg-[#ff9eb5] text-white px-8 py-2 rounded-xl font-bold shadow-lg hover:bg-[#ff6b81] transition">Tạo đề</button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-8 grid grid-cols-12 gap-8">
+        <!-- Cột trái: Nhập liệu -->
+        <div class="col-span-4 space-y-6">
+            <input type="text" id="exam-title" placeholder="Tên đề ôn tập..." class="w-full p-4 rounded-2xl border-2 border-pink-100 focus:border-[#ffb3c6] outline-none">
+            <select id="exam-folder-select" class="w-full p-4 rounded-2xl border-2 border-pink-100 outline-none bg-white"></select>
+            
+            <div class="bg-white rounded-3xl p-6 border border-pink-50 shadow-sm h-[60vh] overflow-y-auto custom-scrollbar">
+                <h3 class="font-bold text-[#ff6b81] mb-4">Nội dung nhập vào:</h3>
+                <button onclick="openModal('modal-import-rules')" class="bg-[#f0f7ff] text-[#3b82f6] px-4 py-2 rounded-xl font-bold mb-4 w-full border-2 border-blue-100">
+                    <i class="fa-solid fa-book"></i> Xem quy tắc & Copy mẫu
+                </button>
+                <textarea id="raw-exam-content" class="w-full h-full resize-none outline-none font-mono text-sm" placeholder="Nhập câu hỏi tại đây..."></textarea>
+                <div id="modal-import-rules" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+                    <div class="bg-white rounded-3xl p-8 w-[600px] max-h-[80vh] overflow-y-auto shadow-2xl">
+                        <h2 class="text-xl font-extrabold text-[#2d3748] mb-6">Hướng dẫn soạn đề</h2>
+                        
+                        <div class="flex gap-2 mb-4">
+                            <button onclick="showRule('single')" class="px-4 py-2 bg-[#ffe4e6] text-[#ff6b81] rounded-xl font-bold hover:bg-[#ffb3c6]">Đáp án đúng</button>
+                            <button onclick="showRule('fill')" class="px-4 py-2 bg-[#ffe4e6] text-[#ff6b81] rounded-xl font-bold hover:bg-[#ffb3c6]">Điền từ</button>
+                            <button onclick="showRule('read')" class="px-4 py-2 bg-[#ffe4e6] text-[#ff6b81] rounded-xl font-bold hover:bg-[#ffb3c6]">Đọc hiểu</button>
+                        </div>
+
+                        <div id="rule-display" class="bg-gray-50 p-4 rounded-xl text-sm h-60 overflow-y-auto font-mono text-gray-700 mb-4 border border-gray-200">
+                            Hãy chọn một dạng bài ở trên để xem quy tắc và ví dụ.
+                        </div>
+
+                        <div class="flex justify-end gap-3">
+                            <button onclick="closeModal('modal-import-rules')" class="px-6 py-2 bg-gray-100 rounded-xl font-bold">Đóng</button>
+                            <button onclick="copyRule()" class="px-6 py-2 bg-[#ff9eb5] text-white rounded-xl font-bold shadow-lg">Sao chép mẫu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cột phải: Xem trước -->
+        <div class="col-span-8 bg-white/50 backdrop-blur-sm rounded-3xl p-8 border border-white shadow-xl h-[85vh] overflow-y-auto custom-scrollbar">
+            <h3 class="font-bold text-[#ff6b81] mb-6">Xem trước:</h3>
+            <div id="preview-area" class="space-y-6"></div>
+        </div>
+        <!-- Nút Thêm -->
+        <div class="sticky bottom-8 flex justify-center">
+            <button onclick="openImportModal()" class="bg-white/90 backdrop-blur-md px-10 py-4 rounded-full font-extrabold text-[#ff6b81] shadow-2xl border-2 border-pink-100 hover:scale-105 transition">
+                <i class="fa-solid fa-plus mr-2"></i> Thêm câu hỏi/phần mới
+            </button>
+        </div>
+
+        <!-- Modal chọn dạng đề (để chép quy tắc) -->
+        <div id="modal-import-rules" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+            <div class="bg-white rounded-3xl p-8 w-[600px] max-h-[80vh] overflow-y-auto">
+                <h2 class="text-xl font-bold mb-4">Chọn dạng đề để xem quy tắc</h2>
+                <div class="flex gap-2 mb-4">
+                    <button onclick="showRule('single')" class="px-4 py-2 bg-pink-100 rounded-lg font-bold">Đáp án đúng</button>
+                    <button onclick="showRule('fill')" class="px-4 py-2 bg-pink-100 rounded-lg font-bold">Điền từ</button>
+                    <button onclick="showRule('read')" class="px-4 py-2 bg-pink-100 rounded-lg font-bold">Đọc hiểu</button>
+                </div>
+                <div id="rule-display" class="bg-gray-50 p-4 rounded-xl text-sm h-40 overflow-y-auto">
+                    <!-- Quy tắc sẽ hiện ở đây -->
+                </div>
+                <button onclick="copyRule()" class="mt-4 bg-[#ff9eb5] text-white px-6 py-2 rounded-xl">Copy quy tắc & ví dụ</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

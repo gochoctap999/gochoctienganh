@@ -15,25 +15,28 @@
         }
     </style>
 </head>
-<body class="h-screen flex flex-col text-gray-800 overflow-hidden">
+<body class="h-screen flex flex-col text-gray-800 overflow-hidden bg-gradient-to-br from-[#fdfbf7] via-[#fff0f0] to-[#f0f7ff]">
 
-    <header class="flex items-center justify-between px-6 py-3 bg-[#bde0fe] shadow-sm z-10 relative">
+    <header class="flex items-center justify-between px-6 py-3 bg-white/60 backdrop-blur-md shadow-sm z-10 relative border-b border-pink-50/50">
         <div class="flex items-center gap-8">
-            <div class="text-2xl font-extrabold text-[#1e3a8a] tracking-tight">goctienganh</div>
-            <div class="hidden md:flex relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                <input type="text" placeholder="Tìm từ vựng, bộ thẻ..." class="pl-10 pr-4 py-2 w-64 md:w-80 rounded-full bg-white/80 border border-[#bde0fe] outline-none focus:border-blue-400 text-sm shadow-sm transition-colors">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-[#ffb3c6] rounded-full flex items-center justify-center text-white shadow-sm">
+                    <i class="fa-solid fa-heart text-[15px]"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-[#ff6b81] tracking-tight">goctienganh</div>
             </div>
+            
+            
         </div>
         
         <div class="flex items-center gap-3">
-            <div class="flex items-center bg-[#eef2f6] px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
+            <div class="flex items-center bg-white px-3 py-1.5 rounded-full text-[15px] font-bold text-[#f87171] shadow-sm">
                 <i class="fa-solid fa-fire mr-1.5"></i> 1
             </div>
-            <button class="w-9 h-9 rounded-full bg-[#eef2f6] flex items-center justify-center text-[#475569] shadow-sm hover:bg-white transition-colors">
+            <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#475569] shadow-sm hover:bg-[#fff0f3] hover:text-white transition-colors">
                 <i class="fa-regular fa-bell text-[17px]"></i>
             </button>
-            <button class="bg-[#3b82f6] hover:bg-blue-600 transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
+            <button class="bg-[#ff9eb5] hover:bg-[#ff6b81] transition-colors text-white px-4 py-1.5 rounded-full text-[15px] font-bold flex items-center shadow-sm">
                 <i class="fa-solid fa-star text-[#fde047] mr-1.5 text-xs"></i> PRO
             </button>
         </div>
@@ -41,212 +44,243 @@
 
     <div class="flex flex-1 overflow-hidden relative">
         
-        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/40 backdrop-blur-md border-r border-[#e2e8f0] z-10 transition-all duration-300">
-            <div class="p-4 flex flex-col gap-2 overflow-y-auto">
-                <a href="index.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-house"></i></div>
+        <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/60 backdrop-blur-md border-r border-[#ffe4e6] z-10 transition-all duration-300 shrink-0">
+            <div class="p-4 flex flex-col gap-2 overflow-y-auto hide-scrollbar">
+                <a href="index.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-house"></i></div>
                     <span class="link-text">Trang chủ</span>
                 </a>
-                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-border-all"></i></div>
-                    <span class="link-text">Bộ từ vựng</span>
+                <a href="vocab-sets.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-folder"></i></div>
+                    <span class="link-text">Tài liệu</span>
                 </a>
-                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book"></i></div>
-                    <span class="link-text">Từ vựng</span>
+                <a href="vocab.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-language"></i></div>
+                    <span class="link-text">Ngôn ngữ</span>
                 </a>
-                
-                <a href="game.html" class="flex items-center gap-3 active-menu p-3 rounded-2xl font-bold shadow-sm">
-                    <div class="bg-[#ffb3c6] w-9 h-9 flex items-center justify-center rounded-xl text-red-500 shadow-inner shrink-0">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
+                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <span class="link-text">Luyện đề</span>
+                </a>
+                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                    <span class="link-text">Ngữ pháp</span>
+                </a>
+                <a href="game.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-gamepad"></i></div>
                     <span class="link-text">Game phản xạ</span>
                 </a>
-                
-                <a href="skills.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
-                    <span class="link-text">4 Skill</span>
-                </a>
-                <a href="grammar.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-xl font-extrabold font-serif shrink-0">A⁺</div>
-                    <span class="link-text">Grammar</span>
-                </a>
-                <a href="exams.html" class="flex items-center gap-3 p-3 rounded-2xl font-bold text-gray-700 hover:bg-white/60 transition-colors">
-                    <div class="text-[#475569] w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <span class="link-text">Luyện đề</span>
+                <a href="skills.html" class="flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors">
+                    <div class="w-9 flex justify-center text-lg shrink-0"><i class="fa-solid fa-headphones-simple"></i></div>
+                    <span class="link-text">4 Skills</span>
                 </a>
             </div>
 
             <div class="mt-auto flex flex-col">
-                <div class="px-4 pb-4">
-                    <button id="btn-toggle-sidebar" class="w-full bg-[#dbeafe] hover:bg-[#bfdbfe] text-[#1e3a8a] font-bold py-2.5 rounded-2xl transition-colors shadow-sm flex justify-center items-center">
-                        <i id="sidebar-icon" class="fa-solid fa-angles-left text-lg"></i>
-                    </button>                
-                <div class="flex items-center gap-3 md:gap-4">
-            
-            <button id="btn-darkmode" class="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center text-gray-600 shadow-sm hover:bg-white transition-colors">
-            </button>
-            </div>
-                <div class="bg-[#bde0fe] px-4 py-3 flex justify-between items-center text-[15px] font-bold text-[#1e3a8a] footer-info">
-                    <div class="flex items-center gap-2 bg-[#eef2f6] px-3 py-1.5 rounded-full shadow-sm">
-                        <div class="w-[18px] h-[18px] rounded-full border-[1.5px] border-[#3b82f6] flex items-center justify-center">
-                            <i class="fa-solid fa-c text-[10px] text-[#3b82f6]"></i>
-                        </div>
-                        <span></span>
+                <div class="px-4 pb-3">
+                    <button id="btn-toggle-sidebar" class="w-full bg-[#ffe4e6] hover:bg-[#ffb3c6] text-[#ff6b81] hover:text-white font-bold py-2 rounded-xl transition-colors shadow-sm">
+                        <i id="sidebar-icon" class="fa-solid fa-angles-left"></i>
+                    </button>
+                </div>
+                <div id="auth-container" class="bg-[#fff0f3] p-4 flex items-center justify-between cursor-pointer hover:bg-[#ff9eb5] group transition-colors profile-box rounded-xl mx-4 mb-2">
+                    <div id="login-view" class="w-full flex items-center justify-center gap-2 text-[#ff6b81] group-hover:text-white font-bold transition-colors" onclick="signInWithGoogle()">
+                        <i class="fa-brands fa-google text-lg"></i>
+                        <span>Đăng nhập Google</span>
                     </div>
-                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80">
+
+                    <div id="user-view" class="w-full flex items-center justify-between hidden">
+                        <div class="flex items-center gap-3">
+                            <img id="user-avatar" src="" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm shrink-0">
+                            <div class="leading-tight profile-info">
+                                <div id="user-name" class="font-bold text-[#2d3748] text-[15px]">Tên người dùng</div>
+                                <div class="text-[11px] text-[#475569] font-semibold mt-0.5 hover:text-red-500" onclick="signOutUser()">Đăng xuất</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-[#ffe4e6] p-3 flex justify-between items-center text-sm font-bold text-[#ff6b81] footer-info rounded-b-xl mx-4 mb-4">
+                    <div class="flex items-center gap-2 bg-white/80 px-3 py-1 rounded-full shadow-sm">
+                        <div class="w-4 h-4 rounded-full border border-[#ff6b81] flex items-center justify-center">
+                            <i class="fa-solid fa-c text-[9px] text-[#ff6b81]"></i>
+                        </div>
+                        <span class="text-[#ff6b81]">130</span>
+                    </div>
+                    <div id="btn-darkmode" class="flex items-center gap-1.5 cursor-pointer hover:opacity-80 text-[#ff6b81]">
                         <i id="mode-icon" class="fa-regular fa-moon"></i> <span id="mode-text">Tối</span>
                     </div>
                 </div>
             </div>
+
+            <script>
+                (function() {
+                    let currentPath = window.location.pathname.split('/').pop();
+                    if (currentPath === '') currentPath = 'index.html';
+                    
+                    const links = document.querySelectorAll('#sidebar .overflow-y-auto a');
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        // Nếu trang hiện tại khớp với href (hoặc grammar-history thì active mục grammar)
+                        if (href === currentPath || (currentPath === 'grammar-history.html' && href === 'grammar.html')) {
+                            link.className = "flex items-center gap-3 bg-gradient-to-r from-[#ffb3c6] to-[#ffe5ec] p-3 rounded-full font-bold text-white shadow-sm transition-transform hover:scale-[1.02]";
+                        } else {
+                            link.className = "flex items-center gap-3 p-3 rounded-full font-bold text-gray-500 hover:bg-[#ffe4e6] hover:text-white transition-colors";
+                        }
+                    });
+                })();
+            </script>
         </aside>
 
         <main class="flex-1 overflow-y-auto p-6 md:p-8">
             <div class="max-w-6xl mx-auto">
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <div class="bg-white/80 border-2 border-[#bde0fe] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm">
+    
+                    <div class="bg-white/80 border-2 border-[#ffe4e6] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm relative custom-dropdown-container">
                         <label class="text-[11px] font-extrabold text-gray-500 text-center mb-1">Bộ từ vựng</label>
-                        <select class="w-full bg-transparent outline-none font-extrabold text-gray-800 text-sm text-center appearance-none cursor-pointer">
-                            <option>Tất cả bộ từ</option>
-                        </select>
+                        <input type="hidden" id="game-filter-folder" value="all">
+                        
+                        <button onclick="toggleDropdown(event, 'folder-dropdown-menu')" class="w-full bg-transparent outline-none font-extrabold text-[#2d3748] text-sm flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span id="folder-dropdown-text" class="truncate max-w-[120px]">Tất cả bộ từ</span>
+                            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        
+                        <div id="folder-dropdown-menu" class="dropdown-menu absolute z-50 top-[110%] mt-2 w-[280px] -left-10 md:left-1/2 md:-translate-x-1/2 bg-white rounded-xl shadow-2xl hidden flex-col overflow-hidden text-left border-2 border-[#ffe4e6] cursor-default">
+                            <div class="p-3 border-b border-[#ffe4e6] bg-white">
+                                <div class="relative">
+                                    <input type="text" id="folder-search-input" onkeyup="filterDropdownFolders()" placeholder="Tìm kiếm bộ từ..." class="w-full bg-[#f8fafc] text-gray-700 text-sm rounded-lg px-4 py-2.5 outline-none border border-[#e2e8f0] focus:border-[#ff9eb5] placeholder-gray-400 font-semibold transition-colors">
+                                </div>
+                            </div>
+                            <div id="folder-dropdown-list" class="max-h-[300px] overflow-y-auto custom-scrollbar p-2 flex flex-col gap-1 bg-white">
+                                </div>
+                        </div>
                     </div>
-                    <div class="bg-white/80 border-2 border-[#bde0fe] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm">
+
+                    <div class="bg-white/80 border-2 border-[#ffe4e6] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm relative custom-dropdown-container">
                         <label class="text-[11px] font-extrabold text-gray-500 text-center mb-1">Bộ lọc</label>
-                        <select class="w-full bg-transparent outline-none font-extrabold text-gray-800 text-sm text-center appearance-none cursor-pointer">
-                            <option>Chưa thuộc</option>
-                        </select>
+                        <input type="hidden" id="game-filter-status" value="due">
+                        
+                        <button onclick="toggleDropdown(event, 'status-dropdown-menu')" class="w-full bg-transparent outline-none font-extrabold text-[#2d3748] text-sm flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span id="status-dropdown-text" class="truncate max-w-[120px]">Đến hạn ôn (SRS)</span>
+                            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        
+                        <div id="status-dropdown-menu" class="dropdown-menu absolute z-50 top-[110%] mt-2 w-[220px] left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-2xl hidden flex-col overflow-hidden text-left border-2 border-[#ffe4e6] p-2">
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] bg-blue-50 text-blue-600 text-sm font-semibold transition-colors" onclick="selectFilterOption('status', 'due', 'Đến hạn ôn (SRS)')"><i class="fa-solid fa-circle-dot w-4 text-center text-blue-500"></i> Đến hạn ôn (SRS)</div>
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] text-gray-700 text-sm font-semibold transition-colors" onclick="selectFilterOption('status', 'all', 'Tất cả')"><i class="fa-regular fa-circle w-4 text-center text-gray-300"></i> Tất cả</div>
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] text-gray-700 text-sm font-semibold transition-colors" onclick="selectFilterOption('status', 'unlearned', 'Chưa thuộc')"><i class="fa-regular fa-circle w-4 text-center text-gray-300"></i> Chưa thuộc</div>
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] text-gray-700 text-sm font-semibold transition-colors" onclick="selectFilterOption('status', 'learned', 'Đã thuộc')"><i class="fa-regular fa-circle w-4 text-center text-gray-300"></i> Đã thuộc</div>
+                        </div>
                     </div>
-                    <div class="bg-white/80 border-2 border-[#bde0fe] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm">
+
+                    <div class="bg-white/80 border-2 border-[#ffe4e6] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm relative custom-dropdown-container">
                         <label class="text-[11px] font-extrabold text-gray-500 text-center mb-1">Thứ tự</label>
-                        <select class="w-full bg-transparent outline-none font-extrabold text-gray-800 text-sm text-center appearance-none cursor-pointer">
-                            <option>Ngẫu nhiên</option>
-                        </select>
+                        <input type="hidden" id="game-filter-order" value="random">
+                        
+                        <button onclick="toggleDropdown(event, 'order-dropdown-menu')" class="w-full bg-transparent outline-none font-extrabold text-[#2d3748] text-sm flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span id="order-dropdown-text" class="truncate max-w-[120px]">Ngẫu nhiên</span>
+                            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        
+                        <div id="order-dropdown-menu" class="dropdown-menu absolute z-50 top-[110%] mt-2 w-[180px] left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-2xl hidden flex-col overflow-hidden text-left border-2 border-[#ffe4e6] p-2">
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] bg-blue-50 text-blue-600 text-sm font-semibold transition-colors" onclick="selectFilterOption('order', 'random', 'Ngẫu nhiên')"><i class="fa-solid fa-circle-dot w-4 text-center text-blue-500"></i> Ngẫu nhiên</div>
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] text-gray-700 text-sm font-semibold transition-colors" onclick="selectFilterOption('order', 'sequential', 'Theo thứ tự')"><i class="fa-regular fa-circle w-4 text-center text-gray-300"></i> Theo thứ tự</div>
+                        </div>
                     </div>
-                    <div class="bg-white/80 border-2 border-[#bde0fe] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm">
+
+                    <div class="bg-white/80 border-2 border-[#ffe4e6] rounded-2xl px-4 py-2 flex flex-col justify-center shadow-sm relative custom-dropdown-container">
                         <label class="text-[11px] font-extrabold text-gray-500 text-center mb-1">Số lượng</label>
-                        <select class="w-full bg-transparent outline-none font-extrabold text-gray-800 text-sm text-center appearance-none cursor-pointer">
-                            <option>20 từ</option>
-                        </select>
+                        <input type="hidden" id="game-filter-limit" value="20">
+                        
+                        <button onclick="toggleDropdown(event, 'limit-dropdown-menu')" class="w-full bg-transparent outline-none font-extrabold text-[#2d3748] text-sm flex items-center justify-center gap-1.5 cursor-pointer">
+                            <span id="limit-dropdown-text" class="truncate max-w-[120px]">20 từ</span>
+                            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        
+                        <div id="limit-dropdown-menu" class="dropdown-menu absolute z-50 top-[110%] mt-2 w-[150px] left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-2xl hidden flex-col overflow-hidden text-left border-2 border-[#ffe4e6] p-2">
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] text-gray-700 text-sm font-semibold transition-colors" onclick="selectFilterOption('limit', '10', '10 từ')"><i class="fa-regular fa-circle w-4 text-center text-gray-300"></i> 10 từ</div>
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] bg-blue-50 text-blue-600 text-sm font-semibold transition-colors" onclick="selectFilterOption('limit', '20', '20 từ')"><i class="fa-solid fa-circle-dot w-4 text-center text-blue-500"></i> 20 từ</div>
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] text-gray-700 text-sm font-semibold transition-colors" onclick="selectFilterOption('limit', '50', '50 từ')"><i class="fa-regular fa-circle w-4 text-center text-gray-300"></i> 50 từ</div>
+                            <div class="dropdown-item flex items-center gap-2 p-2.5 rounded-lg cursor-pointer hover:bg-[#fff0f3] text-gray-700 text-sm font-semibold transition-colors" onclick="selectFilterOption('limit', '100', '100 từ')"><i class="fa-regular fa-circle w-4 text-center text-gray-300"></i> 100 từ</div>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-2">
-                        <h2 class="font-extrabold text-lg text-[#1e3a8a]">Chọn game:</h2>
+                        <h2 class="font-extrabold text-lg text-[#2d3748]">Chọn game:</h2>
                         <i class="fa-solid fa-gear text-[#3b82f6] cursor-pointer hover:rotate-90 transition-transform"></i>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="flex items-center gap-1 text-green-600 bg-green-100 px-2 py-1 rounded-lg text-sm font-extrabold border border-green-200">
                             <i class="fa-solid fa-volume-high"></i> 70%
                         </div>
-                        <div class="bg-red-50 text-red-500 px-3 py-1 rounded-xl text-[13px] font-extrabold border-2 border-red-200 shadow-sm">
+                        <div id="game-ready-count" class="bg-red-50 text-red-500 px-3 py-1 rounded-xl text-[13px] font-extrabold border-2 border-red-200 shadow-sm transition-all">
                             0 TỪ SẴN SÀNG
                         </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-                    <div onclick="openFlashcardGame()" class="bg-gradient-to-b from-[#e9d5ff] to-[#7c3aed] rounded-3xl p-5 text-white flex flex-col items-center text-center cursor-pointer hover:-translate-y-1.5 transition-all shadow-lg shadow-purple-200 border border-purple-400/50 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 rounded-2xl border-2 border-white/40 flex items-center justify-center mb-3 text-xl bg-white/10 relative z-10">
-                            <i class="fa-solid fa-list-ul"></i>
-                        </div>
-                        <h3 class="font-extrabold text-[15px] mb-1 relative z-10">Flashcard</h3>
-                        <p class="text-[10px] font-bold text-purple-100 leading-tight mb-4 relative z-10">Lật thẻ học từ vựng</p>
-                        <div class="mt-auto bg-white/20 px-3 py-1 rounded-full text-[11px] font-extrabold flex items-center gap-1 relative z-10">
-                            +5 <div class="w-3.5 h-3.5 rounded-full border border-yellow-400 flex items-center justify-center bg-yellow-300 text-yellow-600 text-[8px]"><i class="fa-solid fa-c"></i></div>
-                        </div>
-                    </div>
-
-                    <div onclick="openQuizModeModal()" class="bg-gradient-to-b from-[#fed7aa] to-[#ea580c] rounded-3xl p-5 text-white flex flex-col items-center text-center cursor-pointer hover:-translate-y-1.5 transition-all shadow-lg shadow-orange-200 border border-orange-400/50 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 rounded-2xl border-2 border-white/40 flex items-center justify-center mb-3 text-xl bg-white/10 relative z-10">
-                            <i class="fa-solid fa-square-check"></i>
-                        </div>
-                        <h3 class="font-extrabold text-[15px] mb-1 relative z-10">Trắc nghiệm</h3>
-                        <p class="text-[10px] font-bold text-orange-100 leading-tight mb-4 relative z-10">Chọn đáp án đúng</p>
-                        <div class="mt-auto bg-white/20 px-3 py-1 rounded-full text-[11px] font-extrabold flex items-center gap-1 relative z-10">
-                            +10 <div class="w-3.5 h-3.5 rounded-full border border-yellow-400 flex items-center justify-center bg-yellow-300 text-yellow-600 text-[8px]"><i class="fa-solid fa-c"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-b from-[#bfdbfe] to-[#0284c7] rounded-3xl p-5 text-white flex flex-col items-center text-center cursor-pointer hover:-translate-y-1.5 transition-all shadow-lg shadow-blue-200 border border-blue-400/50 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 rounded-2xl border-2 border-white/40 flex items-center justify-center mb-3 text-xl bg-white/10 relative z-10">
-                            <i class="fa-solid fa-table-cells-large"></i>
-                        </div>
-                        <h3 class="font-extrabold text-[15px] mb-1 leading-tight relative z-10">Nối từ với nghĩa</h3>
-                        <p class="text-[10px] font-bold text-blue-100 leading-tight mb-4 relative z-10 mt-1">Ghép đôi từ vựng...</p>
-                        <div class="mt-auto bg-white/20 px-3 py-1 rounded-full text-[11px] font-extrabold flex items-center gap-1 relative z-10">
-                            +10 <div class="w-3.5 h-3.5 rounded-full border border-yellow-400 flex items-center justify-center bg-yellow-300 text-yellow-600 text-[8px]"><i class="fa-solid fa-c"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-b from-[#bbf7d0] to-[#16a34a] rounded-3xl p-5 text-white flex flex-col items-center text-center cursor-pointer hover:-translate-y-1.5 transition-all shadow-lg shadow-green-200 border border-green-400/50 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 rounded-2xl border-2 border-white/40 flex items-center justify-center mb-3 text-xl bg-white/10 relative z-10">
-                            <span class="font-extrabold font-serif">T</span>
-                        </div>
-                        <h3 class="font-extrabold text-[15px] mb-1 relative z-10">Gõ từ vựng</h3>
-                        <p class="text-[10px] font-bold text-green-100 leading-tight mb-4 relative z-10">Nhìn nghĩa và gõ từ...</p>
-                        <div class="mt-auto bg-white/20 px-3 py-1 rounded-full text-[11px] font-extrabold flex items-center gap-1 relative z-10">
-                            +10 <div class="w-3.5 h-3.5 rounded-full border border-yellow-400 flex items-center justify-center bg-yellow-300 text-yellow-600 text-[8px]"><i class="fa-solid fa-c"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-b from-[#a5f3fc] to-[#0891b2] rounded-3xl p-5 text-white flex flex-col items-center text-center cursor-pointer hover:-translate-y-1.5 transition-all shadow-lg shadow-cyan-200 border border-cyan-400/50 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 rounded-2xl border-2 border-white/40 flex items-center justify-center mb-3 text-xl bg-white/10 relative z-10">
-                            <i class="fa-solid fa-headphones"></i>
-                        </div>
-                        <h3 class="font-extrabold text-[15px] mb-1 relative z-10">Nghe viết</h3>
-                        <p class="text-[10px] font-bold text-cyan-100 leading-tight mb-4 relative z-10">Nghe phát âm và viết từ</p>
-                        <div class="mt-auto bg-white/20 px-3 py-1 rounded-full text-[11px] font-extrabold flex items-center gap-1 relative z-10">
-                            +15 <div class="w-3.5 h-3.5 rounded-full border border-yellow-400 flex items-center justify-center bg-yellow-300 text-yellow-600 text-[8px]"><i class="fa-solid fa-c"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gradient-to-b from-[#fbcfe8] to-[#e11d48] rounded-3xl p-5 text-white flex flex-col items-center text-center cursor-pointer hover:-translate-y-1.5 transition-all shadow-lg shadow-rose-300 border border-rose-400/50 relative overflow-hidden group">
-                        <div class="absolute -top-1 -right-1 bg-yellow-400 text-red-700 text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow-md z-20 animate-pulse">
-                            HOT 🔥
-                        </div>
-                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="w-12 h-12 rounded-2xl border-2 border-white/40 flex items-center justify-center mb-3 text-xl bg-white/10 relative z-10">
-                            <i class="fa-solid fa-shuffle"></i>
-                        </div>
-                        <h3 class="font-extrabold text-[15px] mb-1 relative z-10">Tổng hợp</h3>
-                        <p class="text-[10px] font-bold text-rose-100 leading-tight mb-4 relative z-10">Hỗn hợp + Flappy Bird</p>
-                        <div class="mt-auto bg-white/20 px-3 py-1 rounded-full text-[11px] font-extrabold flex items-center gap-1 relative z-10">
-                            +20 <div class="w-3.5 h-3.5 rounded-full border border-yellow-400 flex items-center justify-center bg-yellow-300 text-yellow-600 text-[8px]"><i class="fa-solid fa-c"></i></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-[#e0e7ff] via-[#a855f7] to-[#8b5cf6] rounded-3xl p-5 md:px-8 flex flex-col md:flex-row items-center justify-between shadow-md shadow-purple-200 mb-8 border border-purple-300/50">
-                    <div class="flex items-center gap-4 mb-4 md:mb-0 text-white">
-                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-rotate text-white"></i>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5 mb-8">
+                    
+                    <div onclick="openFlashcardGame()" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group cursor-pointer">
+                        <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-layer-group"></i></div>
                         <div>
-                            <h3 class="font-extrabold text-[17px]">Ôn tập ngắt quãng (SRS)</h3>
-                            <p class="text-[13px] font-semibold text-white/90 mt-0.5">Hệ thống tự động nhắc lại các từ vựng bạn sắp quên. Học ít, nhớ lâu!</p>
+                            <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Flashcard</h3>
+                            <p class="text-[12px] text-gray-500 font-medium">Lật thẻ học từ vựng</p>
                         </div>
                     </div>
-                    <button class="bg-white text-purple-700 px-6 py-3 rounded-2xl font-extrabold text-sm flex items-center gap-2 hover:bg-purple-50 transition-colors shadow-sm whitespace-nowrap shrink-0">
-                        <i class="fa-solid fa-play"></i> Bắt đầu ôn tập
-                    </button>
-                </div>
 
+                    <div onclick="openQuizModeModal()" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group cursor-pointer">
+                        <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-square-check"></i></div>
+                        <div>
+                            <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Trắc nghiệm</h3>
+                            <p class="text-[12px] text-gray-500 font-medium">Chọn đáp án đúng</p>
+                        </div>
+                    </div>
+
+                    <div onclick="startMatchMode()" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group cursor-pointer">
+                        <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-link"></i></div>
+                        <div>
+                            <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Nối từ</h3>
+                            <p class="text-[12px] text-gray-500 font-medium">Ghép đôi từ với nghĩa</p>
+                        </div>
+                    </div>
+
+                    <div onclick="startTypeMode()" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group cursor-pointer">
+                        <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-keyboard"></i></div>
+                        <div>
+                            <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Gõ từ vựng</h3>
+                            <p class="text-[12px] text-gray-500 font-medium">Nhìn nghĩa và gõ từ</p>
+                        </div>
+                    </div>
+
+                    <div onclick="startListenMode()" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group cursor-pointer">
+                        <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-headphones"></i></div>
+                        <div>
+                            <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Nghe viết</h3>
+                            <p class="text-[12px] text-gray-500 font-medium">Nghe phát âm, viết từ</p>
+                        </div>
+                    </div>
+
+                    <div onclick="startMixMode()" class="bg-white rounded-[24px] p-6 border-2 border-[#ffe4e6] hover:border-[#ff9eb5] hover:-translate-y-1 hover:shadow-lg transition-all flex flex-col items-center text-center gap-4 group cursor-pointer relative">
+                        <div class="absolute -top-3 -right-2 bg-yellow-400 text-red-700 text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-md z-20 animate-pulse">HOT 🔥</div>
+                        <div class="w-14 h-14 bg-[#ffe4e6] group-hover:bg-[#fff0f3] transition-colors rounded-2xl flex items-center justify-center text-[#ff6b81] text-2xl"><i class="fa-solid fa-shuffle"></i></div>
+                        <div>
+                            <h3 class="font-extrabold text-[#2d3748] text-base mb-1">Tổng hợp</h3>
+                            <p class="text-[12px] text-gray-500 font-medium">Hỗn hợp + Flappy Bird</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="bg-[#fcf8ff] border-2 border-[#fbc3cb] rounded-3xl p-6 shadow-sm relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#ffb3c6] opacity-20 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#fff0f3] opacity-20 rounded-full blur-3xl -mr-10 -mt-10"></div>
                     <div class="absolute bottom-0 left-0 w-32 h-32 bg-[#bde0fe] opacity-30 rounded-full blur-3xl -ml-10 -mb-10"></div>
                     
                     <div class="flex items-center gap-3 mb-5 relative z-10">
                         <div class="w-9 h-9 rounded-xl bg-[#e9d5ff] flex items-center justify-center text-purple-600">
                             <i class="fa-regular fa-calendar-days"></i>
                         </div>
-                        <h3 class="font-extrabold text-[#1e3a8a] text-lg">Lịch sử đấu</h3>
+                        <h3 class="font-extrabold text-[#2d3748] text-lg">Lịch sử đấu</h3>
                     </div>
                     <div class="border-2 border-dashed border-[#cbd5e1] rounded-2xl p-10 flex justify-center items-center text-[#64748b] font-extrabold text-sm bg-white/40 relative z-10 backdrop-blur-sm">
                         Chưa có lịch sử đấu. Hãy chơi thử một game nhé! 🎮
@@ -290,17 +324,17 @@
                         <div class="fc-bottom-controls">
                             <button class="fc-btn-nav" onclick="fcPrevWord()">&#10094; Trước</button>
                             <button class="fc-btn-icon">🔊</button>
-                            <button class="fc-btn-action fc-btn-quen" onclick="fcNextWord()">&#10005; Quên</button>
-                            <button class="fc-btn-action fc-btn-thuoc" onclick="fcNextWord()">&#10003; Thuộc</button>
+                            <button class="fc-btn-action fc-btn-quen" onclick="fcMarkForgotten()">&#10005; Quên</button>
+                            <button class="fc-btn-action fc-btn-thuoc" onclick="fcMarkRemembered()">&#10003; Thuộc</button>
                             <button class="fc-btn-nav" onclick="fcNextWord()">Tiếp &#10095;</button>
                         </div>
                     </div>
                 </div>
                 <div id="quiz-mode-modal" class="fixed inset-0 z-[105] hidden bg-black/30 backdrop-blur-sm flex-col items-center justify-center p-4">
-                    <div class="bg-white rounded-[32px] w-full max-w-[400px] shadow-2xl border-2 border-[#bde0fe] overflow-hidden relative">
+                    <div class="bg-white rounded-[32px] w-full max-w-[400px] shadow-2xl border-2 border-[#ffe4e6] overflow-hidden relative">
                         
                         <div class="flex justify-between items-center p-5 border-b border-blue-100 bg-gradient-to-r from-[#fdfbf7] to-[#f0f7ff]">
-                            <h3 class="text-[19px] font-extrabold text-[#1e3a8a] flex items-center gap-2">
+                            <h3 class="text-[19px] font-extrabold text-[#2d3748] flex items-center gap-2">
                                 <i class="fa-solid fa-layer-group text-[#3b82f6]"></i> Chọn chế độ
                             </h3>
                             <button onclick="closeQuizModeModal()" class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors">
@@ -327,9 +361,247 @@
                         
                     </div>
                 </div>
+                <div id="quiz-game-modal" class="fixed inset-0 z-[110] hidden bg-[#fdfbf7] flex-col items-center p-4 md:p-8 overflow-y-auto overflow-x-hidden">
+                    
+                    <div id="quiz-exit-modal" class="fixed inset-0 z-[120] hidden bg-black/40 backdrop-blur-sm items-center justify-center p-4">
+                        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl border-2 border-[#ffe4e6]">
+                            <h3 class="text-xl font-extrabold text-white mb-2">Xác nhận thoát</h3>
+                            <p class="text-gray-500 text-sm mb-6 font-medium">Bạn có chắc muốn thoát? Tiến trình và kết quả bài làm hiện tại sẽ không được lưu.</p>
+                            <div class="flex justify-end gap-3">
+                                <button onclick="cancelExitQuiz()" class="px-5 py-2 font-bold text-gray-500 hover:bg-gray-100 rounded-xl transition">Ở lại</button>
+                                <button onclick="forceExitQuiz()" class="px-5 py-2 font-bold bg-[#ff9eb5] text-white rounded-xl hover:bg-[#ff6b81] transition shadow-md">Thoát</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-play-screen" class="w-full max-w-[800px] flex flex-col gap-6 my-auto relative transition-all duration-300">
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[32px] p-5 flex flex-col gap-4 shadow-sm">
+                            <div class="flex justify-between items-center px-2">
+                                <span id="quiz-progress-text" class="font-extrabold text-[#ff6b81] text-lg">Câu 1 / 20</span>
+                                <div class="flex gap-4 text-sm font-bold text-gray-400">
+                                    <button onclick="requestExitQuiz()" class="hover:text-[#ff6b81] transition-colors">Thoát</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 px-2">
+                                <div class="bg-yellow-50 text-yellow-600 px-3 py-1.5 rounded-xl text-xs font-extrabold border border-yellow-200 flex items-center gap-1.5 shrink-0">
+                                    <i class="fa-solid fa-coins"></i> <span id="quiz-score">0</span>
+                                </div>
+                                <div id="quiz-timer-text" class="text-[#ff6b81] font-extrabold text-sm w-8 shrink-0">30s</div>
+                                <div class="flex-1 bg-[#ffe4e6] h-3 rounded-full overflow-hidden">
+                                    <div id="quiz-timer-bar" class="bg-[#ff9eb5] h-full rounded-full transition-all duration-1000 ease-linear" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[40px] p-8 md:p-12 shadow-sm flex flex-col items-center text-center min-h-[400px]">
+                            <div id="quiz-mode-badge" class="text-[11px] font-extrabold text-[#ff6b81] uppercase tracking-widest mb-6 bg-[#fff0f3] px-5 py-2 rounded-full border border-[#ffe4e6] shadow-inner">
+                                NGỮ CẢNH · CHỌN ĐÁP ÁN
+                            </div>
+                            <h2 id="quiz-question-text" class="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight max-w-2xl">
+                                Question Text
+                            </h2>
+                            <div id="quiz-question-meta" class="flex gap-3 mb-10 items-center">
+                                <span id="quiz-question-type" class="bg-[#ffe4e6] text-white px-3 py-1 rounded-lg text-xs font-extrabold"></span>
+                                <span id="quiz-question-pron" class="text-gray-400 font-medium italic text-[15px]"></span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full" id="quiz-options-container">
+                                </div>
+                            <p class="text-gray-400 text-xs font-bold mt-10"><i class="fa-regular fa-keyboard"></i> Phím 1-4 để chọn nhanh</p>
+                        </div>
+                    </div>
+<div id="match-play-screen" class="w-full max-w-[800px] hidden flex-col gap-6 my-auto relative transition-all duration-300">
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[32px] p-5 flex flex-col gap-4 shadow-sm">
+                            <div class="flex justify-between items-center px-2">
+                                <span id="match-progress-text" class="font-extrabold text-[#ff6b81] text-lg">Đã ghép 0 / 8</span>
+                                <button onclick="requestExitQuiz()" class="text-sm font-bold text-gray-400 hover:text-[#ff6b81] transition-colors">Thoát</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[40px] p-8 shadow-sm flex flex-col items-center w-full">
+                            <div class="flex justify-between w-full items-center mb-6 px-4">
+                                <div id="match-hearts" class="flex gap-1 text-[#ff6b81] text-2xl">
+                                    <i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="bg-[#fff0f3] text-[#ff6b81] px-4 py-1.5 rounded-full font-extrabold flex items-center gap-2 border border-[#ffe4e6]">
+                                    <i class="fa-solid fa-stopwatch"></i> <span id="match-timer-text">45s</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 w-full relative">
+                                <div class="text-center font-extrabold text-white mb-2">Tiếng Anh</div>
+                                <div class="text-center font-extrabold text-white mb-2">Tiếng Việt</div>
+                                
+                                <div id="match-col-en" class="flex flex-col gap-3"></div>
+                                <div id="match-col-vn" class="flex flex-col gap-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="type-play-screen" class="w-full max-w-[800px] hidden flex-col gap-6 my-auto relative transition-all duration-300">
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[32px] p-5 flex flex-col gap-4 shadow-sm">
+                            <div class="flex justify-between items-center px-2">
+                                <span id="type-progress-text" class="font-extrabold text-[#ff6b81] text-lg">Câu 1 / 20</span>
+                                <div class="flex gap-4 items-center">
+                                    <button onclick="requestExitQuiz()" class="text-sm font-bold text-gray-400 hover:text-[#ff6b81] transition-colors">Thoát</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 px-2">
+                                <div class="bg-yellow-50 text-yellow-600 px-3 py-1.5 rounded-xl text-xs font-extrabold border border-yellow-200"><i class="fa-solid fa-coins"></i> <span id="type-score">0</span></div>
+                                <div id="type-timer-text" class="text-[#ff6b81] font-extrabold text-sm w-8 shrink-0">30s</div>
+                                <div class="flex-1 bg-[#ffe4e6] h-3 rounded-full overflow-hidden">
+                                    <div id="type-timer-bar" class="bg-[#ff9eb5] h-full rounded-full transition-all duration-1000 ease-linear" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[40px] p-8 md:p-12 shadow-sm flex flex-col items-center text-center min-h-[400px]">
+                            <h2 id="type-question-text" class="text-3xl font-extrabold text-white mb-4">Ý nghĩa</h2>
+                            <div class="flex gap-3 mb-6 items-center">
+                                <span id="type-question-type" class="bg-[#ffe4e6] text-white px-3 py-1 rounded-lg text-xs font-extrabold"></span>
+                                <span id="type-question-pron" class="text-gray-400 font-medium italic text-[15px]"></span>
+                            </div>
+                            
+                            <div id="type-hint-display" class="text-2xl font-mono font-bold text-[#ff9eb5] tracking-[0.5em] mb-8 h-8"></div>
+                            
+                            <input type="text" id="type-input-box" placeholder="Gõ từ tiếng Anh..." class="w-full max-w-md px-6 py-4 rounded-full border-2 border-[#ffe4e6] focus:border-[#ff9eb5] outline-none text-center text-xl font-extrabold text-gray-700 shadow-sm transition-colors mb-6" autocomplete="off" spellcheck="false">
+
+                            <div id="type-example-box" class="hidden w-full max-w-md bg-[#fff0f3] border border-[#ffe4e6] rounded-xl p-4 mb-6 text-sm font-medium text-white italic"></div>
+
+                            <div class="flex gap-3 mt-auto">
+                                <button onclick="toggleTypeExample()" class="px-5 py-2.5 rounded-full border-2 border-[#ffe4e6] text-gray-500 font-bold hover:bg-[#fff0f3] hover:border-[#ff9eb5] hover:text-[#ff6b81] transition flex items-center gap-2">
+                                    <i class="fa-solid fa-pen"></i> Ví dụ
+                                </button>
+                                <button onclick="useTypeHint()" id="btn-type-hint" class="px-5 py-2.5 rounded-full border-2 border-[#ffe4e6] text-gray-500 font-bold hover:bg-[#fff0f3] hover:border-[#ff9eb5] hover:text-[#ff6b81] transition flex items-center gap-2">
+                                    <i class="fa-solid fa-lightbulb"></i> Gợi ý (<span id="type-hint-count">3</span>)
+                                </button>
+                                <button onclick="checkTypeAnswer()" class="px-8 py-2.5 rounded-full bg-[#ff9eb5] text-white font-extrabold hover:bg-[#ff6b81] shadow-md transition">
+                                    Kiểm tra
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="listen-play-screen" class="w-full max-w-[800px] hidden flex-col gap-6 my-auto relative transition-all duration-300">
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[32px] p-5 flex flex-col gap-4 shadow-sm">
+                            <div class="flex justify-between items-center px-2">
+                                <span id="listen-progress-text" class="font-extrabold text-[#ff6b81] text-lg">Câu 1 / 20</span>
+                                <div class="flex gap-4 items-center">
+                                    <button onclick="requestExitQuiz()" class="text-sm font-bold text-gray-400 hover:text-[#ff6b81] transition-colors">Thoát</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 px-2">
+                                <div class="bg-yellow-50 text-yellow-600 px-3 py-1.5 rounded-xl text-xs font-extrabold border border-yellow-200"><i class="fa-solid fa-coins"></i> <span id="listen-score">0</span></div>
+                                <div id="listen-timer-text" class="text-[#ff6b81] font-extrabold text-sm w-8 shrink-0">30s</div>
+                                <div class="flex-1 bg-[#ffe4e6] h-3 rounded-full overflow-hidden">
+                                    <div id="listen-timer-bar" class="bg-[#ff9eb5] h-full rounded-full transition-all duration-1000 ease-linear" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[40px] p-8 md:p-12 shadow-sm flex flex-col items-center text-center min-h-[400px]">
+                            
+                            <button onclick="playListenAudio()" class="w-24 h-24 rounded-full bg-[#ff9eb5] hover:bg-[#ff8fa3] text-white flex flex-col items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all mb-4 group relative">
+                                <i class="fa-solid fa-headphones text-3xl mb-1"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest opacity-80 group-hover:opacity-100">Click</span>
+                                <div class="absolute -right-6 -top-2 bg-white text-[#ff6b81] text-[10px] font-extrabold px-2 py-1 rounded-lg border border-[#ffe4e6] shadow-sm">Ctrl+X</div>
+                            </button>
+                            
+                            <h2 class="text-lg font-extrabold text-white mb-3">Nghe và gõ từ tiếng Anh</h2>
+                            <div class="flex gap-3 mb-6 items-center">
+                                <span id="listen-question-type" class="bg-[#ffe4e6] text-white px-3 py-1 rounded-lg text-xs font-extrabold">NOUN</span>
+                            </div>
+                            
+                            <div id="listen-hint-display" class="text-2xl font-mono font-bold text-[#ff9eb5] tracking-[0.5em] mb-8 h-8"></div>
+                            
+                            <input type="text" id="listen-input-box" placeholder="Gõ từ bạn nghe được..." class="w-full max-w-md px-6 py-4 rounded-full border-2 border-[#ffe4e6] focus:border-[#ff9eb5] outline-none text-center text-xl font-extrabold text-gray-700 shadow-sm transition-colors mb-6" autocomplete="off" spellcheck="false">
+
+                            <div id="listen-example-box" class="hidden w-full max-w-md bg-[#fff0f3] border border-[#ffe4e6] rounded-xl p-4 mb-6 text-sm font-medium text-white italic"></div>
+
+                            <div class="flex gap-3 mt-auto">
+                                <button onclick="toggleListenExample()" class="px-5 py-2.5 rounded-full border-2 border-[#ffe4e6] text-gray-500 font-bold hover:bg-[#fff0f3] hover:border-[#ff9eb5] hover:text-[#ff6b81] transition flex items-center gap-2">
+                                    <i class="fa-solid fa-pen"></i> Ví dụ
+                                </button>
+                                <button onclick="useListenHint()" id="btn-listen-hint" class="px-5 py-2.5 rounded-full border-2 border-[#ffe4e6] text-gray-500 font-bold hover:bg-[#fff0f3] hover:border-[#ff9eb5] hover:text-[#ff6b81] transition flex items-center gap-2">
+                                    <i class="fa-solid fa-lightbulb"></i> Gợi ý (<span id="listen-hint-count">3</span>)
+                                </button>
+                                <button onclick="checkListenAnswer()" class="px-8 py-2.5 rounded-full bg-[#ff9eb5] text-white font-extrabold hover:bg-[#ff6b81] shadow-md transition">
+                                    Kiểm tra
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="quiz-result-screen" class="w-full max-w-[800px] hidden flex-col gap-6 my-auto animate-fade-in pb-10">
+                        <div class="bg-white border-2 border-[#ffe4e6] rounded-[40px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div class="flex items-center gap-6">
+                                <div class="relative w-24 h-24 flex justify-center items-center">
+                                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="#ffe4e6" stroke-width="8"></circle>
+                                        <circle id="result-pie-chart" cx="50" cy="50" r="45" fill="none" stroke="#ff8fa3" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="283" class="transition-all duration-1000"></circle>
+                                    </svg>
+                                    <span id="result-percent" class="absolute text-xl font-extrabold text-white">0%</span>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-extrabold text-white mb-2 flex items-center gap-2">👍 Tốt lắm!</h2>
+                                    <div class="flex gap-4 text-sm font-bold text-gray-500">
+                                        <span class="text-green-500"><i class="fa-solid fa-check"></i> <span id="res-correct-count">0</span> đúng</span>
+                                        <span class="text-red-400"><i class="fa-solid fa-xmark"></i> <span id="res-wrong-count">0</span> sai</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 text-center min-w-[150px]">
+                                <p class="text-[11px] font-extrabold text-yellow-600 uppercase tracking-widest mb-1">Coin thưởng</p>
+                                <p class="text-2xl font-extrabold text-yellow-500 flex justify-center items-center gap-2"><i class="fa-solid fa-coins"></i> <span id="res-coin-earned">+0</span></p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-[#f0fdf4] border-2 border-[#bbf7d0] rounded-[32px] p-6 shadow-sm">
+                                <h3 class="font-extrabold text-green-700 mb-4 flex items-center justify-between">
+                                    <span><i class="fa-solid fa-circle-check"></i> Trả lời đúng (<span id="count-correct-list">0</span>)</span>
+                                </h3>
+                                <div id="correct-words-list" class="flex flex-col gap-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar"></div>
+                            </div>
+                            <div class="bg-[#fff0f3] border-2 border-[#ffe4e6] rounded-[32px] p-6 shadow-sm">
+                                <h3 class="font-extrabold text-[#ef4444] mb-4 flex items-center justify-between">
+                                    <span><i class="fa-solid fa-circle-xmark"></i> Trả lời sai (<span id="count-wrong-list">0</span>)</span>
+                                </h3>
+                                <div id="wrong-words-list" class="flex flex-col gap-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center mt-4">
+                            <button onclick="commitQuizResults()" class="bg-[#ff9eb5] hover:bg-[#ff8fa3] text-white px-8 py-3.5 rounded-full font-extrabold shadow-lg flex items-center gap-2 transition-transform hover:-translate-y-1 text-lg">
+                                <i class="fa-solid fa-floppy-disk"></i> Lưu & Hoàn thành
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="quiz-feedback-overlay" class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-10px_40px_rgba(0,0,0,0.1)] transform translate-y-full transition-transform duration-300 z-[130] border-t-4">
+                        <div class="max-w-[800px] mx-auto p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div class="flex items-start gap-4 flex-1">
+                                <button class="w-12 h-12 rounded-full bg-white/30 flex items-center justify-center text-2xl shrink-0 backdrop-blur-sm border shadow-sm" id="feedback-icon"></button>
+                                <div class="text-white">
+                                    <div class="font-extrabold text-lg flex items-center gap-2 mb-1">
+                                        <span id="feedback-word" class="text-2xl"></span>
+                                        <span id="feedback-type" class="text-sm opacity-80 font-bold uppercase"></span>
+                                    </div>
+                                    <div id="feedback-pron" class="text-sm font-medium italic opacity-90 mb-2"></div>
+                                    <div class="font-bold text-[15px] mb-2"><span class="opacity-70">Nghĩa:</span> <span id="feedback-meaning"></span></div>
+                                    <div id="feedback-example-container" class="text-sm font-medium italic opacity-90 border-l-2 pl-3"></div>
+                                </div>
+                            </div>
+                            <button id="btn-next-question" onclick="nextFromFeedback()" class="bg-white text-gray-800 px-8 py-3 rounded-full font-extrabold shadow-md hover:scale-105 transition-transform shrink-0 whitespace-nowrap">
+                                Tiếp tục (2s)
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
         </main>
     </div>
-
+    <!-- Nhúng Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1985,6 +1985,24 @@ function closeQuizModeModal() {
     document.getElementById('quiz-mode-modal').classList.add('hidden');
     document.getElementById('quiz-mode-modal').classList.remove('flex');
 }
+// Thêm hàm này vào file script của bạn
+function forceExitGame() {
+    // 1. Dọn sạch toàn bộ trạng thái
+    clearInterval(gameTimer);
+    clearInterval(feedbackTimer);
+    
+    // 2. Reset biến game
+    isAnswering = false;
+    gameScore = 0;
+    currentGameIndex = 0;
+    
+    // 3. Đóng tất cả modal/overlay
+    document.getElementById('quiz-game-modal').classList.add('hidden');
+    document.getElementById('quiz-exit-modal').style.display = 'none';
+    
+    // 4. Về trang game
+    window.location.href = 'game.html';
+}
 // ==========================================
 // HÀM KHỞI TẠO BỘ LỌC VÀ LẤY DỮ LIỆU GAME (CẬP NHẬT GIAO DIỆN SÁNG)
 // ==========================================
@@ -2267,15 +2285,30 @@ function updateGameReadyCount() {
 
 // Hàm Switch Màn hình
 function switchPlayScreen(screenId, keepData = false) {
+    // 1. Quét và ẩn TẤT CẢ các màn hình bằng classList thay vì style.display
     ['quiz-play-screen', 'match-play-screen', 'type-play-screen', 'listen-play-screen', 'quiz-result-screen'].forEach(id => {
         const element = document.getElementById(id);
-        if (element) element.style.display = 'none';
+        if (element) {
+            element.classList.add('hidden');
+            element.classList.remove('flex');
+        }
     });
-    document.getElementById(screenId).style.display = 'flex';
-    document.getElementById('quiz-game-modal').classList.remove('hidden');
-    document.getElementById('quiz-game-modal').classList.add('flex');
+
+    // 2. Hiển thị màn hình mục tiêu
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+        targetScreen.classList.remove('hidden');
+        targetScreen.classList.add('flex');
+    }
     
-    // Nếu không có cờ keepData (chơi mix mode), reset lại toàn bộ
+    // 3. Hiển thị modal nền tổng
+    const modal = document.getElementById('quiz-game-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+    
+    // Nếu không có cờ keepData (chơi mix mode), reset lại toàn bộ dữ liệu
     if (!keepData) {
         quizSessionData = { total: 0, correctWords: [], wrongWords: [], srsUpdates: [] };
         gameScore = 0;
@@ -2435,11 +2468,16 @@ function handleQuizTimeOut() {
     showFeedbackOverlay(false, currentQ, nextQuizQuestion);
 }
 function nextQuizQuestion() {
-    if (currentGameIndex >= gameQuestions.length - 1) showQuizResults();
-    else { 
-        currentGameIndex++; 
-        if (isMixMode) loadNextMixQuestion(); else loadQuizQuestion(); 
+    // Kiểm tra câu cuối TRƯỚC KHI TĂNG INDEX
+    if (currentGameIndex >= gameQuestions.length - 1) {
+        // Tới câu cuối rồi, hiển thị kết quả ngay
+        showQuizResults(); 
+        return; 
     }
+    
+    // Nếu chưa phải câu cuối, mới tăng và tải câu mới
+    currentGameIndex++;
+    if (isMixMode) loadNextMixQuestion(); else loadQuizQuestion();
 }
 
 // ================== GAME NỐI TỪ ==================
@@ -2476,7 +2514,7 @@ function startMatchMode() {
     });
 
     document.getElementById('match-progress-text').innerText = `Đã ghép 0 / ${words.length}`;
-    startTimer('match-timer-text', null, 45, handleMatchGameOver);
+    startTimer('match-timer-text', null, 60, handleMatchGameOver);
 }
 
 function renderMatchHearts() {
@@ -2887,6 +2925,15 @@ function cancelExitQuiz() {
         else if(activeGameMode === 'listen') startTimer('listen-timer-text', 'listen-timer-bar', timeLeft, handleListenTimeOut); // <-- MỚI THÊM
     }
 }
+window.onload = function() {
+    if (window.location.pathname.includes('game.html')) {
+        // Xóa dữ liệu tạm của bài làm trước đó nếu user thoát ngang
+        localStorage.removeItem('tempTest');
+        // Reset trạng thái ban đầu cho các game
+        isAnswering = false;
+        currentGameIndex = 0;
+    }
+};
 // ================== HÀM DÙNG CHUNG ==================
 
 function startTimer(textId, barId, time, timeoutCallback) {
@@ -2957,36 +3004,70 @@ function nextFromFeedback() {
 }
 
 function showQuizResults() {
-    document.getElementById('quiz-play-screen').style.display = 'none';
-    document.getElementById('match-play-screen').style.display = 'none';
-    document.getElementById('type-play-screen').style.display = 'none';
+    // 1. Ẩn tất cả các màn hình chơi game (đã bổ sung listen-play-screen)
+    ['quiz-play-screen', 'match-play-screen', 'type-play-screen', 'listen-play-screen'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.classList.add('hidden');
+            element.classList.remove('flex');
+        }
+    });
     
+    // 2. Hiển thị màn hình Kết quả
     const resScreen = document.getElementById('quiz-result-screen');
-    resScreen.style.display = 'flex';
+    if (resScreen) {
+        resScreen.classList.remove('hidden');
+        resScreen.classList.add('flex');
+    }
 
+    // 3. Tính toán dữ liệu
     const cCount = quizSessionData.correctWords.length;
     const wCount = quizSessionData.wrongWords.length;
     const percent = quizSessionData.total > 0 ? Math.round((cCount / quizSessionData.total) * 100) : 0;
 
-    document.getElementById('res-correct-count').innerText = cCount;
-    document.getElementById('res-wrong-count').innerText = wCount;
-    document.getElementById('res-coin-earned').innerText = `+${gameScore}`;
-    document.getElementById('result-percent').innerText = `${percent}%`;
+    // 4. Đẩy dữ liệu lên giao diện
+    const resCorrect = document.getElementById('res-correct-count');
+    if (resCorrect) resCorrect.innerText = cCount;
 
+    const resWrong = document.getElementById('res-wrong-count');
+    if (resWrong) resWrong.innerText = wCount;
+
+    const resCoin = document.getElementById('res-coin-earned');
+    if (resCoin) resCoin.innerText = `+${gameScore}`;
+
+    const resPercent = document.getElementById('result-percent');
+    if (resPercent) resPercent.innerText = `${percent}%`;
+
+    // Hiệu ứng vòng tròn %
     const offset = (2 * Math.PI * 45) * (1 - percent/100);
-    setTimeout(() => { document.getElementById('result-pie-chart').style.strokeDashoffset = offset; }, 100);
+    const pieChart = document.getElementById('result-pie-chart');
+    if (pieChart) {
+        setTimeout(() => { pieChart.style.strokeDashoffset = offset; }, 100);
+    }
 
-    document.getElementById('count-correct-list').innerText = cCount;
-    document.getElementById('correct-words-list').innerHTML = quizSessionData.correctWords.map(w => `
-        <div class="flex justify-between items-center py-2 border-b border-[#bbf7d0] last:border-0">
-            <span class="font-extrabold text-green-800">${w.word}</span><span class="text-xs font-bold text-green-600">${w.meaning}</span>
-        </div>`).join('');
+    // Render danh sách Từ đúng
+    const countCorrectList = document.getElementById('count-correct-list');
+    if (countCorrectList) countCorrectList.innerText = cCount;
 
-    document.getElementById('count-wrong-list').innerText = wCount;
-    document.getElementById('wrong-words-list').innerHTML = quizSessionData.wrongWords.map(w => `
-        <div class="flex justify-between items-center py-2 border-b border-[#ffe4e6] last:border-0">
-            <span class="font-extrabold text-red-800">${w.word}</span><span class="text-xs font-bold text-red-500">${w.meaning}</span>
-        </div>`).join('');
+    const correctWordsList = document.getElementById('correct-words-list');
+    if (correctWordsList) {
+        correctWordsList.innerHTML = quizSessionData.correctWords.map(w => `
+            <div class="flex justify-between items-center py-2 border-b border-[#bbf7d0] last:border-0">
+                <span class="font-extrabold text-green-800">${w.word}</span><span class="text-xs font-bold text-green-600">${w.meaning}</span>
+            </div>`).join('');
+    }
+
+    // Render danh sách Từ sai
+    const countWrongList = document.getElementById('count-wrong-list');
+    if (countWrongList) countWrongList.innerText = wCount;
+
+    const wrongWordsList = document.getElementById('wrong-words-list');
+    if (wrongWordsList) {
+        wrongWordsList.innerHTML = quizSessionData.wrongWords.map(w => `
+            <div class="flex justify-between items-center py-2 border-b border-[#ffe4e6] last:border-0">
+                <span class="font-extrabold text-red-800">${w.word}</span><span class="text-xs font-bold text-red-500">${w.meaning}</span>
+            </div>`).join('');
+    }
 }
 
 function commitQuizResults() {
@@ -3006,11 +3087,18 @@ function commitQuizResults() {
     document.getElementById('quiz-game-modal').classList.add('hidden');
     document.getElementById('quiz-game-modal').classList.remove('flex');
 }
-
+// Thay thế hàm cũ bằng hàm này
 function requestExitQuiz() {
+    // Dừng tất cả các loại đồng hồ có thể đang chạy
     clearInterval(gameTimer);
     clearInterval(feedbackTimer);
-    document.getElementById('quiz-exit-modal').style.display = 'flex';
+    
+    // Hiển thị modal xác nhận
+    const exitModal = document.getElementById('quiz-exit-modal');
+    if (exitModal) {
+        exitModal.style.display = 'flex';
+        exitModal.classList.remove('hidden');
+    }
 }
 function cancelExitQuiz() {
     document.getElementById('quiz-exit-modal').style.display = 'none';
@@ -3307,13 +3395,28 @@ renderRealTimeCalendar();
 renderChart();
 
 // Đóng/mở menu
-function toggleDropdown() {
-    const dropdown = document.getElementById('filter-dropdown');
-    if (dropdown.style.display === 'block') {
-        dropdown.style.display = 'none';
-    } else {
-        dropdown.style.display = 'block';
+function toggleDropdown(event, menuId) {
+    if (event) event.stopPropagation();
+    
+    const targetMenu = document.getElementById(menuId);
+    
+    // THÊM KIỂM TRA NÀY ĐỂ TRÁNH LỖI NULL
+    if (!targetMenu) {
+        console.error("Không tìm thấy phần tử có ID: " + menuId);
+        return; 
     }
+
+    // Đóng các menu khác
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if (menu.id !== menuId) {
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+        }
+    });
+
+    // Toggle menu hiện tại
+    targetMenu.classList.toggle('hidden');
+    targetMenu.classList.toggle('flex');
 }
 
 // Áp dụng bộ lọc
@@ -3590,3 +3693,15 @@ function openExamFolder(folderId) {
     
     renderExamQuizzes(folderId);
 }
+// Bắt sự kiện phím Enter cho nút "Tiếp tục" ở bảng kết quả đúng/sai
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        const overlay = document.getElementById('quiz-feedback-overlay');
+        
+        // Kiểm tra xem bảng feedback có đang hiển thị hay không (không chứa class translate-y-full)
+        if (overlay && !overlay.classList.contains('translate-y-full')) {
+            e.preventDefault(); // Ngăn chặn hành vi mặc định của Enter (ví dụ: submit form)
+            nextFromFeedback(); // Kích hoạt hàm chuyển câu hỏi
+        }
+    }
+});

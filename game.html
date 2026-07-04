@@ -397,11 +397,11 @@
                             <div id="quiz-mode-badge" class="text-[11px] font-extrabold text-[#ff6b81] uppercase tracking-widest mb-6 bg-[#fff0f3] px-5 py-2 rounded-full border border-[#ffe4e6] shadow-inner">
                                 NGỮ CẢNH · CHỌN ĐÁP ÁN
                             </div>
-                            <h2 id="quiz-question-text" class="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight max-w-2xl">
+                            <h2 id="quiz-question-text" class="text-3xl md:text-4xl font-extrabold text-[#2d3748] mb-6 leading-tight max-w-2xl">
                                 Question Text
                             </h2>
                             <div id="quiz-question-meta" class="flex gap-3 mb-10 items-center">
-                                <span id="quiz-question-type" class="bg-[#ffe4e6] text-white px-3 py-1 rounded-lg text-xs font-extrabold"></span>
+                                <span id="quiz-question-type" class="bg-[#ffe4e6] text-[#2d3748] px-3 py-1 rounded-lg text-xs font-extrabold"></span>
                                 <span id="quiz-question-pron" class="text-gray-400 font-medium italic text-[15px]"></span>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full" id="quiz-options-container">
@@ -409,10 +409,10 @@
                             <p class="text-gray-400 text-xs font-bold mt-10"><i class="fa-regular fa-keyboard"></i> Phím 1-4 để chọn nhanh</p>
                         </div>
                     </div>
-<div id="match-play-screen" class="w-full max-w-[800px] hidden flex-col gap-6 my-auto relative transition-all duration-300">
+                    <div id="match-play-screen" class="w-full max-w-[800px] hidden flex-col gap-6 my-auto relative transition-all duration-300">
                         <div class="bg-white border-2 border-[#ffe4e6] rounded-[32px] p-5 flex flex-col gap-4 shadow-sm">
                             <div class="flex justify-between items-center px-2">
-                                <span id="match-progress-text" class="font-extrabold text-[#ff6b81] text-lg">Đã ghép 0 / 8</span>
+                                <span id="match-progress-text" class="font-extrabold text-[#ff6b81] text-lg">Đã ghép 0 / 10</span>
                                 <button onclick="requestExitQuiz()" class="text-sm font-bold text-gray-400 hover:text-[#ff6b81] transition-colors">Thoát</button>
                             </div>
                         </div>
@@ -423,13 +423,13 @@
                                     <i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-heart"></i>
                                 </div>
                                 <div class="bg-[#fff0f3] text-[#ff6b81] px-4 py-1.5 rounded-full font-extrabold flex items-center gap-2 border border-[#ffe4e6]">
-                                    <i class="fa-solid fa-stopwatch"></i> <span id="match-timer-text">45s</span>
+                                    <i class="fa-solid fa-stopwatch"></i> <span id="match-timer-text">60s</span>
                                 </div>
                             </div>
                             
                             <div class="grid grid-cols-2 gap-4 w-full relative">
-                                <div class="text-center font-extrabold text-white mb-2">Tiếng Anh</div>
-                                <div class="text-center font-extrabold text-white mb-2">Tiếng Việt</div>
+                                <div class="text-center font-extrabold text-[#2d3748] mb-2">Tiếng Anh</div>
+                                <div class="text-center font-extrabold text-[#2d3748] mb-2">Tiếng Việt</div>
                                 
                                 <div id="match-col-en" class="flex flex-col gap-3"></div>
                                 <div id="match-col-vn" class="flex flex-col gap-3"></div>
@@ -455,9 +455,9 @@
                         </div>
 
                         <div class="bg-white border-2 border-[#ffe4e6] rounded-[40px] p-8 md:p-12 shadow-sm flex flex-col items-center text-center min-h-[400px]">
-                            <h2 id="type-question-text" class="text-3xl font-extrabold text-white mb-4">Ý nghĩa</h2>
+                            <h2 id="type-question-text" class="text-3xl font-extrabold text-[#2d3748] mb-4">Ý nghĩa</h2>
                             <div class="flex gap-3 mb-6 items-center">
-                                <span id="type-question-type" class="bg-[#ffe4e6] text-white px-3 py-1 rounded-lg text-xs font-extrabold"></span>
+                                <span id="type-question-type" class="bg-[#ffe4e6] text-[#2d3748] px-3 py-1 rounded-lg text-xs font-extrabold"></span>
                                 <span id="type-question-pron" class="text-gray-400 font-medium italic text-[15px]"></span>
                             </div>
                             
@@ -465,7 +465,7 @@
                             
                             <input type="text" id="type-input-box" placeholder="Gõ từ tiếng Anh..." class="w-full max-w-md px-6 py-4 rounded-full border-2 border-[#ffe4e6] focus:border-[#ff9eb5] outline-none text-center text-xl font-extrabold text-gray-700 shadow-sm transition-colors mb-6" autocomplete="off" spellcheck="false">
 
-                            <div id="type-example-box" class="hidden w-full max-w-md bg-[#fff0f3] border border-[#ffe4e6] rounded-xl p-4 mb-6 text-sm font-medium text-white italic"></div>
+                            <div id="type-example-box" class="hidden w-full max-w-md bg-[#fff0f3] border border-[#ffe4e6] rounded-xl p-4 mb-6 text-sm font-medium text-[#2d3748] italic"></div>
 
                             <div class="flex gap-3 mt-auto">
                                 <button onclick="toggleTypeExample()" class="px-5 py-2.5 rounded-full border-2 border-[#ffe4e6] text-gray-500 font-bold hover:bg-[#fff0f3] hover:border-[#ff9eb5] hover:text-[#ff6b81] transition flex items-center gap-2">
@@ -499,22 +499,22 @@
 
                         <div class="bg-white border-2 border-[#ffe4e6] rounded-[40px] p-8 md:p-12 shadow-sm flex flex-col items-center text-center min-h-[400px]">
                             
-                            <button onclick="playListenAudio()" class="w-24 h-24 rounded-full bg-[#ff9eb5] hover:bg-[#ff8fa3] text-white flex flex-col items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all mb-4 group relative">
+                            <button onclick="playListenAudio()" class="w-24 h-24 rounded-full bg-[#ff9eb5] hover:bg-[#ff8fa3] text-[#2d3748] flex flex-col items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all mb-4 group relative">
                                 <i class="fa-solid fa-headphones text-3xl mb-1"></i>
                                 <span class="text-[10px] font-bold uppercase tracking-widest opacity-80 group-hover:opacity-100">Click</span>
                                 <div class="absolute -right-6 -top-2 bg-white text-[#ff6b81] text-[10px] font-extrabold px-2 py-1 rounded-lg border border-[#ffe4e6] shadow-sm">Ctrl+X</div>
                             </button>
                             
-                            <h2 class="text-lg font-extrabold text-white mb-3">Nghe và gõ từ tiếng Anh</h2>
+                            <h2 class="text-lg font-extrabold text-[#2d3748] mb-3">Nghe và gõ từ tiếng Anh</h2>
                             <div class="flex gap-3 mb-6 items-center">
-                                <span id="listen-question-type" class="bg-[#ffe4e6] text-white px-3 py-1 rounded-lg text-xs font-extrabold">NOUN</span>
+                                <span id="listen-question-type" class="bg-[#ffe4e6] text-[#2d3748] px-3 py-1 rounded-lg text-xs font-extrabold">NOUN</span>
                             </div>
                             
                             <div id="listen-hint-display" class="text-2xl font-mono font-bold text-[#ff9eb5] tracking-[0.5em] mb-8 h-8"></div>
                             
                             <input type="text" id="listen-input-box" placeholder="Gõ từ bạn nghe được..." class="w-full max-w-md px-6 py-4 rounded-full border-2 border-[#ffe4e6] focus:border-[#ff9eb5] outline-none text-center text-xl font-extrabold text-gray-700 shadow-sm transition-colors mb-6" autocomplete="off" spellcheck="false">
 
-                            <div id="listen-example-box" class="hidden w-full max-w-md bg-[#fff0f3] border border-[#ffe4e6] rounded-xl p-4 mb-6 text-sm font-medium text-white italic"></div>
+                            <div id="listen-example-box" class="hidden w-full max-w-md bg-[#fff0f3] border border-[#ffe4e6] rounded-xl p-4 mb-6 text-sm font-medium text-[#2d3748] italic"></div>
 
                             <div class="flex gap-3 mt-auto">
                                 <button onclick="toggleListenExample()" class="px-5 py-2.5 rounded-full border-2 border-[#ffe4e6] text-gray-500 font-bold hover:bg-[#fff0f3] hover:border-[#ff9eb5] hover:text-[#ff6b81] transition flex items-center gap-2">
@@ -523,7 +523,7 @@
                                 <button onclick="useListenHint()" id="btn-listen-hint" class="px-5 py-2.5 rounded-full border-2 border-[#ffe4e6] text-gray-500 font-bold hover:bg-[#fff0f3] hover:border-[#ff9eb5] hover:text-[#ff6b81] transition flex items-center gap-2">
                                     <i class="fa-solid fa-lightbulb"></i> Gợi ý (<span id="listen-hint-count">3</span>)
                                 </button>
-                                <button onclick="checkListenAnswer()" class="px-8 py-2.5 rounded-full bg-[#ff9eb5] text-white font-extrabold hover:bg-[#ff6b81] shadow-md transition">
+                                <button onclick="checkListenAnswer()" class="px-8 py-2.5 rounded-full bg-[#ff9eb5] text-[#ffe4e6] font-extrabold hover:bg-[#ff6b81] shadow-md transition">
                                     Kiểm tra
                                 </button>
                             </div>

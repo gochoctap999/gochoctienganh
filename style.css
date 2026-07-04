@@ -1,25 +1,35 @@
-/* Custom Styles cho dự án Góc Tiếng Anh */
-
+/* Khóa body lại để trang không bị trượt toàn bộ */
 body {
     font-family: 'Nunito', sans-serif;
-    /* Dải màu chuyển mượt từ hồng phấn nhẹ xuống trắng trong trẻo */
-    background: #fdfafb; /* Màu hồng trắng cực kỳ nhẹ nhàng */    
-    background-attachment: fixed;
-    color: #2d3748; /* Màu chữ xám đen sang trọng thay vì đen kịt */
-    transition: background 0.3s ease, color 0.3s ease;
-    overflow: hidden; /* Cố định body để sidebar và main tự quản lý cuộn */
-}
-/* Đảm bảo sidebar luôn đứng yên */
-aside {
-    position: sticky;
-    top: 0;
+    background: #fdfafb;
     height: 100vh;
+    overflow: hidden; /* Cấm toàn trang cuộn */
+    display: flex;
+    flex-direction: column;
 }
 
-/* Đảm bảo nội dung chính cuộn trong vùng của nó */
+/* Container chính */
+.flex-1.relative {
+    display: flex;
+    flex: 1;
+    min-height: 0; /* QUAN TRỌNG: Giúp flex-child có thể cuộn */
+    overflow: hidden; 
+}
+
+/* Sidebar: Cố định */
+#sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    overflow-y: auto; /* Cuộn riêng trong sidebar */
+    scrollbar-width: none; /* Ẩn thanh cuộn mặc định */
+}
+
+/* Main: Cuộn riêng */
 main {
-    height: 100vh;
-    overflow-y: auto; /* Tạo thanh trượt chỉ ở phần nội dung */
+    flex: 1;
+    min-height: 0; /* QUAN TRỌNG: Giúp main cuộn */
+    overflow-y: auto; /* Chỉ phần này xuất hiện thanh cuộn */
+    padding-bottom: 50px;
 }
 /* Định dạng thanh cuộn mượt mà */
 ::-webkit-scrollbar {
@@ -181,8 +191,7 @@ aside.collapsed .footer-info {
 }
 
 /* Thêm khoảng lùi (margin/padding) cho vùng chứa ảnh */
-.relative {
-    /* Đảm bảo không có overflow che mất viền mờ */
+.floating-img-container {
     overflow: visible !important; 
 }
 
@@ -650,4 +659,11 @@ button {
 /* Thêm shadow để quyển sách trông có chiều sâu (nếu cần) */
 #book-animation {
   filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.1));
+}
+/* Đảm bảo Tailwind luôn ưu tiên hiển thị */
+.dropdown-menu.hidden {
+    display: none !important;
+}
+.dropdown-menu.flex {
+    display: flex !important;
 }

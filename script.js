@@ -763,11 +763,22 @@ function submitTest() {
     if (history.length > 50) history.length = 50; 
     localStorage.setItem('grammarHistory', JSON.stringify(history));
 
+    // Ẩn panel bên phải và nút nộp
     const rightPanel = document.getElementById('right-panel');
     if (rightPanel) rightPanel.style.display = 'none';
     document.getElementById('submit-test-btn').style.display = 'none';
     document.getElementById('test-progress').style.display = 'none';
-    document.getElementById('result-container').style.display = 'block';
+    
+    // Hiển thị Bảng kết quả bằng cách xóa class hidden
+    const resultContainer = document.getElementById('result-container');
+    if(resultContainer) resultContainer.classList.remove('hidden');
+
+    // Hiển thị nút Lọc (Tất cả) bằng cách xóa hidden và thêm flex
+    const filterContainer = document.getElementById('filter-container');
+    if(filterContainer) {
+        filterContainer.classList.remove('hidden');
+        filterContainer.classList.add('flex');
+    }
 
     document.getElementById('res-score').innerText = `${correctCount}/${total}`;
     document.getElementById('res-text').innerText = `Bạn đã trả lời đúng ${correctCount} câu trong tổng số ${total} câu hỏi (${percent}%)`;
@@ -775,10 +786,9 @@ function submitTest() {
     document.getElementById('stat-correct').innerText = `Đúng: ${correctCount}`;
     document.getElementById('stat-incorrect').innerText = `Sai: ${wrongCount}`;
     document.getElementById('stat-unanswered').innerText = `Trống: ${unansweredCount}`;
-    document.getElementById('filter-container').classList.remove('hidden'); 
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+} // Dấu ngoặc nhọn này là kết thúc hàm submitTest()
 
 function filterQuestions(type) {
     document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
@@ -849,18 +859,29 @@ function applyReviewState() {
 
     document.getElementById('submit-test-btn').style.display = 'none';
     document.getElementById('test-progress').style.display = 'none';
-    document.getElementById('result-container').style.display = 'block';
+    
     const rightPanel = document.getElementById('right-panel');  
     if (rightPanel) rightPanel.style.display = 'none';
+
+    // Hiển thị Bảng kết quả và Nút lọc
+    const resultContainer = document.getElementById('result-container');
+    if(resultContainer) resultContainer.classList.remove('hidden');
+
+    const filterContainer = document.getElementById('filter-container');
+    if(filterContainer) {
+        filterContainer.classList.remove('hidden');
+        filterContainer.classList.add('flex');
+    }
+
     document.getElementById('res-score').innerText = `${stats.correctCount}/${stats.total}`;
     const percent = Math.round((stats.correctCount / stats.total) * 100);
     document.getElementById('res-text').innerText = `Bạn đã trả lời đúng ${stats.correctCount} câu trong tổng số ${stats.total} câu hỏi (${percent}%)`;
     document.getElementById('stat-correct').innerText = `Đúng: ${stats.correctCount}`;
     document.getElementById('stat-incorrect').innerText = `Sai: ${stats.wrongCount}`;
     document.getElementById('stat-unanswered').innerText = `Trống: ${stats.unansweredCount}`;
-    document.getElementById('filter-container').classList.remove('hidden');
+    
     localStorage.removeItem('isReviewMode'); 
-}
+} // Kết thúc hàm applyReviewState()
 window.onload = function() {
     if (window.location.pathname.includes('grammar-test.html')) {
         const testData = JSON.parse(localStorage.getItem('tempTest'));
@@ -3344,16 +3365,7 @@ function renderChart() {
 // Cập nhật hàm gọi mặc định
 document.addEventListener('DOMContentLoaded', () => {
     updateBandOptions();
-    const sidebar = document.getElementById('sidebar');
-    const toggleSidebarBtn = document.getElementById('btn-toggle-sidebar');
-    const sidebarIcon = document.getElementById('sidebar-icon');
-    if (toggleSidebarBtn && sidebar && sidebarIcon) {
-        toggleSidebarBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            sidebarIcon.classList.toggle('fa-angles-left');
-            sidebarIcon.classList.toggle('fa-angles-right');
-        });
-    }
+    
    // 2. Các hàm khởi tạo có kiểm tra phần tử an toàn
     if (document.getElementById('motivational-quote')) {
         const quotes = ["Mỗi ngày cố gắng một chút...", "Kỷ luật là cầu nối..."];

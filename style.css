@@ -51,24 +51,47 @@ main {
 
 /* --- TRẠNG THÁI SIDEBAR KHI THU NHỎ (COLLAPSED) --- */
 aside.collapsed {
-    width: 80px;
+    width: 84px !important; /* Nới nhẹ ra một chút để icon thở */
 }
 
+/* Ẩn triệt để tất cả các text khi thu nhỏ */
 aside.collapsed .link-text,
 aside.collapsed .profile-info,
-aside.collapsed .profile-user-icon,
-aside.collapsed .footer-info span:last-child {
-    display: none; /* Ẩn toàn bộ chữ */
+aside.collapsed #login-view span,
+aside.collapsed #mode-text,
+aside.collapsed .footer-info > div > span {
+    display: none !important; 
 }
 
-aside.collapsed .profile-box {
-    justify-content: center;
-    padding: 1rem 0;
-}
-
+/* Giảm lề 2 bên để các khối ở đáy không bị bóp méo */
+aside.collapsed .profile-box,
 aside.collapsed .footer-info {
-    flex-direction: column;
-    gap: 12px;
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    justify-content: center !important;
+}
+
+/* Căn giữa nút Login và Avatar */
+aside.collapsed #login-view,
+aside.collapsed #user-view > div {
+    justify-content: center !important;
+    gap: 0 !important;
+}
+
+/* Chỉnh cụm Coin và Darkmode xếp dọc, căn giữa tuyệt đối */
+aside.collapsed .footer-info {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+    padding: 16px 0 !important;
+}
+
+/* Thu nhỏ và làm tròn hoàn hảo nút Coin khi đã ẩn chữ */
+aside.collapsed .footer-info .bg-white\/80 {
+    padding: 8px !important; 
+    aspect-ratio: 1/1;
     justify-content: center;
 }
 /* Trạng thái làm bài Grammar */

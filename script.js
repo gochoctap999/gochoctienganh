@@ -35,25 +35,19 @@ window.signOutUser = () => {
 // Theo dõi trạng thái người dùng
 auth.onAuthStateChanged((user) => {
     const loginView = document.getElementById('login-view');
-    const userView = document.getElementById('user-view');
     
-    // Nếu trang hiện tại không có phần login thì bỏ qua, tránh lỗi
-    if (!loginView || !userView) return; 
-
     if (user) {
-        // Đã đăng nhập: Ẩn nút Login, hiện Avatar và Tên
-        loginView.classList.add('hidden');
-        userView.classList.remove('hidden');
+        // 1. Ẩn màn hình đăng nhập nếu đang hiện
+        if (loginView) loginView.style.display = 'none';
         
-        const userNameEl = document.getElementById('user-name');
-        const userAvatarEl = document.getElementById('user-avatar');
-        
-        if (userNameEl) userNameEl.innerText = user.displayName;
-        if (userAvatarEl) userAvatarEl.src = user.photoURL;
+        // 2. Gọi hàm tải dữ liệu từ Firestore (đây là lúc nó "hút" dữ liệu về)
+        console.log("Đã đăng nhập với:", user.email);
+        loadFoldersFromFirestore(user.uid); 
     } else {
-        // Chưa đăng nhập: Hiện nút Login
-        loginView.classList.remove('hidden');
-        userView.classList.add('hidden');
+        // 3. Nếu đăng xuất, làm trống dữ liệu
+        if (loginView) loginView.style.display = 'block';
+        folders = []; 
+        renderFolders(); 
     }
 });
 
@@ -80,6 +74,10 @@ let currentQuizId = null;
 // 2. SỰ KIỆN KHI TẢI TRANG (DOM CONTENT LOADED)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // ---> ĐOẠN NÀY CHO TRANG BÀI TẬP (EXERCISES) <---
+    if (document.getElementById('ex-folder-list')) {
+        renderExFolders();
+    }
     // Kiểm tra nếu đang ở trang Luyện đề (exams.html)
     if (document.getElementById('exam-folder-list')) {
         renderExamFolders();
@@ -433,26 +431,38 @@ function updateFolderSelect() {
     if (parentSelect) parentSelect.innerHTML = '<option value="">-- Đặt làm Thư mục gốc --</option>' + optionsHTML;
 }
 
+// ĐOẠN MỚI - ĐỒNG BỘ LÊN FIREBASE
 function saveFolder() {
     const name = document.getElementById('folder-name').value.trim();
     const desc = document.getElementById('folder-desc').value.trim();
     const parentId = document.getElementById('folder-parent').value || null;
+    const user = auth.currentUser;
+
     if (!name) return alert("Vui lòng nhập tên thư mục!");
-    
-    const isDuplicate = folders.some(f => f.parentId == parentId && f.name.toLowerCase() === name.toLowerCase());
-    if (isDuplicate) return alert("Tên thư mục đã tồn tại ở cấp này!");
-    
-    folders.push({ id: Date.now(), name, desc, parentId });
-    localStorage.setItem('folders', JSON.stringify(folders));
-    
-    closeModal('modal-folder');
-    updateFolderSelect();
-    
-    if (currentFolderId && document.getElementById('view-folder').style.display === 'block') {
-        renderQuizzes();
-    } else {
-        renderFolders();
+
+    // Nếu chưa đăng nhập thì vẫn lưu local, nếu đã đăng nhập thì lưu Cloud
+    if (!user) {
+        // ... (giữ logic localStorage như cũ nếu muốn cho người dùng chưa đăng nhập)
+        alert("Bạn cần đăng nhập để lưu dữ liệu trực tuyến!");
+        return;
     }
+
+    db.collection('users').doc(user.uid).collection('folders').add({
+        name: name,
+        desc: desc,
+        parentId: parentId,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+        alert("Đã lưu thư mục lên mây thành công!");
+        closeModal('modal-folder');
+        // Tải lại dữ liệu sau khi lưu
+        loadFoldersFromFirestore(); 
+    })
+    .catch((error) => {
+        console.error("Lỗi lưu thư mục: ", error);
+        alert("Có lỗi xảy ra khi lưu!");
+    });
 }
 
 function parseRawQuestions(rawText) {
@@ -1372,12 +1382,48 @@ function editVocabSetFromList(event, id) {
     event.stopPropagation();
     const set = vocabSets.find(s => s.id == id);
     if (!set) return;
-    document.getElementById('vocab-set-id').value = set.id;
-    document.getElementById('vocab-set-name').value = set.name;
-    document.getElementById('vocab-set-desc').value = set.desc || '';
-    document.getElementById('vocab-set-folder').value = set.folderId;
-    document.getElementById('modal-vocab-set-title').innerText = "Chỉnh sửa Bộ Từ";
-    openModal('modal-vocab-set');
+
+    // 1. Gán dữ liệu cơ bản
+    document.getElementById('adv-vocab-set-id').value = set.id;
+    document.getElementById('adv-vocab-folder-id').value = set.folderId;
+    document.getElementById('adv-vocab-title').value = set.name;
+    document.getElementById('adv-vocab-desc').value = set.desc || '';
+
+    // Đổi tiêu đề Modal
+    const modalTitle = document.querySelector('#advanced-modal-vocab-set h2');
+    if (modalTitle) modalTitle.innerText = "Chỉnh sửa Bộ Từ";
+
+    // 2. Làm sạch container chứa thẻ
+    const container = document.getElementById('vocab-cards-container');
+    container.innerHTML = '';
+
+    // 3. Đổ dữ liệu các từ vựng cũ vào
+    if (set.words && set.words.length > 0) {
+        set.words.forEach(word => {
+            addVocabCard(); // Khởi tạo 1 khung thẻ trống
+            
+            // Lấy khung thẻ vừa được tạo ra (thẻ cuối cùng trong danh sách)
+            const allCards = document.querySelectorAll('.vocab-card-item');
+            const newCard = allCards[allCards.length - 1];
+            
+            // Gán dữ liệu của từ vựng vào các ô input
+            newCard.querySelector('.card-term').value = word.term || '';
+            newCard.querySelector('.card-def').value = word.definition || '';
+            newCard.querySelector('.card-pron').value = word.pronunciation || '';
+            newCard.querySelector('.card-type').value = word.wordType || '';
+            newCard.querySelector('.card-ex').value = word.example || '';
+            newCard.querySelector('.card-syn').value = word.synonyms || '';
+        });
+    } else {
+        // Nếu bộ từ trống, tạo 2 thẻ rỗng mặc định
+        addVocabCard();
+        addVocabCard();
+    }
+
+    // 4. Mở modal nâng cao
+    const modal = document.getElementById('advanced-modal-vocab-set');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
 }
 
 function saveVocabSet() {
@@ -1427,9 +1473,17 @@ function deleteVocabCard(btn) {
 }
 
 // Mở cửa sổ Tạo bộ từ nâng cao
+// Mở cửa sổ Tạo bộ từ nâng cao
 function openAdvancedCreateVocabSet() {
     document.getElementById('adv-vocab-title').value = '';
     document.getElementById('adv-vocab-desc').value = '';
+    
+    // Đặt lại ID bộ từ thành rỗng (chế độ tạo mới)
+    document.getElementById('adv-vocab-set-id').value = '';
+    
+    // Đổi lại tiêu đề
+    const modalTitle = document.querySelector('#advanced-modal-vocab-set h2');
+    if (modalTitle) modalTitle.innerText = "Tạo Bộ Từ Mới";
     
     // Đặt ID thư mục hiện tại
     if (currentVocabFolderId && document.getElementById('vocab-view-folder').style.display === 'block') {
@@ -1448,7 +1502,6 @@ function openAdvancedCreateVocabSet() {
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden'; 
 }
-
 // Đóng cửa sổ
 function closeAdvancedCreateVocabSet() {
     const modal = document.getElementById('advanced-modal-vocab-set');
@@ -1503,10 +1556,12 @@ function addVocabCard() {
 }
 
 // Lưu bộ từ từ giao diện nâng cao
+// Lưu bộ từ từ giao diện nâng cao
 function saveAdvancedVocabSet() {
     const title = document.getElementById('adv-vocab-title').value.trim();
     const desc = document.getElementById('adv-vocab-desc').value.trim();
     const folderId = document.getElementById('adv-vocab-folder-id').value;
+    const setId = document.getElementById('adv-vocab-set-id').value; // Lấy ID bộ từ (nếu có)
 
     if (!title) return alert("Vui lòng nhập tiêu đề cho bộ từ!");
     if (!folderId) return alert("Không xác định được thư mục lưu. Vui lòng mở từ bên trong một thư mục!");
@@ -1523,10 +1578,9 @@ function saveAdvancedVocabSet() {
         const ex = card.querySelector('.card-ex').value.trim();
         const syn = card.querySelector('.card-syn').value.trim();
 
-        // Chỉ lưu thẻ nếu có nhập ít nhất thuật ngữ hoặc định nghĩa
         if (term || def) {
             wordList.push({
-                id: Date.now() + Math.random(),
+                id: Date.now() + Math.random(), // Tạo ID tạm
                 term, definition: def, pronunciation: pron, wordType: type, example: ex, synonyms: syn
             });
         }
@@ -1534,15 +1588,38 @@ function saveAdvancedVocabSet() {
 
     if (wordList.length === 0) return alert("Vui lòng nhập ít nhất một thuật ngữ!");
 
-    // Lưu vào LocalStorage
-    vocabSets.push({
-        id: Date.now(),
-        folderId: folderId,
-        name: title,
-        desc: desc,
-        words: wordList
-    });
+    if (setId) {
+        // --- CHẾ ĐỘ CẬP NHẬT (CHỈNH SỬA) ---
+        const index = vocabSets.findIndex(s => s.id == setId);
+        if (index > -1) {
+            vocabSets[index].name = title;
+            vocabSets[index].desc = desc;
+            
+            // So khớp để giữ lại tiến trình học (SRS Level) của các từ cũ
+            const oldWords = vocabSets[index].words || [];
+            wordList.forEach(newWord => {
+                const existingWord = oldWords.find(ow => ow.term === newWord.term);
+                if (existingWord) {
+                    newWord.id = existingWord.id; // Giữ ID cũ
+                    newWord.srsLevel = existingWord.srsLevel || 0;
+                    newWord.nextReviewTime = existingWord.nextReviewTime || 0;
+                }
+            });
+            
+            vocabSets[index].words = wordList;
+        }
+    } else {
+        // --- CHẾ ĐỘ TẠO MỚI ---
+        vocabSets.push({
+            id: Date.now(),
+            folderId: folderId,
+            name: title,
+            desc: desc,
+            words: wordList
+        });
+    }
 
+    // Lưu vào LocalStorage
     localStorage.setItem('vocabSets', JSON.stringify(vocabSets));
     
     // Cập nhật giao diện thư mục
@@ -3717,3 +3794,168 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
+// Hàm này dùng để lấy dữ liệu từ Firestore và cập nhật vào biến `folders` của bạn
+async function loadFoldersFromFirestore(uid) {
+    try {
+        const snapshot = await db.collection('users').doc(uid).collection('folders').get();
+        
+        // Chuyển dữ liệu từ Firestore vào mảng `folders` mà code của bạn đang dùng
+        folders = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+        
+        // Sau khi lấy xong thì hiển thị lên giao diện
+        renderFolders(); 
+        console.log("Đã tải xong dữ liệu từ Cloud:", folders);
+    } catch (error) {
+        console.error("Lỗi khi tải dữ liệu:", error);
+    }
+}
+// ==========================================
+// 18. QUẢN LÝ DANH SÁCH BÀI TẬP (EXERCISES)
+// ==========================================
+let currentExFolderId = null;
+
+// Hàm hỗ trợ thông báo tạm
+function triggerPlaceholderAlert(actionName) {
+    alert(`[Chức năng Giao diện]: Nút "${actionName}" đã được thiết lập thành công. Phần lõi logic chuyên sâu cho bài tập sẽ được tích hợp sau!`);
+}
+
+// Quay về màn hình trang chủ bài tập
+function goExHome() {
+    document.getElementById('ex-view-folder').style.display = 'none';
+    document.getElementById('ex-view-set').style.display = 'none';
+    document.getElementById('ex-view-home').style.display = 'block';
+    currentExFolderId = null;
+    renderExFolders();
+}
+
+// Mở một thư mục mẹ ở trang bài tập
+function openExFolder(folderId) {
+    currentExFolderId = folderId;
+    document.getElementById('ex-view-home').style.display = 'none';
+    document.getElementById('ex-view-set').style.display = 'none';
+    document.getElementById('ex-view-folder').style.display = 'block';
+    
+    const folder = vocabFolders.find(f => f.id == folderId);
+    document.getElementById('current-ex-folder-name').innerText = '📁 ' + (folder ? folder.name : 'Thư mục');
+    
+    renderExItems();
+}
+
+// Mở cụm bài tập con (nơi biến tập tin đề từ vựng thành 1 folder con)
+function openExSet(setId, parentFolderId) {
+    document.getElementById('ex-view-home').style.display = 'none';
+    document.getElementById('ex-view-folder').style.display = 'none';
+    document.getElementById('ex-view-set').style.display = 'block';
+    
+    const set = vocabSets.find(s => s.id == setId);
+    document.getElementById('current-ex-set-name').innerText = '📝 Cụm bài tập: ' + (set ? set.name : 'Không tên');
+    
+    const backBtn = document.getElementById('ex-set-back-btn');
+    backBtn.onclick = () => openExFolder(parentFolderId);
+}
+
+// RENDER 1: Thư mục mẹ tại trang chủ bài tập (Tone màu Trắc Hồng)
+function renderExFolders() {
+    const list = document.getElementById('ex-folder-list');
+    if (!list) return;
+    list.innerHTML = '';
+    
+    const rootFolders = vocabFolders.filter(f => !f.parentId);
+    if (rootFolders.length === 0) {
+        list.innerHTML = '<p class="text-gray-400 font-bold text-sm p-4">Chưa có thư mục nào bên trang tài liệu từ vựng để đồng bộ.</p>';
+        return;
+    }
+
+    rootFolders.forEach(f => {
+        const childCount = vocabFolders.filter(sub => sub.parentId == f.id).length;
+        // Tận dụng hàm getAllVocabFolderIds có sẵn từ phần Vocab
+        const allIds = getAllVocabFolderIds(f.id);
+        const setCount = vocabSets.filter(s => allIds.includes(String(s.folderId))).length;
+        
+        list.innerHTML += `
+        <div class="bg-white border-2 border-pink-100 rounded-[24px] p-5 cursor-pointer hover:-translate-y-1 hover:border-pink-300 transition-all shadow-sm flex flex-col justify-between relative group h-40" onclick="openExFolder(${f.id})">
+            
+            <div class="absolute top-4 right-4 flex gap-1.5 opacity-0 group-hover:opacity-100 transition z-10">
+                <button onclick="event.stopPropagation(); triggerPlaceholderAlert('Chỉnh sửa thư mục')" class="w-7 h-7 rounded-full bg-gray-50 text-gray-400 hover:text-blue-500 flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-pen text-xs"></i>
+                </button>
+                <button onclick="event.stopPropagation(); triggerPlaceholderAlert('Xóa thư mục')" class="w-7 h-7 rounded-full bg-red-50 text-gray-400 hover:text-red-500 flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-trash-can text-xs"></i>
+                </button>
+            </div>
+
+            <h4 class="font-extrabold text-[#2d3748] text-[17px] flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark text-pink-400 text-lg"></i> ${f.name}
+            </h4>
+            
+            <div class="mt-auto flex gap-2">
+                <span class="bg-pink-50 text-pink-600 text-[11px] font-bold px-3 py-1.5 rounded-[10px]">${childCount} thư mục con</span>
+                <span class="bg-rose-50 text-rose-600 text-[11px] font-bold px-3 py-1.5 rounded-[10px]">${setCount} cụm đề</span>
+            </div>
+        </div>`;
+    });
+}
+
+// RENDER 2: Bên trong thư mục mẹ
+function renderExItems() {
+    const list = document.getElementById('ex-item-list');
+    if (!list) return;
+    list.innerHTML = '';
+    
+    const subFolders = vocabFolders.filter(f => f.parentId == currentExFolderId);
+    const folderSets = vocabSets.filter(s => s.folderId == currentExFolderId);
+    
+    if (subFolders.length === 0 && folderSets.length === 0) {
+        list.innerHTML = '<p class="text-gray-400 font-bold text-sm p-4">Thư mục trống hoặc chưa có file đề từ vựng bên tài liệu.</p>';
+        return;
+    }
+
+    // 1. Hiển thị thư mục con thuần túy
+    subFolders.forEach(f => {
+        const childCount = vocabFolders.filter(sub => sub.parentId == f.id).length;
+        const allIds = getAllVocabFolderIds(f.id);
+        const setCount = vocabSets.filter(s => allIds.includes(String(s.folderId))).length;
+        
+        list.innerHTML += `
+        <div class="bg-white border-2 border-pink-100 rounded-[24px] p-5 cursor-pointer hover:-translate-y-1 transition-all shadow-sm flex flex-col justify-between relative group h-40" onclick="openExFolder(${f.id})">
+            <h4 class="font-extrabold text-[#2d3748] text-[17px] flex items-center gap-2"><i class="fa-solid fa-folder text-pink-300 text-xl"></i> ${f.name}</h4>
+            <div class="mt-auto flex gap-2">
+                <span class="bg-pink-50 text-pink-600 text-[11px] font-bold px-3 py-1.5 rounded-[10px]">${childCount} thư mục con</span>
+                <span class="bg-rose-50 text-rose-600 text-[11px] font-bold px-3 py-1.5 rounded-[10px]">${setCount} cụm đề</span>
+            </div>
+        </div>`;
+    });
+
+    // 2. BIẾN FILE ĐỀ TỪ VỰNG THÀNH THƯ MỤC BÀI TẬP CON
+    folderSets.forEach(s => {
+        list.innerHTML += `
+        <div class="bg-white border-2 border-rose-200 rounded-[24px] p-5 cursor-pointer hover:-translate-y-1 hover:border-pink-400 transition-all shadow-md flex flex-col justify-between relative group h-40 animate-fade-in" onclick="openExSet(${s.id}, ${currentExFolderId})">
+            
+            <div class="absolute top-4 right-4 flex gap-1.5 opacity-0 group-hover:opacity-100 transition z-10">
+                <button onclick="event.stopPropagation(); triggerPlaceholderAlert('Chỉnh sửa cụm đề bài tập')" class="w-7 h-7 rounded-full bg-gray-50 text-gray-400 hover:text-blue-500 flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-pen-to-square text-xs"></i>
+                </button>
+                <button onclick="event.stopPropagation(); triggerPlaceholderAlert('Xóa cụm đề')" class="w-7 h-7 rounded-full bg-red-50 text-gray-400 hover:text-red-500 flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-trash-can text-xs"></i>
+                </button>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-2 text-xs font-bold text-pink-500 mb-1 uppercase tracking-wider">
+                    <span class="px-2 py-0.5 bg-pink-100 rounded-md">Cụm bài tập</span>
+                </div>
+                <h4 class="font-extrabold text-gray-800 text-[16px] leading-snug line-clamp-2">
+                    <i class="fa-solid fa-paste text-pink-400 mr-1.5"></i> ${s.name}
+                </h4>
+            </div>
+            
+            <div class="mt-auto flex items-center justify-between text-[11px] font-bold text-gray-400">
+                <span>Khởi tạo tự động</span>
+                <span class="text-pink-600 bg-pink-50 px-2 py-1 rounded-md"><i class="fa-solid fa-circle-check"></i> Sẵn sàng</span>
+            </div>
+        </div>`;
+    });
+}

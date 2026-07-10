@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Góc Tiếng Anh - Bộ từ vựng</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- CSS Tùy chỉnh -->
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <style>
         .active-menu {
@@ -139,9 +136,15 @@
                 <div id="vocab-view-home">
                     <div class="flex justify-between items-center mb-6 pb-4 border-b border-blue-100">
                         <h2 class="text-2xl font-extrabold text-[#2d3748]"><i class="fa-solid fa-layer-group text-[#3b82f6] mr-2"></i> Hệ thống Từ vựng</h2>
-                        <button onclick="openCreateVocabFolderModal()" class="bg-[#ffe4e6] text-[#e11d48] hover:bg-[#fda4af] px-4 py-2 rounded-[14px] font-bold text-sm shadow-sm transition">
-                            <i class="fa-solid fa-folder-plus mr-1"></i> Tạo Thư mục
-                        </button>
+                        
+                        <div class="flex gap-3">
+                            <button onclick="openCreateVocabFolderModal()" class="bg-[#ffe4e6] text-[#e11d48] hover:bg-[#fda4af] px-4 py-2 rounded-[14px] font-bold text-sm shadow-sm transition">
+                                <i class="fa-solid fa-folder-plus mr-1"></i> Tạo Thư mục
+                            </button>
+                            <a href="exercises.html" class="bg-[#fce7f3] text-[#db2777] hover:bg-[#fbcfe8] px-4 py-2 rounded-[14px] font-bold text-sm shadow-sm transition flex items-center gap-1">
+                                <i class="fa-solid fa-book-open-reader"></i> Danh sách bài tập
+                            </a>
+                        </div>
                     </div>
                     <div id="vocab-folder-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
                 </div>
@@ -216,6 +219,7 @@
                             <textarea id="adv-vocab-desc" placeholder="Thêm mô tả cho bộ thẻ của bạn..." class="w-full p-4 rounded-2xl bg-white border border-gray-200 outline-none focus:border-[#ffb3c6] shadow-sm resize-none h-24 transition"></textarea>
                         </div>
                         <input type="hidden" id="adv-vocab-folder-id">
+                        <input type="hidden" id="adv-vocab-set-id">
                     </div>
 
                     <div id="vocab-cards-container" class="flex flex-col gap-6">

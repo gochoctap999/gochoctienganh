@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Góc Tiếng Anh - Lịch sử làm bài</title>
+    <title>Góc Tiếng Anh - Danh sách bài tập</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <style>
-        .active-menu {
-            background-color: #cce5ff;
-            color: #1e3a8a;
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23db2777' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
         }
     </style>
 </head>
-<body class="h-screen flex flex-col text-gray-800 overflow-hidden bg-gradient-to-br from-[#fdfbf7] via-[#fff0f0] to-[#f0f7ff]">
-
+<body class="h-screen flex flex-col text-gray-800 bg-gradient-to-br from-[#fdfbf7] via-[#fff0f0] to-[#f0f7ff]">
     <header class="flex items-center justify-between px-6 py-3 bg-white/60 backdrop-blur-md shadow-sm z-10 relative border-b border-pink-50/50">
         <div class="flex items-center gap-8">
             <div class="flex items-center gap-2">
@@ -26,7 +28,6 @@
                 </div>
                 <div class="text-2xl font-extrabold text-[#ff6b81] tracking-tight">goctienganh</div>
             </div>
-            
             
         </div>
         
@@ -43,7 +44,7 @@
         </div>
     </header>
 
-    <div class="flex flex-1 overflow-hidden relative">
+    <div class="flex flex-1 relative">
         
         <aside id="sidebar" class="w-[240px] flex flex-col justify-between bg-white/60 backdrop-blur-md border-r border-[#ffe4e6] z-10 transition-all duration-300 shrink-0">
             <div class="p-4 flex flex-col gap-2 overflow-y-auto hide-scrollbar">
@@ -132,35 +133,70 @@
         </aside>
 
         <main class="flex-1 overflow-y-auto p-6 md:p-8">
-            <div class="max-w-4xl mx-auto">
-                
-                <div class="mb-6">
-                    <button onclick="window.history.back()" class="text-sm font-bold text-[#475569] hover:text-[#2d3748] mb-4">← Quay lại</button>
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-[#fff0f3] flex items-center justify-center text-white text-xl shadow-inner border-2 border-white">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
+            <div class="max-w-6xl mx-auto">
+
+                <div id="ex-view-home">
+                    <div class="flex justify-between items-center mb-6 pb-4 border-b border-pink-100">
+                        <h2 class="text-2xl font-extrabold text-[#2d3748]"><i class="fa-solid fa-book-bookmark text-pink-500 mr-2"></i> Danh sách bài tập</h2>
+                        <div class="flex gap-2">
+                            <a href="vocab-sets.html" class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-[14px] font-bold text-sm shadow-sm transition flex items-center gap-1">← Trang Tài liệu</a>
+                            <button onclick="triggerPlaceholderAlert('Tạo Thư mục Mới')" class="bg-[#fce7f3] text-[#db2777] hover:bg-[#fbcfe8] px-4 py-2 rounded-[14px] font-bold text-sm shadow-sm transition"><i class="fa-solid fa-folder-plus mr-1"></i> Tạo Thư mục</button>
                         </div>
-                        <h2 class="font-extrabold text-[#2d3748] text-3xl">Lịch sử làm bài toàn hệ thống</h2>
                     </div>
+                    <div id="ex-folder-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
                 </div>
 
-                <div class="bg-white/80 backdrop-blur-md border-2 border-[#ffe4e6] rounded-[32px] p-5 md:p-8 shadow-sm">
-                    <p class="text-sm font-bold text-gray-500 mb-6 pb-4 border-b border-blue-50">Nhấn vào một bài kiểm tra bất kỳ để xem lại câu hỏi và giải thích chi tiết.</p>
+                <div id="ex-view-folder" style="display: none;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-pink-100 gap-4">
+                        <div>
+                            <button onclick="goExHome()" class="text-sm font-bold text-gray-500 hover:text-[#2d3748] mb-2">← Quay lại trang chủ Bài tập</button>
+                            <h2 id="current-ex-folder-name" class="text-2xl font-extrabold text-[#2d3748]">Tên thư mục mẹ</h2>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="triggerPlaceholderAlert('Xóa thư mục mẹ')" class="bg-red-50 text-red-600 px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Xóa Thư mục này</button>
+                            <button onclick="triggerPlaceholderAlert('Chỉnh sửa thư mục mẹ')" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Chỉnh sửa</button>
+                            <button onclick="triggerPlaceholderAlert('Thêm thư mục con hoặc Bộ từ phụ')" class="bg-[#fce7f3] text-[#db2777] px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Tạo thư mục con</button>
+                        </div>
+                    </div>
+                    <div id="ex-item-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+                </div>
+
+                <div id="ex-view-set" style="display: none;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-pink-100 gap-4">
+                        <div>
+                            <button id="ex-set-back-btn" class="text-sm font-bold text-gray-500 hover:text-[#2d3748] mb-2">← Quay lại thư mục mẹ</button>
+                            <h2 id="current-ex-set-name" class="text-2xl font-extrabold text-[#2d3748]">Tên cụm bài tập (Bộ từ cũ)</h2>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="triggerPlaceholderAlert('Xóa cụm đề bài tập')" class="bg-red-100 text-red-700 px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Xóa cụm này</button>
+                            <button onclick="triggerPlaceholderAlert('Chỉnh sửa tên cụm đề')" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-xl font-bold text-sm shadow-sm">Chỉnh sửa tên đề</button>
+                            <button onclick="triggerPlaceholderAlert('Tạo Bài Tập Mới (Lõi logic sẽ được tích hợp sau)')" class="bg-black text-white px-5 py-2 rounded-xl font-bold text-sm shadow-sm transition"><i class="fa-solid fa-plus mr-1"></i> Tạo bài tập</button>
+                        </div>
+                    </div>
                     
-                    <div id="history-list" class="flex flex-col gap-3"></div>
+                    <div class="bg-white/60 backdrop-blur-md border border-dashed border-pink-300 rounded-[24px] p-8 text-center flex flex-col items-center justify-center max-w-2xl mx-auto mt-10">
+                        <i class="fa-solid fa-cubes-stacked text-4xl text-pink-300 mb-3"></i>
+                        <p class="text-[#475569] font-bold mb-2">Cấu trúc cụm bài tập đã sẵn sàng!</p>
+                        <p class="text-gray-400 text-xs font-semibold mb-6">Lõi logic thiết lập các dạng câu hỏi trắc nghiệm, nối từ, điền khuyết cho bài tập này sẽ được bạn cập nhật ở bước tiếp theo.</p>
+                        
+                        <div class="flex gap-3">
+                            <button onclick="triggerPlaceholderAlert('Chỉnh sửa nội dung đề')" class="bg-white border border-gray-200 text-gray-700 px-4 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-50"><i class="fa-regular fa-pen-to-square mr-1"></i> Chỉnh sửa đề mẫu</button>
+                            <button onclick="triggerPlaceholderAlert('Xóa đề')" class="bg-white border border-red-200 text-red-600 px-4 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:bg-red-50"><i class="fa-regular fa-trash-can mr-1"></i> Xóa đề mẫu</button>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </main>
     </div>
-        <!-- Nhúng Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
     <script>
-        // Gọi hàm hiển thị lịch sử ngay khi tải trang
-        document.addEventListener('DOMContentLoaded', renderHistory);
+        function triggerPlaceholderAlert(actionName) {
+            alert(`[Chức năng Giao diện]: Nút "${actionName}" đã được thiết lập thành công. Phần lõi logic chuyên sâu cho bài tập sẽ được tích hợp theo cấu trúc của bạn sau!`);
+        }
     </script>
 </body>
 </html>

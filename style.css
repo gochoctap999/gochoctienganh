@@ -645,12 +645,6 @@ select:hover {
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
-/* Nút có độ bóng */
-button {
-    box-shadow: 0 4px 6px -1px rgba(255, 158, 181, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
 /* Thanh cuộn cho ô nhập liệu */
 .custom-scrollbar::-webkit-scrollbar { width: 8px; }
 .custom-scrollbar::-webkit-scrollbar-track { background: #fff0f3; border-radius: 10px; }
